@@ -1,0 +1,116 @@
+---
+- id: 2688174
+  topic: 23796867
+  kind: meetup
+  state: New York
+  city: New York
+- id: 20420
+  topic: 26667328
+  kind: meetup
+  state: New York
+  city: New York
+- id: 20420
+  topic: 31920625
+  kind: meetup
+  state: New York
+  city: New York
+- id: 13511430
+  topic: 23147481
+  kind: meetup
+  state: New York
+  city: New York
+- id: 35762330
+  topic: 27979041
+  kind: meetup
+  state: New York
+  city: New York
+- id: 1713224
+  topic: 33519018
+  kind: meetup
+  state: New York
+  city: New York
+- id: 1713224
+  topic: 8624476
+  kind: meetup
+  state: New York
+  city: New York
+- id: 35762330
+  topic: 26950339
+  kind: meetup
+  state: New York
+  city: New York
+- id: 22558194
+  topic: 27427408
+  kind: meetup
+  state: New York
+  city: New York
+- id: 22558194
+  topic: 27669958
+  kind: meetup
+  state: New York
+  city: New York
+- id: 20420
+  topic: 29608897
+  kind: meetup
+  state: New York
+  city: New York
+- id: 22558194
+  topic: 29919332
+  kind: meetup
+  state: New York
+  city: New York
+- id: 453825
+  topic: 33875285
+  kind: meetup
+  state: California
+  city: Los Angeles # los-angeles
+- id: 453825
+  topic: 33875285
+  kind: meetup
+  state: California
+  city: Los Angeles
+- id: 13509936
+  topic: 29079585
+  kind: meetup
+  state: California
+  city: Los Angeles
+- id: 115224115
+  topic: 33446898
+  kind: meetup
+  state: California
+  city: San Francisco # san-francisco
+- id: 11816095
+  topic: 27801064
+  kind: meetup
+  state: California
+  city: Miami # miami
+- id: 12971907
+  topic: 21833475
+  kind: meetup
+  state: California
+  city: Miami
+- id: 13247283
+  topic: 28131490
+  kind: meetup
+  state: Illinois
+  city: Chicago # chicago
+- id: 13457639
+  topic: 27282050
+  kind: meetup
+  state: Massachusetts
+  city: Boston # boston
+- id: 13509700
+  topic: 24135590
+  kind: meetup
+  state: Texas
+  city: Houston # houston
+- id: 11710820
+  topic: 21754084
+  kind: meetup
+  state: District of Columbia
+  city: Washington # washington
+- id: 115310832
+  topic: 33823033
+  kind: meetup
+  state: Pennsylvania
+  city: Philadelphia # philadelphia

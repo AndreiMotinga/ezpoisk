@@ -5,12 +5,23 @@ ruby "2.4.1"
 
 gem "bootsnap", ">= 1.1.0", require: false
 gem "devise_token_auth"
+gem "fast_jsonapi"
 gem "pg"
 gem "puma", "~> 3.11"
 gem "rack-cors"
 gem "rails", "~> 5.2.0"
 
+gem "koala", "~> 2.2"
+gem "slack-notifier"
+gem "vkontakte_api", "~> 1.4"
+
+gem "aws-sdk", "< 3.0"
+gem "paperclip"
+
 group :development, :test do
+  gem "awesome_print"
+  gem "dotenv-rails"
+  gem "pry-byebug"
 end
 
 group :development do

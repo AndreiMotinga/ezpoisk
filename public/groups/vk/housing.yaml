@@ -1,0 +1,219 @@
+---
+- id: 115224115
+  topic: 33446889
+  kind: housing
+  state: California
+  city: San Francisco
+- id: 59925174
+  topic: 29354897
+  kind: housing
+  state: California
+  city: San Francisco
+- id: 13511430
+  topic: 22076293
+  kind: housing
+  state: New York
+  city: New York
+- id: 60526377
+  topic: 32706627
+  kind: housing
+  state: New York
+  city: New York
+- id: 47107176
+  topic: 31093440
+  kind: housing
+  state: Florida
+  city: Miami
+- id: 106556711
+  topic: 35308905
+  kind: housing
+  state: California
+  city: Los Angeles
+- id: 115310832
+  topic: 33823042
+  kind: housing
+  state: Pennsylvania
+  city: Philadelphia
+- id: 115310832
+  topic: 33823049
+  kind: housing
+  state: Pennsylvania
+  city: Philadelphia
+- id: 66817566
+  topic: 31081445
+  kind: housing
+  state: New York
+  city: New York
+- id: 10519422
+  topic: 34718935
+  kind: housing
+  state: New York
+  city: New York
+- id: 20420
+  topic: 21430280
+  kind: housing
+  state: New York
+  city: New York
+- id: 2688174
+  topic: 22787899
+  kind: housing
+  state: New York
+  city: New York
+- id: 12885141
+  topic: 31459649
+  kind: housing
+  state: New York
+  city: New York
+- id: 22558194
+  topic: 26379827
+  kind: housing
+  state: New York
+  city: New York
+- id: 26834667
+  topic: 30311805
+  kind: housing
+  state: New York
+  city: New York
+- id: 13511430
+  topic: 23440952
+  kind: housing
+  state: New York
+  city: New York
+- id: 10519422
+  topic: 28521826
+  kind: housing
+  state: New York
+  city: New York
+- id: 5891839
+  topic: 22899151
+  kind: housing
+  state: New York
+  city: New York
+- id: 35762330
+  topic: 27162327
+  kind: housing
+  state: New York
+  city: Brooklyn
+- id: 63852120
+  topic: 29158432
+  kind: housing
+  state: Florida
+  city: Miami
+- id: 12971907
+  topic: 22756106
+  kind: housing
+  state: Florida
+  city: Miami
+- id: 40123
+  topic: 28144309
+  kind: housing
+  state: Florida
+  city: Miami
+- id: 34604425
+  topic: 35054284
+  kind: housing
+  state: California
+  city: Los Angeles
+- id: 7661136
+  topic: 32923836
+  kind: housing
+  state: California
+  city: Los Angeles
+- id: 94076941
+  topic: 32175836
+  kind: housing
+  state: California
+  city: Los Angeles
+- id: 453825
+  topic: 21736697
+  kind: housing
+  state: California
+  city: Los Angeles
+- id: 13509936
+  topic: 24476759
+  kind: housing
+  state: California
+  city: Los Angeles
+- id: 13457639
+  topic: 23393240
+  kind: housing
+  state: Massachusetts
+  city: Boston
+- id: 130429581
+  topic: 34427590
+  kind: housing
+  state: Massachusetts
+  city: Boston
+- id: 130429581
+  topic: 34427583
+  kind: housing
+  state: Massachusetts
+  city: Boston
+- id: 13509700
+  topic: 23331849
+  kind: housing
+  state: Texas
+  city: Houston
+- id: 67410749
+  topic: 34209692
+  kind: housing
+  state: Texas
+  city: Houston
+- id: 13247283
+  topic: 28066478
+  kind: housing
+  state: Illinois
+  city: Chicago
+- id: 52035
+  topic: 33691837
+  kind: housing
+  state: Illinois
+  city: Chicago
+- id: 11710820
+  topic: 21874759
+  kind: housing
+  state: District of Columbia
+  city: Washington
+- id: 387962
+  topic: 27461153
+  kind: housing
+  state: Washington
+  city: Seattle
+- id: 18130368
+  topic: 23204046
+  kind: housing
+  state: New York
+  city: New York
+- id: 57231129
+  topic: 34097109
+  kind: housing
+  state: New York
+  city: New York
+- id: 68915281
+  topic: 33512052
+  kind: housing
+  state: New York
+  city: New York
+- id: 23960872
+  topic: 27152228
+  kind: housing
+  state: New York
+  city: New York
+- id: 130429357
+  topic: 36172610
+  kind: housing
+  state: New York
+  city: New York
+- id: 62791759
+  topic: 32247493
+  kind: housing
+  state: Florida
+  city: Miami
+- id: 62791759
+  topic: 33035110
+  kind: housing
+  state: Florida
+  city: Miami
+- id: 79893369
+  topic: 31572045
+  kind: housing

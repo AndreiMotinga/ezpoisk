@@ -82,4 +82,19 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  config.paperclip_defaults = {
+    storage: :s3,
+    s3_protocol: :https,
+    s3_region: "us-east-1",
+    default_url: "https://s3.amazonaws.com/ezpoisk/missing-small.png",
+    # url: ":s3_alias_url",
+    # path: "/:class/:attachment/:id_partition/:style/:filename",
+    # s3_host_alias: ENV.fetch("ASSET_HOST"),
+    s3_credentials: {
+      bucket: "ezpoisk",
+      access_key_id: Rails.application.credentials.aws_key,
+      secret_access_key: Rails.application.credentials.aws_secret
+    },
+  }
 end

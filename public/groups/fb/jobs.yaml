@@ -1,0 +1,85 @@
+---
+- id: 473109486227904
+  kind: job
+  state: New York
+  city: New York
+- id: 756506411151974
+  kind: job
+  state: New York
+  city: New York
+- id: 1560556600940281
+  kind: job
+  state: New York
+  city: New York
+- id: 373866306149980
+  kind: job
+  state: New York
+  city: New York
+- id: 109946426160367
+  kind: job
+  state: New York
+  city: New York
+- id: 277675415621450
+  kind: job
+  state: New York
+  city: New York
+- id: 1030398037015054
+  kind: job
+  state: New York
+  city: New York
+- id: 137863963079459
+  kind: job
+  state: Florida
+  city: Miami
+- id: 778710555550702
+  kind: job
+  state: Florida
+  city: Miami
+- id: 323815354415874
+  kind: job
+  state: Florida
+  city: Orlando
+- id: 249106225164786
+  kind: job
+  state: California
+  city: San Francisco
+- id: 926513640746980
+  kind: job
+  state: California
+  city: Los Angeles
+- id: 1609170409313852
+  kind: job
+  state: California
+  city: San Diego
+- id: 1400977150209237
+  kind: job
+  state: Washington
+  city: Seattle
+- id: 1106107669412708
+  kind: job
+  state: Texas
+  city: Dallas
+- id: 398984013638015
+  kind: job
+  state: Arizona
+  city: Phoenix
+- id: 916738071690195
+  kind: job
+  state: District of Columbia
+  city: Washington
+- id: 118841781880515
+  kind: job
+  state: California
+  city: Sacramento
+- id: 897633366949647
+  kind: job
+  state: Florida
+  city: Miami
+- id: 760712394075890
+  kind: job
+  state: Florida
+  city: Miami
+- id: 1635526096733831
+  kind: job
+  state: Florida
+  city: Miami

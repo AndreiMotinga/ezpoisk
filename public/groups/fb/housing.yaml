@@ -1,0 +1,45 @@
+---
+- id: 374704915873674
+  kind: housing
+  state: New York
+  city: New York
+- id: 234474186756047
+  kind: housing
+  state: Florida
+  city: Miami
+- id: 1444506849104060
+  kind: housing
+  state: California
+  city: San Francisco
+- id: 157972304548564
+  kind: housing
+  state: California
+  city: Los Angeles
+- id: 925575417479962
+  kind: housing
+  state: California
+  city: San Diego
+- id: 1173206122714034
+  kind: housing
+  state: Washington
+  city: Seattle
+- id: 1614363378884490
+  kind: housing
+  state: Texas
+  city: Dallas
+- id: 250420935056415
+  kind: housing
+  state: Florida
+  city: Miami
+- id: 731455077017466
+  kind: housing
+  state: New York
+  city: New York
+- id: 406135993108984
+  kind: housing
+  state: New York
+  city: New York
+- id: 272794753098692
+  kind: housing
+  state: Florida
+  city: Miami

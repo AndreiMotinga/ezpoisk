@@ -1,0 +1,109 @@
+---
+- id: 1636719733237337
+  kind: misc
+  state: New York
+  city: New York
+- id: 612388538911928
+  kind: misc
+  state: California
+  city: Los Angeles
+- id: 193574154352623
+  kind: misc
+  state: New York
+  city: New York
+- id: 1702852479992777
+  kind: misc
+  state: Florida
+  city: Miami
+- id: 1614105738880578
+  kind: misc
+  state: Florida
+  city: Miami
+- id: 832299406805208
+  kind: misc
+  state: Florida
+  city: Miami
+- id: 189821571497530
+  kind: misc
+  state: California
+  city: Sacramento
+- id: 218390758358928
+  kind: misc
+  state: Florida
+  city: Miami
+- id: 449502505398932
+  kind: misc
+  state: Florida
+  city: Miami
+- id: 815130865232079
+  kind: misc
+  state: Florida
+  city: Miami
+- id: 113818518745706
+  kind: misc
+  state: Florida
+  city: Miami
+- id: 972886192775236
+  kind: misc
+  state: California
+  city: Los Angeles
+- id: 1594879110841272
+  kind: misc
+  state: New York
+  city: New York
+- id: 387886908075061
+  kind: misc
+  state: New York
+  city: New York
+- id: 823476284442541
+  kind: misc
+  state: New York
+  city: New York
+- id: 258023847297
+  kind: misc
+  state: New York
+  city: New York
+- id: 200634953374153
+  kind: misc
+  state: New York
+  city: New York
+- id: 1597503923829225
+  kind: misc
+  state: New York
+  city: New York
+- id: 100009461835623
+  kind: misc
+  state: New York
+  city: New York
+- id: 250760518336281
+  kind: misc
+  state: New York
+  city: New York
+- id: 230347657059740
+  kind: misc
+  state: California
+  city: San Francisco
+- id: 264718916912405
+  kind: misc
+  state: New York
+  city: New York
+- id: 462275837263493
+  kind: misc
+  state: New York
+  city: New York
+- id: 163326977194489
+  kind: misc
+  state: California
+  city: Los Angeles
+- id: 174948119218348
+  kind: misc
+  state: California
+  city: Los Angeles
+- id: 157070704319331
+  kind: misc
+  state: Texas
+  city: Houston
+- id: 497232543759176
+  kind: разное
+  state: Florida
+  city: Miami
