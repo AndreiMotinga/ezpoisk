@@ -80,8 +80,8 @@ const styles = {
   root: {
     padding: 15
   }
-}
+};
 
-const styledApp = withStyles(styles)(App)
+const styledApp = withStyles(styles)(App);
 
 export default connect(mapStateToProps, mapDispatchToProps)(styledApp);
