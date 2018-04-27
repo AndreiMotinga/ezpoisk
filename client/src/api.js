@@ -9,7 +9,7 @@ import {
   signoutRequest,
   signoutFailure,
   signoutSuccess,
-  postsSuccess
+  listingsSuccess
 } from "./actions";
 import history from "config/history";
 
@@ -78,18 +78,13 @@ class Api {
     };
   }
 
-  /**
-   * Call posts on inital load
-   * makes GET request to `/auth/api`
-   * dispatches POSTS_SUCCESS on success, otherwise logs error
-   */
-  getPosts() {
+  getListings() {
     return dispatch => {
       return axios
         .get("/api/listings")
         .then(res => {
-          const posts = res.data.data;
-          dispatch(postsSuccess(posts));
+          const listings = res.data.data;
+          dispatch(listingsSuccess(listings));
         })
         .catch(error => {
           console.error(error);

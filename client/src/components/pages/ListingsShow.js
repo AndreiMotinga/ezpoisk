@@ -1,23 +1,23 @@
 import React from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
-import Post from "components/shared/Post";
+import Listing from "components/shared/Listing";
 import Grid from "material-ui/Grid";
 import Typography from "material-ui/Typography";
 import { withStyles } from "material-ui/styles";
 
-class PostsShow extends React.Component {
+class ListingsShow extends React.Component {
   state = {
-    post: {}
+    listing: {}
   };
 
   componentDidMount() {
     const id = this.props.match.params.id;
     axios
-      .get(`/api/posts/${id}`)
+      .get(`/api/listings/${id}`)
       .then(res => {
-        const post = res.data.data.attributes;
-        this.setState({ post });
+        const listing = res.data.data.attributes;
+        this.setState({ listing });
       })
       .catch(err => {
         console.error(err);
@@ -25,25 +25,25 @@ class PostsShow extends React.Component {
   }
 
   render() {
-    const { post } = this.state;
+    const { listing } = this.state;
     const { classes } = this.props;
 
     return (
       <div>
         <Typography variant="display3" align="center" className={classes.title}>
-          {post.title}
+          {listing.title}
         </Typography>
 
         <div className={classes.content}>
-          <Typography className={classes.body}>{post.body}</Typography>
+          <Typography className={classes.body}>{listing.body}</Typography>
         </div>
 
-        {!!post.previous && (
+        {!!listing.previous && (
           <div className={classes.previous}>
             <Grid container spacing={24}>
-              {post.previous.data.map((prev_post, i) => (
+              {listing.previous.data.map((prev_listing, i) => (
                 <Grid item xs={12} md={4} key={i}>
-                  <Post post={prev_post} />
+                  <Listing listing={prev_listing} />
                 </Grid>
               ))}
             </Grid>
@@ -54,7 +54,7 @@ class PostsShow extends React.Component {
   }
 }
 
-PostsShow.propTypes = {
+ListingsShow.propTypes = {
   classes: PropTypes.object.isRequired,
   match: PropTypes.object.isRequired
 };
@@ -78,6 +78,6 @@ const styles = {
   }
 };
 
-const styledPostsShow = withStyles(styles)(PostsShow);
+const styledListingsShow = withStyles(styles)(ListingsShow);
 
-export default styledPostsShow;
+export default styledListingsShow;

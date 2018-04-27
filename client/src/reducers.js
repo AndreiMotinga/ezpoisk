@@ -1,12 +1,11 @@
-import { AUTH, OPEN_DIALOG, CLOSE_DIALOG, POSTS_SUCCESS } from "./constants";
+import { AUTH, OPEN_DIALOG, CLOSE_DIALOG, LISTINGS_SUCCESS } from "./constants";
 
 const initialState = {
-  isLoading: true,
+  isLoading: false,
+  activeDialog: null,
   currentUser: null,
-  subscription: null,
   errors: [],
-  activeDialog: "",
-  posts: []
+  listings: []
 };
 
 const root = (state = initialState, action) => {
@@ -90,10 +89,10 @@ const root = (state = initialState, action) => {
       return { ...state, activeDialog: null };
 
     /*
-     * posts flow
+     * listings flow
      */
-    case POSTS_SUCCESS:
-      return { ...state, posts: action.posts };
+    case LISTINGS_SUCCESS:
+      return { ...state, listings: action.listings };
 
     /*
      * prifile flow

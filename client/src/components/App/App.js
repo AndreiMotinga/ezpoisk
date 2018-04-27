@@ -2,7 +2,7 @@ import React from "react";
 import CssBaseline from "material-ui/CssBaseline";
 import { Router, Route } from "react-router-dom";
 import { connect } from "react-redux";
-import { initUser, getPosts } from "actions";
+import { initUser, getListings } from "actions";
 import PrivateRoute from "config/PrivateRoute";
 import history from "config/history";
 
@@ -12,7 +12,7 @@ import Footer from "./Footer";
 import AuthDialog from "components/dialogs/AuthDialog";
 
 import Home from "components/pages/Home";
-import PostsShow from "components/pages/PostsShow";
+import ListingsShow from "components/pages/ListingsShow";
 import Faq from "components/pages/Faq";
 import Profile from "components/pages/Profile";
 import Auth from "components/pages/Auth";
@@ -20,7 +20,7 @@ import Auth from "components/pages/Auth";
 class App extends React.Component {
   componentDidMount() {
     this.props.initUser();
-    this.props.getPosts();
+    this.props.getListings();
   }
 
   render() {
@@ -34,7 +34,7 @@ class App extends React.Component {
 
           <main className="App_content">
             <Route exact path="/" component={Home} />
-            <Route path="/posts/:id" component={PostsShow} />
+            <Route path="/listings/:id" component={ListingsShow} />
             <Route path="/faq" component={Faq} />
             <Route path="/auth" component={Auth} />
             {!isLoading && (
@@ -65,7 +65,7 @@ const mapStateToProps = state => ({
  */
 const mapDispatchToProps = dispatch => ({
   initUser: () => dispatch(initUser()),
-  getPosts: () => dispatch(getPosts())
+  getListings: () => dispatch(getListings())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

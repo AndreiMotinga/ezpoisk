@@ -1,5 +1,5 @@
 import Api from "./api";
-import { AUTH, OPEN_DIALOG, CLOSE_DIALOG, POSTS_SUCCESS } from "./constants";
+import { AUTH, OPEN_DIALOG, CLOSE_DIALOG, LISTINGS_SUCCESS } from "./constants";
 
 /**
  * Initial setup
@@ -109,17 +109,17 @@ export function closeDialog() {
 }
 
 /**
- * posts flow
+ * listings flow
  */
 
-export function getPosts() {
-  return Api.getPosts();
+export function getListings() {
+  return Api.getListings();
 }
 
-export function postsSuccess(posts) {
+export function listingsSuccess(listings) {
   return {
-    type: POSTS_SUCCESS,
-    posts
+    type: LISTINGS_SUCCESS,
+    listings
   };
 }
 

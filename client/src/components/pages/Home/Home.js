@@ -1,13 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import Post from "components/shared/Post";
+import Listing from "components/shared/Listing";
 import Grid from "material-ui/Grid";
 // import Typography from "material-ui/Typography";
 import { withStyles } from "material-ui/styles";
 import { openDialog } from "actions";
 
-const Home = ({ classes, isSignedIn, handleOpen, posts }) => {
+const Home = ({ classes, isSignedIn, handleOpen, listings }) => {
   return (
     <Grid container>
       <Grid item xs={12}>
@@ -22,9 +22,9 @@ const Home = ({ classes, isSignedIn, handleOpen, posts }) => {
           alignContent="center"
           justify="center"
         >
-          {posts.map(post => (
+          {listings.map(post => (
             <Grid item key={post.id} className={classes.listing}>
-              <Post post={post.attributes} />
+              <Listing post={post.attributes} />
             </Grid>
           ))}
         </Grid>
@@ -52,7 +52,7 @@ const styles = theme => ({
 
 const mapStateToProps = state => ({
   isSignedIn: Boolean(state.currentUser),
-  posts: state.posts
+  listings: state.listings
 });
 
 const mapDispatchToProps = dispatch => ({

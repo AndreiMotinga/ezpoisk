@@ -16,4 +16,4 @@ export const AUTH = {
 
 export const CLOSE_DIALOG = "CLOSE_DIALOG";
 export const OPEN_DIALOG = "OPEN_DIALOG";
-export const POSTS_SUCCESS = "POSTS_SUCCESS";
+export const LISTINGS_SUCCESS = "LISTINGS_SUCCESS";
