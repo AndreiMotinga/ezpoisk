@@ -6,6 +6,7 @@ ruby "2.4.1"
 gem "bootsnap", ">= 1.1.0", require: false
 gem "devise_token_auth"
 gem "fast_jsonapi"
+gem "kaminari"
 gem "pg"
 gem "puma", "~> 3.11"
 gem "rack-cors"

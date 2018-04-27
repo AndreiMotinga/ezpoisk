@@ -12,4 +12,8 @@ class ListingSerializer
              :email,
              :created_at,
              :updated_at
+
+  attribute :images do |object|
+    object.pictures.pluck(:source)
+  end
 end
