@@ -1,10 +1,14 @@
 class Api::ListingsController < ApplicationController
   before_action :set_listing, only: [:show, :update, :destroy]
+  has_scope :kind
+  has_scope :state
+  has_scope :city
 
   # GET /listings
   def index
-    @listings = Listing.includes(:pictures)
-                       .page(params[:page]).per(params[:per_page])
+    @listings = apply_scopes(Listing.desc)
+                .includes(:pictures)
+                .page(params[:page]).per(params[:per_page])
     options = { meta: meta }
     serialized = ListingSerializer.new(@listings, options).serialized_json
     render json: serialized
