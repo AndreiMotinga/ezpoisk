@@ -1,19 +1,19 @@
 import React from "react";
 import { connect } from "react-redux";
 import { getListing } from "actions";
+import history from "config/history";
 
 class ListingsEdit extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      listing: null
-    };
-  }
-
   componentDidMount() {
     const id = this.props.match.params.id;
-    this.props.getListing(id);
+    const { listing, currentUser, getListing } = this.props;
+    getListing(id);
+    if (
+      !currentUser.admin ||
+      !(listing && listing.user_id === currentUser.id)
+    ) {
+      history.push("/");
+    }
   }
 
   render() {

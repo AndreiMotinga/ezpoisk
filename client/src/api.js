@@ -145,7 +145,7 @@ class Api {
         .delete("/api/auth/sign_out", { headers: this.headers })
         .then(res => {
           this.cycleHeaders(res.headers);
-          dispatch(signoutSuccess(null));
+          dispatch(signoutSuccess());
         })
         .catch(err => {
           const errors = err.response.data.errors.full_messages;

@@ -82,7 +82,7 @@ const root = (state = initialState, action) => {
       return {
         ...state,
         isLoading: false,
-        currentUser: {}
+        currentUser: null
       };
 
     case AUTH.SIGNOUT_FAILURE:
