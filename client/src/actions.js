@@ -1,5 +1,12 @@
 import Api from "./api";
-import { AUTH, OPEN_DIALOG, CLOSE_DIALOG, LISTINGS_SUCCESS } from "./constants";
+import {
+  AUTH,
+  OPEN_DIALOG,
+  CLOSE_DIALOG,
+  LISTINGS_SUCCESS,
+  GET_LISTING_SUCCESS,
+  REQUEST_START
+} from "./constants";
 
 /**
  * Initial setup
@@ -13,6 +20,16 @@ export function init(currentUser) {
   return {
     type: AUTH.INIT,
     currentUser
+  };
+}
+
+/**
+ * generic flow
+ */
+
+export function requestStart() {
+  return {
+    type: REQUEST_START
   };
 }
 
@@ -116,10 +133,21 @@ export function getListings() {
   return Api.getListings();
 }
 
+export function getListing(id) {
+  return Api.getListing(id);
+}
+
 export function listingsSuccess(listings) {
   return {
     type: LISTINGS_SUCCESS,
     listings
+  };
+}
+
+export function getListingSuccess(listing) {
+  return {
+    type: GET_LISTING_SUCCESS,
+    listing
   };
 }
 

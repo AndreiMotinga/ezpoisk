@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import Grid from "material-ui/Grid";
+// import Grid from "material-ui/Grid";
 import Paper from "material-ui/Paper";
 import { withStyles } from "material-ui/styles";
 
@@ -13,6 +13,7 @@ class ProfileListings extends React.Component {
       <div className={classes.root}>
         <Paper>
           ID: {id}
+          {currentUser.email}
           and listings are ( to be done )
         </Paper>
       </div>

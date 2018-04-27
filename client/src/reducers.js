@@ -1,11 +1,19 @@
-import { AUTH, OPEN_DIALOG, CLOSE_DIALOG, LISTINGS_SUCCESS } from "./constants";
+import {
+  AUTH,
+  OPEN_DIALOG,
+  CLOSE_DIALOG,
+  LISTINGS_SUCCESS,
+  GET_LISTING_SUCCESS,
+  REQUEST_START
+} from "./constants";
 
 const initialState = {
   isLoading: true,
   activeDialog: null,
   currentUser: null,
   errors: [],
-  listings: []
+  listings: [],
+  listing: null // current editable listing
 };
 
 const root = (state = initialState, action) => {
@@ -16,6 +24,12 @@ const root = (state = initialState, action) => {
         isLoading: false,
         currentUser: action.currentUser
       };
+
+    /*
+     * general actions
+     */
+    case REQUEST_START:
+      return { ...state, isLoading: true };
 
     /*
      * signup actions
@@ -93,6 +107,9 @@ const root = (state = initialState, action) => {
      */
     case LISTINGS_SUCCESS:
       return { ...state, listings: action.listings };
+
+    case GET_LISTING_SUCCESS:
+      return { ...state, isLoading: false, listing: action.listing };
 
     /*
      * prifile flow

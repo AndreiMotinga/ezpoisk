@@ -17,3 +17,6 @@ export const AUTH = {
 export const CLOSE_DIALOG = "CLOSE_DIALOG";
 export const OPEN_DIALOG = "OPEN_DIALOG";
 export const LISTINGS_SUCCESS = "LISTINGS_SUCCESS";
+export const GET_LISTING_SUCCESS = "GET_LISTING_SUCCESS";
+
+export const REQUEST_START = "REQUEST_START";

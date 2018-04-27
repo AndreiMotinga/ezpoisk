@@ -1,6 +1,7 @@
 import axios from "axios";
 import {
   init,
+  // requestStart,
   signupRequest,
   signupFailure,
   signinRequest,
@@ -10,6 +11,7 @@ import {
   signoutFailure,
   signoutSuccess,
   listingsSuccess
+  // getListingSuccess,
 } from "./actions";
 import history from "config/history";
 
@@ -74,20 +76,6 @@ class Api {
           // we don't have init_request, init_succes and init_failure actions
           // so dispatching init with null
           dispatch(init(null));
-        });
-    };
-  }
-
-  getListings() {
-    return dispatch => {
-      return axios
-        .get("/api/listings")
-        .then(res => {
-          const listings = res.data.data;
-          dispatch(listingsSuccess(listings));
-        })
-        .catch(error => {
-          console.error(error);
         });
     };
   }
@@ -164,6 +152,24 @@ class Api {
           dispatch(signoutFailure(errors));
         });
     };
+  }
+
+  getListings() {
+    return dispatch => {
+      return axios
+        .get("/api/listings")
+        .then(res => {
+          const listings = res.data.data;
+          dispatch(listingsSuccess(listings));
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    };
+  }
+
+  getListing(id) {
+    return dispatch => {};
   }
 }
 
