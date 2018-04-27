@@ -3,6 +3,7 @@ class Api::ListingsController < ApplicationController
   has_scope :kind
   has_scope :state
   has_scope :city
+  has_scope :search
 
   # GET /listings
   def index
