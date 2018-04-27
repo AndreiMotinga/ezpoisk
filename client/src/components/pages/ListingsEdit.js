@@ -1,6 +1,6 @@
 import React from "react";
 
-const ListingsEdit = () => {
+const ListingsEdit = ({ listing }) => {
   return <div> Lisitngs edit page </div>;
 };
 

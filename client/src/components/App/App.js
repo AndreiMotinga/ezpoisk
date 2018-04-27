@@ -7,7 +7,6 @@ import PrivateRoute from "config/PrivateRoute";
 import history from "config/history";
 
 import Nav from "./Nav";
-import Footer from "./Footer";
 
 import AuthDialog from "components/dialogs/AuthDialog";
 
@@ -38,7 +37,11 @@ class App extends React.Component {
             {!isLoading && (
               <Switch>
                 <Route exact path="/" component={Home} />
-                <Route path="/listings/:id/edit" component={ListingsEdit} />
+                <PrivateRoute
+                  path="/listings/:id/edit"
+                  component={ListingsEdit}
+                  isSignedIn={isSignedIn}
+                />
                 <Route path="/listings/:id" component={ListingsShow} />
                 <Route path="/faq" component={Faq} />
                 <Route path="/auth" component={Auth} />
@@ -51,7 +54,6 @@ class App extends React.Component {
             )}
           </main>
 
-          <Footer />
           <AuthDialog />
         </div>
       </Router>
