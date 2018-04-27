@@ -5,7 +5,7 @@ import Tooltip from "material-ui/Tooltip";
 import classnames from "classnames";
 import Card, {
   CardHeader,
-  CardMedia,
+  // CardMedia,
   CardContent,
   CardActions
 } from "material-ui/Card";
@@ -17,7 +17,7 @@ import red from "material-ui/colors/red";
 import ShareIcon from "material-ui-icons/Share";
 import ExpandMoreIcon from "material-ui-icons/ExpandMore";
 import MoreVertIcon from "material-ui-icons/MoreVert";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 const styles = theme => ({
   media: {

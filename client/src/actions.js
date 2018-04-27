@@ -29,12 +29,6 @@ export function signupRequest() {
   };
 }
 
-export function signupSuccess() {
-  return {
-    type: AUTH.SIGNUP_SUCCESS
-  };
-}
-
 export function signupFailure(errors) {
   return {
     type: AUTH.SIGNUP_FAILURE,

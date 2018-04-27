@@ -2,7 +2,6 @@ import axios from "axios";
 import {
   init,
   signupRequest,
-  signupSuccess,
   signupFailure,
   signinRequest,
   signinSuccess,
@@ -10,7 +9,6 @@ import {
   signoutRequest,
   signoutFailure,
   signoutSuccess,
-  openDialog,
   postsSuccess
 } from "./actions";
 import history from "config/history";

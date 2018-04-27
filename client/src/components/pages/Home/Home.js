@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Post from "components/shared/Post";
 import Grid from "material-ui/Grid";
-import Typography from "material-ui/Typography";
+// import Typography from "material-ui/Typography";
 import { withStyles } from "material-ui/styles";
 import { openDialog } from "actions";
 
@@ -23,8 +23,8 @@ const Home = ({ classes, isSignedIn, handleOpen, posts }) => {
           justify="center"
         >
           {posts.map(post => (
-            <Grid item className={classes.listing}>
-              <Post key={post.id} post={post.attributes} />
+            <Grid item key={post.id} className={classes.listing}>
+              <Post post={post.attributes} />
             </Grid>
           ))}
         </Grid>
