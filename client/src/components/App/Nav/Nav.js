@@ -15,7 +15,7 @@ import AuthDropdown from "./AuthDropdown";
 const Nav = ({ classes, currentUser, openAuthDialog }) => {
   const sendToEdit = () => {
     if (currentUser) {
-      history.push("/listings/new/edit");
+      history.push("/listings/4408/edit");
     } else {
       openAuthDialog();
     }

@@ -2,6 +2,7 @@ import React from "react";
 import CssBaseline from "material-ui/CssBaseline";
 import { Router, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
+import { withStyles } from "material-ui/styles";
 import { initUser, getListings } from "actions";
 import PrivateRoute from "config/PrivateRoute";
 import history from "config/history";
@@ -25,7 +26,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { isSignedIn, isLoading } = this.props;
+    const { classes, isSignedIn, isLoading } = this.props;
 
     return (
       <Router history={history}>
@@ -33,7 +34,7 @@ class App extends React.Component {
           <CssBaseline />
           <Nav />
 
-          <main className="App_content">
+          <main className={classes.root}>
             {!isLoading && (
               <Switch>
                 <Route exact path="/" component={Home} />
@@ -75,4 +76,12 @@ const mapDispatchToProps = dispatch => ({
   getListings: () => dispatch(getListings())
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+const styles = {
+  root: {
+    padding: 15
+  }
+}
+
+const styledApp = withStyles(styles)(App)
+
+export default connect(mapStateToProps, mapDispatchToProps)(styledApp);

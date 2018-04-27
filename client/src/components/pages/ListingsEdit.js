@@ -1,44 +1,23 @@
 import React from "react";
 import { connect } from "react-redux";
-// import { getListing } from 'actions';
-import Api from "api";
-import axios from "axios";
-import history from "config/history";
+import { getListing } from "actions";
 
 class ListingsEdit extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      listing: null,
-      isLoading: true
+      listing: null
     };
   }
 
   componentDidMount() {
     const id = this.props.match.params.id;
-    const currentUser = this.props.currentUser;
-    let that = this;
-    axios
-      .get(`/api/listings/${id}`)
-      .then(res => {
-        const listing = res.data.data;
-        if (
-          listing.attributes.user_id === currentUser.id ||
-          currentUser.admin
-        ) {
-          that.setState({ listing, isLoading: false });
-        } else {
-          history.push("/");
-        }
-      })
-      .catch(error => {
-        console.error(error);
-      });
+    this.props.getListing(id);
   }
 
   render() {
-    const { listing, isLoading } = this.state;
+    const { listing, isLoading } = this.props;
 
     return (
       <div>
@@ -56,11 +35,15 @@ class ListingsEdit extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  currentUser: state.currentUser
+  currentUser: state.currentUser,
+  listing: state.listing,
+  isLoading: state.isLoading
 });
 
 const mapDispatchToProps = dispatch => ({
-  // getListing: (id) => { dispatch(getListing(id)) }
+  getListing: id => {
+    dispatch(getListing(id));
+  }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListingsEdit);

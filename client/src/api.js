@@ -10,8 +10,8 @@ import {
   signoutRequest,
   signoutFailure,
   signoutSuccess,
-  listingsSuccess
-  // getListingSuccess,
+  listingsSuccess,
+  getListingSuccess
 } from "./actions";
 import history from "config/history";
 
@@ -169,7 +169,17 @@ class Api {
   }
 
   getListing(id) {
-    return dispatch => {};
+    return dispatch => {
+      return axios
+        .get(`/api/listings/${id}`)
+        .then(res => {
+          const listing = res.data.data;
+          dispatch(getListingSuccess(listing));
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    };
   }
 }
 
