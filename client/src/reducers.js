@@ -2,7 +2,7 @@ import { AUTH, OPEN_DIALOG, CLOSE_DIALOG, POSTS_SUCCESS } from "./constants";
 
 const initialState = {
   isLoading: true,
-  currentUser: {},
+  currentUser: null,
   subscription: null,
   errors: [],
   activeDialog: "",

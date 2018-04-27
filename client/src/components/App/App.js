@@ -55,7 +55,7 @@ class App extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  isSignedIn: Boolean(state.currentUser.email),
+  isSignedIn: Boolean(state.currentUser),
   isLoading: state.isLoading
 });
 
