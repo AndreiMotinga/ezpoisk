@@ -1,7 +1,12 @@
 {
   "name": "client",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
+  "proxy": {
+    "/api": {
+      "target": "http://localhost:3000"
+    }
+  },
   "devDependencies": {
     "husky": "^0.14.3",
     "prettier": "^1.12.1",
@@ -10,7 +15,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "history": "^4.7.2",
-    "material-ui": "^0.20.0",
+    "material-ui": "next",
     "material-ui-icons": "^1.0.0-beta.36",
     "moment": "^2.22.1",
     "react": "^16.3.2",
@@ -19,6 +24,7 @@
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.4",
+    "react-swipeable-views": "^0.12.13",
     "redux": "^4.0.0",
     "redux-thunk": "^2.2.0"
   },
