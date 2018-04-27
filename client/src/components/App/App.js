@@ -1,6 +1,6 @@
 import React from "react";
 import CssBaseline from "material-ui/CssBaseline";
-import { Router, Route } from "react-router-dom";
+import { Router, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 import { initUser, getListings } from "actions";
 import PrivateRoute from "config/PrivateRoute";
@@ -13,8 +13,10 @@ import AuthDialog from "components/dialogs/AuthDialog";
 
 import Home from "components/pages/Home";
 import ListingsShow from "components/pages/ListingsShow";
+import ListingsEdit from "components/pages/ListingsEdit";
 import Faq from "components/pages/Faq";
 import Profile from "components/pages/Profile";
+import ProfileListings from "components/pages/ProfileListings";
 import Auth from "components/pages/Auth";
 
 class App extends React.Component {
@@ -33,16 +35,19 @@ class App extends React.Component {
           <Nav />
 
           <main className="App_content">
-            <Route exact path="/" component={Home} />
-            <Route path="/listings/:id" component={ListingsShow} />
-            <Route path="/faq" component={Faq} />
-            <Route path="/auth" component={Auth} />
             {!isLoading && (
-              <PrivateRoute
-                path="/profile"
-                component={Profile}
-                isSignedIn={isSignedIn}
-              />
+              <Switch>
+                <Route exact path="/" component={Home} />
+                <Route path="/listings/:id/edit" component={ListingsEdit} />
+                <Route path="/listings/:id" component={ListingsShow} />
+                <Route path="/faq" component={Faq} />
+                <Route path="/auth" component={Auth} />
+                <Route
+                  path="/profile/:id/listings"
+                  component={ProfileListings}
+                />
+                <Route path="/profile/:id" component={Profile} />
+              </Switch>
             )}
           </main>
 

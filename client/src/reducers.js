@@ -1,7 +1,7 @@
 import { AUTH, OPEN_DIALOG, CLOSE_DIALOG, LISTINGS_SUCCESS } from "./constants";
 
 const initialState = {
-  isLoading: false,
+  isLoading: true,
   activeDialog: null,
   currentUser: null,
   errors: [],

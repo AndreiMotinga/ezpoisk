@@ -1,20 +1,19 @@
 import React from "react";
 import { connect } from "react-redux";
 import Grid from "material-ui/Grid";
-import UserForm from "./UserForm";
 import Paper from "material-ui/Paper";
 import { withStyles } from "material-ui/styles";
 
-class Profile extends React.Component {
+class ProfileListings extends React.Component {
   render() {
     const { classes, currentUser } = this.props;
     const id = this.props.match.params.id;
 
     return (
       <div className={classes.root}>
-        <Paper className={classes.paper}>
-          <UserForm currentUser={currentUser} />
+        <Paper>
           ID: {id}
+          and listings are ( to be done )
         </Paper>
       </div>
     );
@@ -37,6 +36,8 @@ const styles = theme => ({
   }
 });
 
-const styledProfile = withStyles(styles)(Profile);
+const styledProfileListings = withStyles(styles)(ProfileListings);
 
-export default connect(mapStateToProps, mapDispatchToProps)(styledProfile);
+export default connect(mapStateToProps, mapDispatchToProps)(
+  styledProfileListings
+);

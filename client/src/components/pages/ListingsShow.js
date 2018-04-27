@@ -35,7 +35,7 @@ class ListingsShow extends React.Component {
         </Typography>
 
         <div className={classes.content}>
-          <Typography className={classes.body}>{listing.body}</Typography>
+          <Typography className={classes.body}>{listing.text}</Typography>
         </div>
 
         {!!listing.previous && (
