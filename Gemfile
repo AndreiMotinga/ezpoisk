@@ -21,6 +21,8 @@ gem "vkontakte_api", "~> 1.4"
 gem "aws-sdk", "< 3.0"
 gem "paperclip"
 
+gem "administrate"
+
 group :development, :test do
   gem "awesome_print"
   gem "dotenv-rails"
