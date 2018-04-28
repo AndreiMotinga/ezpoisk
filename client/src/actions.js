@@ -5,6 +5,7 @@ import {
   CLOSE_DIALOG,
   LISTINGS_SUCCESS,
   GET_LISTING_SUCCESS,
+  EDIT_LISTING,
   REQUEST_START
 } from "./constants";
 
@@ -148,6 +149,13 @@ export function getListingSuccess(listing) {
   return {
     type: GET_LISTING_SUCCESS,
     listing
+  };
+}
+
+export function editListing(target) {
+  return {
+    type: EDIT_LISTING,
+    target
   };
 }
 

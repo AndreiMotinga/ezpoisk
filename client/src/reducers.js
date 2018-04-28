@@ -4,7 +4,8 @@ import {
   CLOSE_DIALOG,
   LISTINGS_SUCCESS,
   GET_LISTING_SUCCESS,
-  REQUEST_START
+  REQUEST_START,
+  EDIT_LISTING
 } from "./constants";
 
 const initialState = {
@@ -110,6 +111,12 @@ const root = (state = initialState, action) => {
 
     case GET_LISTING_SUCCESS:
       return { ...state, isLoading: false, listing: action.listing };
+
+    case EDIT_LISTING:
+      let listing = state.listing;
+      listing.attributes[action.target.name] = action.target.value;
+      const newListing = { ...listing, attributes: listing.attributes };
+      return { ...state, listing: newListing };
 
     /*
      * prifile flow
