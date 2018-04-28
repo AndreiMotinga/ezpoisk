@@ -51,27 +51,12 @@ class ListingsEdit extends React.Component {
   render() {
     const { classes, listing, isLoading } = this.state;
 
+    if (isLoading) {
+      return <div>I'm still loading</div>;
+    }
+
     return (
       <Paper className={classes.root}>
-        {isLoading && <div>I'm still loading</div>}
-        {!isLoading && (
-          <FormControl className={classes.formControl}>
-            <InputLabel htmlFor="age-simple">Раздел</InputLabel>
-            <Select
-              value={listing.kind}
-              onChange={this.handleChange}
-              inputProps={{ name: "kind" }}
-            >
-              <MenuItem value="housing">Недвижимость</MenuItem>
-              <MenuItem value="job">Работа</MenuItem>
-              <MenuItem value="sale">Продаю</MenuItem>
-              <MenuItem value="service">Услуги</MenuItem>
-              <MenuItem value="parcel">Посылки</MenuItem>
-              <MenuItem value="meetup">Знакомства</MenuItem>
-              <MenuItem value="misc">Разное</MenuItem>
-            </Select>
-          </FormControl>
-        )}
         <StateSelect />
       </Paper>
     );
