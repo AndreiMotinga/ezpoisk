@@ -37,3 +37,8 @@ export const states = [
   value: suggestion.label,
   label: suggestion.label
 }));
+
+export const kinds = [
+  { value: "housing", label: "Недвижимость" },
+  { value: "job", label: "Работа" }
+];

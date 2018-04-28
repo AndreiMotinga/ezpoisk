@@ -16,8 +16,8 @@ const SelectWrapped = props => {
 
 class IntegrationReactSelect extends React.Component {
   state = {
-    chosenState: null,
-    multi: null,
+    state: null,
+    city: null,
     multiLabel: null
   };
 
@@ -35,8 +35,8 @@ class IntegrationReactSelect extends React.Component {
         <Input
           fullWidth
           inputComponent={SelectWrapped}
-          value={this.state.chosenState}
-          onChange={this.handleChange("chosenState")}
+          value={this.state.state}
+          onChange={this.handleChange("state")}
           placeholder="Штат"
           id="react-select-state"
           inputProps={{
@@ -51,8 +51,8 @@ class IntegrationReactSelect extends React.Component {
         <Input
           fullWidth
           inputComponent={SelectWrapped}
-          value={this.state.chosenCity}
-          onChange={this.handleChange("chosenCity")}
+          value={this.state.city}
+          onChange={this.handleChange("city")}
           placeholder="Город"
           id="react-select-city"
           inputProps={{
