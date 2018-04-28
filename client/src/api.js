@@ -167,6 +167,15 @@ class Api {
         });
     };
   }
+
+  getListing(id) {
+    return axios
+      .get(`/api/listings/${id}/edit`, { headers: this.headers })
+      .then(res => res)
+      .catch(error => {
+        console.error(error);
+      });
+  }
 }
 
 export default new Api();
