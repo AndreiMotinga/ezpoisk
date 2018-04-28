@@ -1,5 +1,7 @@
 class Api::ListingsController < ApplicationController
-  before_action :set_listing, only: [:show, :update, :destroy]
+  before_action :authenticate_api_user!, only: [:edit, :update, :destroy]
+  before_action :set_listing, only: [:update, :destroy]
+
   has_scope :kind
   has_scope :state
   has_scope :city
@@ -17,6 +19,21 @@ class Api::ListingsController < ApplicationController
 
   # GET /listings/1
   def show
+    @listing = Listing.find(params[:id])
+    render json: ListingSerializer.new(@listing).serialized_json
+  end
+
+  def edit
+    if params[:id] != "new"
+      if current_api_user.admin?
+        @listing = Listing.find(params[:id])
+      else
+        @listing = current_api_user.listings.find(params[:id])
+      end
+    else
+      @listing = current_api_user.listings.new(email: current_api_user.email, kind: "housing", state: "ALABAMA")
+      @listing.save(validate: false)
+    end
     render json: ListingSerializer.new(@listing).serialized_json
   end
 
@@ -48,7 +65,7 @@ class Api::ListingsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_listing
-      @listing = Listing.find(params[:id])
+      @listing = current_api_user.listings.find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.

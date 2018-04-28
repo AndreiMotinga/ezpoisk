@@ -8,6 +8,7 @@ import { MenuItem } from "material-ui/Menu";
 import { FormControl, FormHelperText } from "material-ui/Form";
 import axios from "axios";
 import Select from "material-ui/Select";
+import Api from "api";
 
 class ListingsEdit extends React.Component {
   constructor(props) {
@@ -22,8 +23,11 @@ class ListingsEdit extends React.Component {
   componentDidMount() {
     const { currentUser } = this.props;
     const id = this.props.match.params.id;
+    // DO THIS PROPERLY IN API
+    const key = process.env.REACT_APP_LOCAL_STORAGE_KEY;
+    const headers = JSON.parse(localStorage.getItem(key)) || {};
     return axios
-      .get(`/api/listings/${id}`)
+      .get(`/api/listings/${id}/edit`, { headers })
       .then(res => {
         const listing = res.data.data.attributes;
         if (currentUser.admin || listing.user_id === currentUser.id) {
