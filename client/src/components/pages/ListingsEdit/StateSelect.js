@@ -1,12 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "material-ui/styles";
-
 import Input from "material-ui/Input";
-
 import suggestions from "./states";
-import SelectWrapped from "./SelectWrapped";
 import styles from "./styles";
+
+import Select from "react-select";
+import "react-select/dist/react-select.css";
+import Option from "./Option";
+
+const SelectWrapped = props => {
+  const { classes, ...other } = props;
+  return <Select optionComponent={Option} {...other} />;
+};
 
 class IntegrationReactSelect extends React.Component {
   state = {
