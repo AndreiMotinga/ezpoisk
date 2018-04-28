@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import { withStyles } from "material-ui/styles";
 
 import Input from "material-ui/Input";
-import TextField from "material-ui/TextField";
 
 import suggestions from "./states";
 import SelectWrapped from "./SelectWrapped";
@@ -58,22 +57,6 @@ class IntegrationReactSelect extends React.Component {
             options: suggestions
           }}
         />
-
-        {/* <Input */}
-        {/*   fullWidth */}
-        {/*   inputComponent={SelectWrapped} */}
-        {/*   value={this.state.chosenState} */}
-        {/*   onChange={this.handleChange("chosenState")} */}
-        {/*   placeholder="Search a country (start with a)" */}
-        {/*   id="react-select-single" */}
-        {/*   inputProps={{ */}
-        {/*     classes, */}
-        {/*     name: "react-select-single", */}
-        {/*     instanceId: "react-select-single", */}
-        {/*     simpleValue: true, */}
-        {/*     options: suggestions */}
-        {/*   }} */}
-        {/* /> */}
       </div>
     );
   }
