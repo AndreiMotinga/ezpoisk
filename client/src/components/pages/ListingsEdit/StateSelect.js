@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "material-ui/styles";
 import Input from "material-ui/Input";
-import suggestions from "./states";
+import { states } from "./states";
 import styles from "./styles";
 
 import Select from "react-select";
@@ -44,7 +44,7 @@ class IntegrationReactSelect extends React.Component {
             name: "react-select-state",
             instanceId: "react-select-state",
             simpleValue: true,
-            options: suggestions
+            options: states
           }}
         />
 
@@ -60,7 +60,7 @@ class IntegrationReactSelect extends React.Component {
             name: "react-select-city",
             instanceId: "react-select-city",
             simpleValue: true,
-            options: suggestions
+            options: states
           }}
         />
       </div>

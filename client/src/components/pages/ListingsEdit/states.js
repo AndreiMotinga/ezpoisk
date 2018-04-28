@@ -1,4 +1,4 @@
-const suggestions = [
+export const states = [
   { label: "Afghanistan" },
   { label: "Aland Islands" },
   { label: "Albania" },
@@ -37,5 +37,3 @@ const suggestions = [
   value: suggestion.label,
   label: suggestion.label
 }));
-
-export default suggestions;
