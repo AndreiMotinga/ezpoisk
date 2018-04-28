@@ -8,6 +8,7 @@ import { MenuItem } from "material-ui/Menu";
 import { FormControl, FormHelperText } from "material-ui/Form";
 import axios from "axios";
 import Select from "material-ui/Select";
+import StateSelect from "./StateSelect";
 import Api from "api";
 
 class ListingsEdit extends React.Component {
@@ -71,6 +72,7 @@ class ListingsEdit extends React.Component {
             </Select>
           </FormControl>
         )}
+        <StateSelect />
       </Paper>
     );
   }
