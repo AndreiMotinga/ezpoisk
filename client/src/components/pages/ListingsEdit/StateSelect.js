@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "material-ui/styles";
 import Input from "material-ui/Input";
-import { states } from "./states";
+import { states, kinds } from "./states";
 import styles from "./styles";
 
 import Select from "react-select";
@@ -18,7 +18,7 @@ class IntegrationReactSelect extends React.Component {
   state = {
     state: null,
     city: null,
-    multiLabel: null
+    kind: null
   };
 
   handleChange = name => value => {
@@ -32,6 +32,21 @@ class IntegrationReactSelect extends React.Component {
 
     return (
       <div className={classes.root}>
+        <Input
+          fullWidth
+          inputComponent={SelectWrapped}
+          value={this.state.kind}
+          onChange={this.handleChange("kind")}
+          placeholder="Раздел"
+          id="react-select-kind"
+          inputProps={{
+            classes,
+            name: "react-select-kind",
+            instanceId: "react-select-kind",
+            simpleValue: true,
+            options: kinds
+          }}
+        />
         <Input
           fullWidth
           inputComponent={SelectWrapped}
