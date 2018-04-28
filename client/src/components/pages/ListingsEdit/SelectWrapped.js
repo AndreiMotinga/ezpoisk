@@ -18,38 +18,7 @@ function SelectWrapped(props) {
   };
   const clearIcon = () => <ClearIcon />;
 
-  return (
-    <Select
-      optionComponent={Option}
-      noResultsText={noResultsText}
-      arrowRenderer={getArraw}
-      clearRenderer={clearIcon}
-      valueComponent={valueProps => {
-        const { value, children, onRemove } = valueProps;
-
-        const onDelete = event => {
-          event.preventDefault();
-          event.stopPropagation();
-          onRemove(value);
-        };
-
-        if (onRemove) {
-          return (
-            <Chip
-              tabIndex={-1}
-              label={children}
-              className={classes.chip}
-              deleteIcon={<CancelIcon onTouchEnd={onDelete} />}
-              onDelete={onDelete}
-            />
-          );
-        }
-
-        return <div className="Select-value">{children}</div>;
-      }}
-      {...other}
-    />
-  );
+  return <Select optionComponent={Option} {...other} />;
 }
 
 export default SelectWrapped;
