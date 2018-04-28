@@ -11,8 +11,7 @@ const initialState = {
   activeDialog: null,
   currentUser: null,
   errors: [],
-  listings: [],
-  listing: null // current editable listing
+  listings: []
 };
 
 const root = (state = initialState, action) => {
