@@ -4,7 +4,6 @@ import { withStyles } from "material-ui/styles";
 import Typography from "material-ui/Typography";
 import Input from "material-ui/Input";
 import TextField from "material-ui/TextField";
-import { MenuItem } from "material-ui/Menu";
 import ArrowDropDownIcon from "material-ui-icons/ArrowDropDown";
 import CancelIcon from "material-ui-icons/Cancel";
 import ArrowDropUpIcon from "material-ui-icons/ArrowDropUp";
@@ -13,30 +12,7 @@ import Chip from "material-ui/Chip";
 import Select from "react-select";
 import "react-select/dist/react-select.css";
 import suggestions from "./states";
-
-class Option extends React.Component {
-  handleClick = event => {
-    this.props.onSelect(this.props.option, event);
-  };
-
-  render() {
-    const { children, isFocused, isSelected, onFocus } = this.props;
-
-    return (
-      <MenuItem
-        onFocus={onFocus}
-        selected={isFocused}
-        onClick={this.handleClick}
-        component="div"
-        style={{
-          fontWeight: isSelected ? 500 : 400
-        }}
-      >
-        {children}
-      </MenuItem>
-    );
-  }
-}
+import Option from "./Option";
 
 function SelectWrapped(props) {
   const { classes, ...other } = props;
