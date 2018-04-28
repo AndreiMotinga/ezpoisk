@@ -167,20 +167,6 @@ class Api {
         });
     };
   }
-
-  getListing(id) {
-    return dispatch => {
-      return axios
-        .get(`/api/listings/${id}`)
-        .then(res => {
-          const listing = res.data.data;
-          dispatch(getListingSuccess(listing));
-        })
-        .catch(error => {
-          console.error(error);
-        });
-    };
-  }
 }
 
 export default new Api();

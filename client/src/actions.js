@@ -4,8 +4,6 @@ import {
   OPEN_DIALOG,
   CLOSE_DIALOG,
   LISTINGS_SUCCESS,
-  GET_LISTING_SUCCESS,
-  EDIT_LISTING,
   REQUEST_START
 } from "./constants";
 
@@ -134,28 +132,10 @@ export function getListings() {
   return Api.getListings();
 }
 
-export function getListing(id) {
-  return Api.getListing(id);
-}
-
 export function listingsSuccess(listings) {
   return {
     type: LISTINGS_SUCCESS,
     listings
-  };
-}
-
-export function getListingSuccess(listing) {
-  return {
-    type: GET_LISTING_SUCCESS,
-    listing
-  };
-}
-
-export function editListing(target) {
-  return {
-    type: EDIT_LISTING,
-    target
   };
 }
 
