@@ -176,6 +176,15 @@ class Api {
         console.error(error);
       });
   }
+
+  getStates(id) {
+    return axios
+      .get(`/api/states/`, { headers: this.headers })
+      .then(res => res.data)
+      .catch(error => {
+        console.error(error);
+      });
+  }
 }
 
 export default new Api();

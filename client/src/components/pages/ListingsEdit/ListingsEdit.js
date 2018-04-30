@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Input from "material-ui/Input";
-import { states, kinds } from "./states";
+import { kinds } from "./states";
 import styles from "./styles";
 
 import { connect } from "react-redux";
@@ -21,8 +21,9 @@ const SelectWrapped = props => {
 
 class IntegrationReactSelect extends React.Component {
   state = {
+    isLoading: true,
     listing: null,
-    isLoading: true
+    states: []
     // state: null,
     // city: null,
     // kind: null
@@ -31,6 +32,9 @@ class IntegrationReactSelect extends React.Component {
   componentDidMount() {
     const id = this.props.match.params.id;
     Api.getListing(id).then(this.updateListingInState);
+    Api.getStates().then(states => {
+      this.setState({ states });
+    });
   }
 
   updateListingInState = res => {
@@ -89,7 +93,7 @@ class IntegrationReactSelect extends React.Component {
               name: "react-select-state",
               instanceId: "react-select-state",
               simpleValue: true,
-              options: states
+              options: this.state.states
             }}
           />
 
@@ -105,7 +109,7 @@ class IntegrationReactSelect extends React.Component {
               name: "react-select-city",
               instanceId: "react-select-city",
               simpleValue: true,
-              options: states
+              options: this.state.states
             }}
           />
         </div>
