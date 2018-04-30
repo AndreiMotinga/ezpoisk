@@ -32,12 +32,17 @@ class IntegrationReactSelect extends React.Component {
 
   componentDidMount() {
     const id = this.props.match.params.id;
-    Api.getListing(id).then(this.updateListingInState);
+    Api.getListing(id)
+      .then(this.updateListingInState)
+      .then(() => {
+        const listing = this.state.listing;
+        Api.getCities(listing.state).then(cities => {
+          this.setState({ cities });
+        });
+      });
+
     Api.getStates().then(states => {
       this.setState({ states });
-    });
-    Api.getCities().then(cities => {
-      this.setState({ cities });
     });
   }
 
