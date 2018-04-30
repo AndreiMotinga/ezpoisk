@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     resources :listings, only: %i(index show create edit update destroy)
     resources :states, only: :index
     resources :cities, only: :index
+    resources :pictures, only: [:create, :destory]
   end
 
   root to: "application#index"
