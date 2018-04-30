@@ -1,24 +1,32 @@
 import React from "react";
+import PropTypes from "prop-types";
+import Input from "material-ui/Input";
+import { states, kinds } from "./states";
+import styles from "./styles";
+
 import { connect } from "react-redux";
 import history from "config/history";
 import Paper from "material-ui/Paper";
 import { withStyles } from "material-ui/styles";
-import Input, { InputLabel } from "material-ui/Input";
-import { MenuItem } from "material-ui/Menu";
-import { FormControl, FormHelperText } from "material-ui/Form";
-import Select from "material-ui/Select";
-import StateSelect from "./StateSelect";
 import Api from "api";
 
-class ListingsEdit extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      listing: null,
-      isLoading: true,
-      classes: this.props.classes
-    };
-  }
+import Select from "react-select";
+import "react-select/dist/react-select.css";
+import Option from "./Option";
+
+const SelectWrapped = props => {
+  const { classes, ...other } = props;
+  return <Select optionComponent={Option} {...other} />;
+};
+
+class IntegrationReactSelect extends React.Component {
+  state = {
+    listing: null,
+    isLoading: true
+    // state: null,
+    // city: null,
+    // kind: null
+  };
 
   componentDidMount() {
     const id = this.props.match.params.id;
@@ -36,26 +44,79 @@ class ListingsEdit extends React.Component {
     }
   };
 
-  handleChange = event => {
+  handleChange = name => value => {
+    console.log("after: ", this.state.listing);
     const listing = this.state.listing;
-    listing[event.target.name] = event.target.value;
+    listing[name] = value;
     this.setState({ listing });
   };
 
   render() {
-    const { classes, listing, isLoading } = this.state;
+    const { classes } = this.props;
+    const { listing, isLoading } = this.state;
 
     if (isLoading) {
       return <div>I'm still loading</div>;
     }
 
     return (
-      <Paper className={classes.root}>
-        <StateSelect />
+      <Paper className={classes.paper}>
+        <div className={classes.root}>
+          <Input
+            fullWidth
+            inputComponent={SelectWrapped}
+            value={this.state.listing.kind}
+            onChange={this.handleChange("kind")}
+            placeholder="Раздел"
+            id="react-select-kind"
+            inputProps={{
+              classes,
+              name: "react-select-kind",
+              instanceId: "react-select-kind",
+              simpleValue: true,
+              options: kinds
+            }}
+          />
+          <Input
+            fullWidth
+            inputComponent={SelectWrapped}
+            value={this.state.listing.state}
+            onChange={this.handleChange("state")}
+            placeholder="Штат"
+            id="react-select-state"
+            inputProps={{
+              classes,
+              name: "react-select-state",
+              instanceId: "react-select-state",
+              simpleValue: true,
+              options: states
+            }}
+          />
+
+          <Input
+            fullWidth
+            inputComponent={SelectWrapped}
+            value={this.state.listing.city}
+            onChange={this.handleChange("city")}
+            placeholder="Город"
+            id="react-select-city"
+            inputProps={{
+              classes,
+              name: "react-select-city",
+              instanceId: "react-select-city",
+              simpleValue: true,
+              options: states
+            }}
+          />
+        </div>
       </Paper>
     );
   }
 }
+
+IntegrationReactSelect.propTypes = {
+  classes: PropTypes.object.isRequired
+};
 
 const mapStateToProps = state => ({
   currentUser: state.currentUser
@@ -63,18 +124,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({});
 
-const styles = {
-  root: {
-    maxWidth: 700,
-    margin: "20px auto",
-    padding: 15
-  }
-  // container: {
-  //   display: "flex",
-  //   flexWrap: "wrap"
-  // }
-};
-
-const styled = withStyles(styles)(ListingsEdit);
+const styled = withStyles(styles)(IntegrationReactSelect);
 
 export default connect(mapStateToProps, mapDispatchToProps)(styled);

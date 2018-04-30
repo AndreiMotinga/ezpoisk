@@ -1,6 +1,11 @@
 const ITEM_HEIGHT = 48;
 
 const styles = theme => ({
+  paper: {
+    maxWidth: 700,
+    margin: "20px auto",
+    padding: 15
+  },
   root: {
     maxWidth: 200
   },
