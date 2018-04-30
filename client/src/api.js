@@ -10,8 +10,7 @@ import {
   signoutRequest,
   signoutFailure,
   signoutSuccess,
-  listingsSuccess,
-  getListingSuccess
+  listingsSuccess
 } from "./actions";
 import history from "config/history";
 

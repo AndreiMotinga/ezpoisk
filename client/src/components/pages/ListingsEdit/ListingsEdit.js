@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Input from "material-ui/Input";
-import { kinds } from "./states";
 import styles from "./styles";
 
 import { connect } from "react-redux";
@@ -24,10 +23,16 @@ class IntegrationReactSelect extends React.Component {
     isLoading: true,
     listing: null,
     states: [],
-    cities: []
-    // state: null,
-    // city: null,
-    // kind: null
+    cities: [],
+    kinds: [
+      { value: "housing", label: "Недвижимость" },
+      { value: "job", label: "Работа" },
+      { value: "sale", label: "Продажи" },
+      { value: "service", label: "Услуги" },
+      { value: "meetup", label: "Знакомства" },
+      { value: "parcel", label: "Посылки" },
+      { value: "misc", label: "Разное" }
+    ]
   };
 
   componentDidMount() {
@@ -90,7 +95,7 @@ class IntegrationReactSelect extends React.Component {
               name: "react-select-kind",
               instanceId: "react-select-kind",
               simpleValue: true,
-              options: kinds
+              options: this.state.kinds
             }}
           />
           <Input
