@@ -23,7 +23,8 @@ class IntegrationReactSelect extends React.Component {
   state = {
     isLoading: true,
     listing: null,
-    states: []
+    states: [],
+    cities: []
     // state: null,
     // city: null,
     // kind: null
@@ -34,6 +35,9 @@ class IntegrationReactSelect extends React.Component {
     Api.getListing(id).then(this.updateListingInState);
     Api.getStates().then(states => {
       this.setState({ states });
+    });
+    Api.getCities().then(cities => {
+      this.setState({ cities });
     });
   }
 
@@ -109,7 +113,7 @@ class IntegrationReactSelect extends React.Component {
               name: "react-select-city",
               instanceId: "react-select-city",
               simpleValue: true,
-              options: this.state.states
+              options: this.state.cities
             }}
           />
         </div>

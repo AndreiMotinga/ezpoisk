@@ -177,13 +177,13 @@ class Api {
       });
   }
 
-  getStates(id) {
-    return axios
-      .get(`/api/states/`, { headers: this.headers })
-      .then(res => res.data)
-      .catch(error => {
-        console.error(error);
-      });
+  getStates() {
+    return axios.get(`/api/states/`).then(res => res.data);
+  }
+
+  getCities(state) {
+    let url = state ? `/api/cities?state=${state}` : "/api/cities";
+    return axios.get(url).then(res => res.data);
   }
 }
 
