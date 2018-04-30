@@ -31,7 +31,12 @@ class Api::ListingsController < ApplicationController
         @listing = current_api_user.listings.find(params[:id])
       end
     else
-      @listing = current_api_user.listings.new(email: current_api_user.email, kind: "housing", state: "ALABAMA")
+      @listing = current_api_user.listings.new(
+        email: current_api_user.email,
+        kind: "housing",
+        state: "new-york",
+        city: "brooklyn"
+      )
       @listing.save(validate: false)
     end
     render json: ListingSerializer.new(@listing).serialized_json
