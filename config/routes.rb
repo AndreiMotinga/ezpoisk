@@ -11,8 +11,10 @@ Rails.application.routes.draw do
   end
 
   namespace :api, defaults: { format: :json }  do
-    mount_devise_token_auth_for 'User', at: 'auth'
+    mount_devise_token_auth_for "User", at: "auth"
     resources :listings, only: %i(index show create edit update destroy)
+    resources :states, only: :index
+    resources :cities, only: :index
   end
 
   root to: "application#index"
