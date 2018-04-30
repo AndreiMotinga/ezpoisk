@@ -4,6 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "2.4.1"
 
 gem "bootsnap", ">= 1.1.0", require: false
+gem "city-state"
 gem "devise_token_auth"
 gem "fast_jsonapi"
 gem "has_scope"
