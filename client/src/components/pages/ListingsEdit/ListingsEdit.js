@@ -72,6 +72,12 @@ class IntegrationReactSelect extends React.Component {
     }
   };
 
+  handleTargetChange = e => {
+    const listing = this.state.listing;
+    listing[e.target.name] = e.target.value;
+    this.setState({ listing });
+  };
+
   render() {
     const { classes } = this.props;
     const { listing, isLoading } = this.state;
@@ -82,6 +88,31 @@ class IntegrationReactSelect extends React.Component {
 
     return (
       <Paper className={classes.paper}>
+        <Input
+          fullWidth
+          multiline
+          value={this.state.listing.text}
+          name="text"
+          onChange={this.handleTargetChange}
+          placeholder="Текст объявления"
+        />
+
+        <Input
+          fullWidth
+          value={this.state.listing.email}
+          type="email"
+          onChange={this.handleTargetChange}
+          placeholder="Email"
+        />
+
+        <Input
+          fullWidth
+          type="tel"
+          value={this.state.listing.phone}
+          onChange={this.handleTargetChange}
+          placeholder="Phone"
+        />
+
         <div className={classes.root}>
           <Input
             fullWidth
