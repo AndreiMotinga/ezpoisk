@@ -13,6 +13,8 @@ class ListingSerializer
              :created_at,
              :updated_at
 
+  has_many :pictures
+
   attribute :images do |object|
     object.pictures.pluck(:source)
   end

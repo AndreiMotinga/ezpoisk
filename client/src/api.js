@@ -197,6 +197,17 @@ class Api {
     let url = state ? `/api/cities?state=${state}` : "/api/cities";
     return axios.get(url).then(res => res.data);
   }
+
+  savePicture(picture) {
+    const headers = this.headers;
+    headers["content-type"] = "multipart/form-data";
+    return axios
+      .post(`/api/pictures`, picture, { headers })
+      .then(res => res)
+      .catch(error => {
+        console.error(error);
+      });
+  }
 }
 
 export default new Api();

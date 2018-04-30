@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import Input from "material-ui/Input";
 import styles from "./styles";
 import Button from "material-ui/Button";
+import Dropzone from "react-dropzone";
 
 import { connect } from "react-redux";
 import history from "config/history";
@@ -65,6 +66,16 @@ class IntegrationReactSelect extends React.Component {
     });
   };
 
+  handleDrop = acceptedFiles => {
+    const id = this.state.listing.id;
+    acceptedFiles.forEach(file => {
+      const data = new FormData();
+      data.append("picture[listing_id]", id);
+      data.append("picture[image]", file);
+      Api.savePicture(data);
+    });
+  };
+
   handleChange = name => value => {
     const listing = this.state.listing;
     listing[name] = value;
@@ -95,6 +106,8 @@ class IntegrationReactSelect extends React.Component {
 
     return (
       <Paper className={classes.paper}>
+        <Dropzone onDrop={this.handleDrop} />
+        <div />
         <form onSubmit={this.handleSubmit}>
           <Input
             fullWidth
