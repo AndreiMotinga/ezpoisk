@@ -13,9 +13,13 @@ class ListingSerializer
              :created_at,
              :updated_at
 
-  has_many :pictures
-
   attribute :images do |object|
-    object.pictures.map { |pic| pic.image.url }
+    object.pictures.map do |pic|
+      result = %I[thumb medium large original].each_with_object({}) do |t, res|
+        res[t] = pic.image.url(t)
+      end
+      result[:source] = pic.source
+      result
+    end
   end
 end

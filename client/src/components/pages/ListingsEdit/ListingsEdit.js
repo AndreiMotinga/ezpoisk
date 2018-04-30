@@ -109,7 +109,7 @@ class IntegrationReactSelect extends React.Component {
         <Dropzone onDrop={this.handleDrop} />
         <div>
           {this.state.listing.images.map((url, i) => (
-            <img key={i} src={url} width="300" />
+            <img key={i} src={url.medium} />
           ))}
         </div>
         <form onSubmit={this.handleSubmit}>
