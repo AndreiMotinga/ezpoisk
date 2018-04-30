@@ -107,7 +107,11 @@ class IntegrationReactSelect extends React.Component {
     return (
       <Paper className={classes.paper}>
         <Dropzone onDrop={this.handleDrop} />
-        <div />
+        <div>
+          {this.state.listing.images.map((url, i) => (
+            <img key={i} src={url} width="300" />
+          ))}
+        </div>
         <form onSubmit={this.handleSubmit}>
           <Input
             fullWidth

@@ -16,6 +16,6 @@ class ListingSerializer
   has_many :pictures
 
   attribute :images do |object|
-    object.pictures.pluck(:source)
+    object.pictures.map { |pic| pic.image.url }
   end
 end
