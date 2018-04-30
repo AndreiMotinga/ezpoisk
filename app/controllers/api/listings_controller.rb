@@ -25,11 +25,7 @@ class Api::ListingsController < ApplicationController
 
   def edit
     if params[:id] != "new"
-      if current_api_user.admin?
-        @listing = Listing.find(params[:id])
-      else
-        @listing = current_api_user.listings.find(params[:id])
-      end
+      set_listing
     else
       @listing = current_api_user.listings.new(
         email: current_api_user.email,
@@ -70,7 +66,11 @@ class Api::ListingsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_listing
-      @listing = current_api_user.listings.find(params[:id])
+      if current_api_user.admin?
+        @listing = Listing.find(params[:id])
+      else
+        @listing = current_api_user.listings.find(params[:id])
+      end
     end
 
     # Only allow a trusted parameter "white list" through.

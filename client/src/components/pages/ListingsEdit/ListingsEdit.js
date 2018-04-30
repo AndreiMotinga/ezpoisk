@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import Input from "material-ui/Input";
 import styles from "./styles";
+import Button from "material-ui/Button";
 
 import { connect } from "react-redux";
 import history from "config/history";
@@ -38,7 +39,7 @@ class IntegrationReactSelect extends React.Component {
   componentDidMount() {
     const id = this.props.match.params.id;
     Api.getListing(id)
-      .then(this.updateListingInState)
+      .then(this.setListing)
       .then(this.getCities);
 
     Api.getStates().then(states => {
@@ -46,10 +47,11 @@ class IntegrationReactSelect extends React.Component {
     });
   }
 
-  updateListingInState = res => {
+  setListing = res => {
     const { currentUser } = this.props;
     console.log(res);
     const listing = res.data.data.attributes;
+    // TODO move this check to server
     if (currentUser.admin || listing.user_id === currentUser.id) {
       this.setState({ listing, isLoading: false });
     } else {
@@ -78,6 +80,11 @@ class IntegrationReactSelect extends React.Component {
     this.setState({ listing });
   };
 
+  handleSubmit = e => {
+    e.preventDefault();
+    Api.saveListing(this.state.listing);
+  };
+
   render() {
     const { classes } = this.props;
     const { listing, isLoading } = this.state;
@@ -88,79 +95,88 @@ class IntegrationReactSelect extends React.Component {
 
     return (
       <Paper className={classes.paper}>
-        <Input
-          fullWidth
-          multiline
-          value={this.state.listing.text}
-          name="text"
-          onChange={this.handleTargetChange}
-          placeholder="Текст объявления"
-        />
-
-        <Input
-          fullWidth
-          value={this.state.listing.email}
-          type="email"
-          onChange={this.handleTargetChange}
-          placeholder="Email"
-        />
-
-        <Input
-          fullWidth
-          type="tel"
-          value={this.state.listing.phone}
-          onChange={this.handleTargetChange}
-          placeholder="Phone"
-        />
-
-        <div className={classes.root}>
+        <form onSubmit={this.handleSubmit}>
           <Input
             fullWidth
-            inputComponent={SelectWrapped}
-            value={this.state.listing.kind}
-            onChange={this.handleChange("kind")}
-            placeholder="Раздел"
-            id="react-select-kind"
-            inputProps={{
-              classes,
-              name: "react-select-kind",
-              instanceId: "react-select-kind",
-              simpleValue: true,
-              options: this.state.kinds
-            }}
-          />
-          <Input
-            fullWidth
-            inputComponent={SelectWrapped}
-            value={this.state.listing.state}
-            onChange={this.handleChange("state")}
-            placeholder="Штат"
-            id="react-select-state"
-            inputProps={{
-              classes,
-              name: "react-select-state",
-              instanceId: "react-select-state",
-              simpleValue: true,
-              options: this.state.states
-            }}
+            multiline
+            value={this.state.listing.text}
+            name="text"
+            onChange={this.handleTargetChange}
+            placeholder="Текст объявления"
           />
 
           <Input
             fullWidth
-            inputComponent={SelectWrapped}
-            value={this.state.listing.city}
-            onChange={this.handleChange("city")}
-            placeholder="Город"
-            id="react-select-city"
-            inputProps={{
-              classes,
-              name: "react-select-city",
-              instanceId: "react-select-city",
-              simpleValue: true,
-              options: this.state.cities
-            }}
+            value={this.state.listing.email}
+            name="email"
+            type="email"
+            onChange={this.handleTargetChange}
+            placeholder="Email"
           />
-        </div>
+
+          <Input
+            fullWidth
+            type="tel"
+            name="phone"
+            value={this.state.listing.phone || ""}
+            onChange={this.handleTargetChange}
+            placeholder="Phone"
+          />
+
+          <div className={classes.root}>
+            <Input
+              fullWidth
+              inputComponent={SelectWrapped}
+              value={this.state.listing.kind}
+              onChange={this.handleChange("kind")}
+              placeholder="Раздел"
+              id="react-select-kind"
+              inputProps={{
+                classes,
+                name: "react-select-kind",
+                instanceId: "react-select-kind",
+                simpleValue: true,
+                options: this.state.kinds
+              }}
+            />
+            <Input
+              fullWidth
+              inputComponent={SelectWrapped}
+              value={this.state.listing.state}
+              onChange={this.handleChange("state")}
+              placeholder="Штат"
+              id="react-select-state"
+              inputProps={{
+                classes,
+                name: "react-select-state",
+                instanceId: "react-select-state",
+                simpleValue: true,
+                options: this.state.states
+              }}
+            />
+
+            <Input
+              fullWidth
+              inputComponent={SelectWrapped}
+              value={this.state.listing.city}
+              onChange={this.handleChange("city")}
+              placeholder="Город"
+              id="react-select-city"
+              inputProps={{
+                classes,
+                name: "react-select-city",
+                instanceId: "react-select-city",
+                simpleValue: true,
+                options: this.state.cities
+              }}
+            />
+          </div>
+
+          <Button type="submit" variant="raised">
+            {" "}
+            Сохранить{" "}
+          </Button>
+        </form>
       </Paper>
     );
   }

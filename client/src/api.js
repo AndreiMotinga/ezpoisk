@@ -176,6 +176,19 @@ class Api {
       });
   }
 
+  saveListing(listing) {
+    return axios
+      .put(
+        `/api/listings/${listing.id}`,
+        { listing },
+        { headers: this.headers }
+      )
+      .then(res => res)
+      .catch(error => {
+        console.error(error);
+      });
+  }
+
   getStates() {
     return axios.get(`/api/states/`).then(res => res.data);
   }
