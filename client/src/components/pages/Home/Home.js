@@ -47,7 +47,13 @@ class Home extends React.Component {
     }
   };
 
-  getCities = (state = this.state.listing.state) => {
+  handleTargetChange = e => {
+    const filters = this.state.filters;
+    filters[e.target.name] = e.target.value;
+    this.setState({ filters });
+  };
+
+  getCities = (state = this.state.filters.state) => {
     Api.getCities(state).then(cities => {
       this.setState({ cities });
     });
@@ -104,6 +110,14 @@ class Home extends React.Component {
                 simpleValue: true,
                 options: this.state.cities
               }}
+            />
+
+            <Input
+              fullWidth
+              value={this.state.filters.keywords}
+              name="keywords"
+              onChange={this.handleTargetChange}
+              placeholder="Ключевые слова"
             />
           </div>
         </Grid>
