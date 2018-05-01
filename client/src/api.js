@@ -153,6 +153,16 @@ class Api {
     };
   }
 
+  getUserListings() {
+    return axios
+      .get("/api/users/listings", { headers: this.headers })
+      .then(res => res.data.data)
+      .catch(error => {
+        console.error(error);
+        return error;
+      });
+  }
+
   getListings() {
     return dispatch => {
       return axios

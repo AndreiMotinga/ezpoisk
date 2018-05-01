@@ -9,6 +9,13 @@ class Api::UsersController < ApplicationController
     end
   end
 
+  def listings
+    @listings = current_api_user.listings.desc
+                .includes(:pictures)
+    serialized = ListingSerializer.new(@listings).serialized_json
+    render json: serialized
+  end
+
   private
 
   def user_params

@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     resources :cities, only: :index
     resources :pictures, only: [:create, :destroy]
     resources :users, only: [:update]
+    get "users/listings", to: "users#listings"
   end
 
   root to: "application#index"

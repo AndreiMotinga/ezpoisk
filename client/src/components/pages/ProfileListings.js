@@ -3,19 +3,32 @@ import { connect } from "react-redux";
 // import Grid from "material-ui/Grid";
 import Paper from "material-ui/Paper";
 import { withStyles } from "material-ui/styles";
+import Api from "api";
+import Listing from "components/shared/Listing";
 
 class ProfileListings extends React.Component {
+  state = {
+    listings: null
+  };
+
+  componentDidMount = () => {
+    Api.getUserListings().then(this.addListingsToState);
+  };
+
+  addListingsToState = listings => {
+    this.setState({ listings });
+  };
+
   render() {
+    const listings = this.state.listings;
+    if (!listings) return null;
+
     const { classes, currentUser } = this.props;
     const id = this.props.match.params.id;
 
     return (
       <div className={classes.root}>
-        <Paper>
-          ID: {id}
-          {currentUser.email}
-          and listings are ( to be done )
-        </Paper>
+        {listings.map(listing => <Listing key={listing.id} />)}
       </div>
     );
   }
