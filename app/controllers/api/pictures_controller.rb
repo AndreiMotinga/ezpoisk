@@ -4,7 +4,7 @@ class Api::PicturesController < ApplicationController
   def create
     @picture = Picture.new(picture_params)
     if @picture.save
-      render json: @picture
+      render json: PictureSerializer.new(@picture).serialized_json
     else
       render json: { error: @picture.errors.full_messages.join(",") }
     end

@@ -4,6 +4,6 @@ class PictureSerializer
              :listing_id
 
   attribute :images do |object|
-    %I[thumb medium large original].map { |type| object.image.url(type) }
+    object.serialized_images
   end
 end
