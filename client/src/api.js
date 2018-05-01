@@ -220,6 +220,16 @@ class Api {
         return error;
       });
   }
+
+  saveUser(user) {
+    return axios
+      .put(`/api/users/${user.id}`, { user }, { headers: this.headers })
+      .then(res => res)
+      .catch(error => {
+        console.error(error);
+        return error;
+      });
+  }
 }
 
 export default new Api();

@@ -5,6 +5,7 @@ import Paper from "material-ui/Paper";
 import Input from "material-ui/Input";
 import Button from "material-ui/Button";
 import { withStyles } from "material-ui/styles";
+import Api from "api";
 
 class ProfileEdit extends React.Component {
   state = {
@@ -13,7 +14,7 @@ class ProfileEdit extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    console.log(this.state.user);
+    Api.saveUser(this.state.user);
   };
 
   handleTargetChange = e => {
@@ -45,15 +46,6 @@ class ProfileEdit extends React.Component {
               type="email"
               onChange={this.handleTargetChange}
               placeholder="Your Email"
-            />
-
-            <Input
-              fullWidth
-              type="tel"
-              name="phone"
-              value={this.state.user.phone || ""}
-              onChange={this.handleTargetChange}
-              placeholder="Phone"
             />
 
             <Button variant="raised" type="submit">

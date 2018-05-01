@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     resources :states, only: :index
     resources :cities, only: :index
     resources :pictures, only: [:create, :destroy]
+    resources :users, only: [:update]
   end
 
   root to: "application#index"
