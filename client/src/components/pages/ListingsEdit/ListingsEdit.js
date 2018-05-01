@@ -77,11 +77,11 @@ class IntegrationReactSelect extends React.Component {
   };
 
   addImage = res => {
-    const image = res.data.data.attributes.images;
+    const picture = res.data.data;
     const listing = this.state.listing;
-    const images = listing.images;
-    images.unshift(image);
-    listing.images = images;
+    const pictures = listing.pictures;
+    pictures.data.unshift(picture);
+    listing.pictures = pictures;
     this.setState({ listing });
   };
 
@@ -105,6 +105,10 @@ class IntegrationReactSelect extends React.Component {
     Api.saveListing(this.state.listing);
   };
 
+  removeImage = e => {
+    // debugger
+  };
+
   render() {
     const { classes } = this.props;
     const { listing, isLoading } = this.state;
@@ -117,8 +121,12 @@ class IntegrationReactSelect extends React.Component {
       <Paper className={classes.paper}>
         <Dropzone onDrop={this.handleDrop} />
         <div>
-          {this.state.listing.images.map((url, i) => (
-            <img key={i} src={url.medium} />
+          {this.state.listing.pictures.data.map(picture => (
+            <img
+              key={picture.id}
+              src={picture.attributes.images.medium}
+              onClick={this.removeImage}
+            />
           ))}
         </div>
         <form onSubmit={this.handleSubmit}>

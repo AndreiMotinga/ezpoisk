@@ -16,8 +16,4 @@ class Listing < ApplicationRecord
   scope :city, ->(city) { where(city: city) }
   scope :search, ->(term) { pg_search(term) }
   scope :desc, -> { order(created_at: :desc) }
-
-  def serialized_images
-    pictures.map(&:serialized_images)
-  end
 end

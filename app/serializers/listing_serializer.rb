@@ -13,7 +13,7 @@ class ListingSerializer
              :created_at,
              :updated_at
 
-  attribute :images do |object|
-    object.serialized_images
+  attribute :pictures do |object|
+    PictureSerializer.new(object.pictures).serializable_hash
   end
 end
