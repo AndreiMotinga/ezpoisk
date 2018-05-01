@@ -17,4 +17,12 @@ class Picture < ActiveRecord::Base
       @image_remote_url = url_value
     end
   end
+
+  def serialized_images
+    result = %I[thumb medium large original].each_with_object({}) do |t, res|
+      res[t] = image.url(t)
+    end
+    result[:source] = source
+    result
+  end
 end

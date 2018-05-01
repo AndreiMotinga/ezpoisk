@@ -14,12 +14,6 @@ class ListingSerializer
              :updated_at
 
   attribute :images do |object|
-    object.pictures.map do |pic|
-      result = %I[thumb medium large original].each_with_object({}) do |t, res|
-        res[t] = pic.image.url(t)
-      end
-      result[:source] = pic.source
-      result
-    end
+    object.serialized_images
   end
 end
