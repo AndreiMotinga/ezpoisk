@@ -1,11 +1,27 @@
 import React from "react";
 import { connect } from "react-redux";
 // import Grid from "material-ui/Grid";
-import UserForm from "./UserForm";
 import Paper from "material-ui/Paper";
+import Input from "material-ui/Input";
+import Button from "material-ui/Button";
 import { withStyles } from "material-ui/styles";
 
 class ProfileEdit extends React.Component {
+  state = {
+    user: this.props.currentUser
+  };
+
+  handleSubmit = e => {
+    e.preventDefault();
+    console.log(this.state.user);
+  };
+
+  handleTargetChange = e => {
+    const user = this.state.user;
+    user[e.target.name] = e.target.value;
+    this.setState({ user });
+  };
+
   render() {
     const { classes, currentUser } = this.props;
     const id = this.props.match.params.id;
@@ -13,8 +29,37 @@ class ProfileEdit extends React.Component {
     return (
       <div className={classes.root}>
         <Paper className={classes.paper}>
-          current user edit page
-          <UserForm currentUser={currentUser} />
+          <form onClick={this.handleSubmit}>
+            <Input
+              fullWidth
+              value={this.state.user.name}
+              name="name"
+              onChange={this.handleTargetChange}
+              placeholder="Your name"
+            />
+
+            <Input
+              fullWidth
+              value={this.state.user.email}
+              name="email"
+              type="email"
+              onChange={this.handleTargetChange}
+              placeholder="Your Email"
+            />
+
+            <Input
+              fullWidth
+              type="tel"
+              name="phone"
+              value={this.state.user.phone || ""}
+              onChange={this.handleTargetChange}
+              placeholder="Phone"
+            />
+
+            <Button variant="raised" type="submit">
+              Save
+            </Button>
+          </form>
         </Paper>
       </div>
     );
