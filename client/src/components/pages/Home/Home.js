@@ -17,12 +17,13 @@ class Home extends React.Component {
     states: [],
     cities: [],
     kinds: kinds,
+    timer: null,
 
     params: {
       kind: null,
       state: null,
       city: null,
-      keywords: null
+      search: null
     }
   };
 
@@ -49,14 +50,23 @@ class Home extends React.Component {
     if (name === "state") {
       this.getCities(value);
     }
-    Api.getListings(this.state.params);
+    Api.getListings(this.state.params).then(listings =>
+      this.setState({ listings })
+    );
   };
 
   handleTargetChange = e => {
     const params = this.state.params;
     params[e.target.name] = e.target.value;
     this.setState({ params });
-    Api.getListings(this.state.params);
+
+    clearTimeout(this.state.timer);
+    const timer = setTimeout(() => {
+      Api.getListings(this.state.params).then(listings =>
+        this.setState({ listings })
+      );
+    }, 1000);
+    this.setState({ timer });
   };
 
   getCities = (state = this.state.params.state) => {
@@ -121,8 +131,8 @@ class Home extends React.Component {
 
             <Input
               fullWidth
-              value={this.state.params.keywords}
-              name="keywords"
+              value={this.state.params.search}
+              name="search"
               onChange={this.handleTargetChange}
               placeholder="Ключевые слова"
             />
