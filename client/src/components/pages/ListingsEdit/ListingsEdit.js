@@ -11,7 +11,7 @@ import history from "config/history";
 import Paper from "material-ui/Paper";
 import { withStyles } from "material-ui/styles";
 import Api from "api";
-import Select from "./Select";
+import Select from "components/shared/Select";
 
 class IntegrationReactSelect extends React.Component {
   state = {

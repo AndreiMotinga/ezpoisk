@@ -8,6 +8,8 @@ import { withStyles } from "material-ui/styles";
 import { openDialog } from "actions";
 import Api from "api";
 import kinds from "config/kinds";
+import Input from "material-ui/Input";
+import Select from "components/shared/Select";
 
 class Home extends React.Component {
   state = {
@@ -36,11 +38,75 @@ class Home extends React.Component {
     this.setState({ cities });
   };
 
+  handleChange = name => value => {
+    const filters = this.state.filters;
+    filters[name] = value;
+    this.setState({ filters });
+    if (name === "state") {
+      this.getCities(value);
+    }
+  };
+
+  getCities = (state = this.state.listing.state) => {
+    Api.getCities(state).then(cities => {
+      this.setState({ cities });
+    });
+  };
+
   render() {
     const { classes, isSignedIn, handleOpen, listings } = this.props;
     return (
       <Grid container>
-        <Grid item xs={12} />
+        <Grid item xs={12}>
+          <div>
+            <Input
+              fullWidth
+              inputComponent={Select}
+              value={this.state.filters.kind}
+              onChange={this.handleChange("kind")}
+              placeholder="Раздел"
+              id="kind"
+              inputProps={{
+                classes,
+                name: "kind",
+                instanceId: "kind",
+                simpleValue: true,
+                options: this.state.kinds
+              }}
+            />
+            <Input
+              fullWidth
+              inputComponent={Select}
+              value={this.state.filters.state}
+              onChange={this.handleChange("state")}
+              placeholder="Штат"
+              id="state"
+              inputProps={{
+                classes,
+                name: "state",
+                instanceId: "state",
+                simpleValue: true,
+                options: this.state.states
+              }}
+            />
+
+            <Input
+              fullWidth
+              inputComponent={Select}
+              value={this.state.filters.city}
+              onChange={this.handleChange("city")}
+              placeholder="Город"
+              id="city"
+              inputProps={{
+                classes,
+                name: "city",
+                instanceId: "city",
+                simpleValue: true,
+                options: this.state.cities
+              }}
+            />
+          </div>
+        </Grid>
 
         <Grid item xs={12}>
           <Grid
