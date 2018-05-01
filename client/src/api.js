@@ -200,7 +200,6 @@ class Api {
 
   savePicture(picture) {
     const headers = this.headers;
-    headers["content-type"] = "multipart/form-data";
     return axios
       .post(`/api/pictures`, picture, { headers })
       .then(res => res)
