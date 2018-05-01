@@ -4,6 +4,7 @@ import Input from "material-ui/Input";
 import styles from "./styles";
 import Button from "material-ui/Button";
 import Dropzone from "react-dropzone";
+import kinds from "config/kinds";
 
 import { connect } from "react-redux";
 import history from "config/history";
@@ -26,15 +27,7 @@ class IntegrationReactSelect extends React.Component {
     listing: null,
     states: [],
     cities: [],
-    kinds: [
-      { value: "housing", label: "Недвижимость" },
-      { value: "job", label: "Работа" },
-      { value: "sale", label: "Продажи" },
-      { value: "service", label: "Услуги" },
-      { value: "meetup", label: "Знакомства" },
-      { value: "parcel", label: "Посылки" },
-      { value: "misc", label: "Разное" }
-    ]
+    kinds: kinds
   };
 
   componentDidMount() {
