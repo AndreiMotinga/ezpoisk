@@ -30,7 +30,7 @@ class AuthDropdown extends React.Component {
 
   handleProfile = () => {
     this.setState({ anchorEl: null });
-    history.push("/profile");
+    history.push("/profile/edit");
   };
 
   handleSignOut = () => {

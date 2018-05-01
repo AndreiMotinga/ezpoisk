@@ -5,7 +5,7 @@ import UserForm from "./UserForm";
 import Paper from "material-ui/Paper";
 import { withStyles } from "material-ui/styles";
 
-class Profile extends React.Component {
+class ProfileEdit extends React.Component {
   render() {
     const { classes, currentUser } = this.props;
     const id = this.props.match.params.id;
@@ -13,12 +13,8 @@ class Profile extends React.Component {
     return (
       <div className={classes.root}>
         <Paper className={classes.paper}>
-          User show page
-          <ul>
-            <li>user header</li>
-            <li>users listings</li>
-          </ul>
-          ID: {id}
+          current user edit page
+          <UserForm currentUser={currentUser} />
         </Paper>
       </div>
     );
@@ -41,6 +37,6 @@ const styles = theme => ({
   }
 });
 
-const styledProfile = withStyles(styles)(Profile);
+const styledProfileEdit = withStyles(styles)(ProfileEdit);
 
-export default connect(mapStateToProps, mapDispatchToProps)(styledProfile);
+export default connect(mapStateToProps, mapDispatchToProps)(styledProfileEdit);
