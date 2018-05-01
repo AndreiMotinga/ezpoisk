@@ -3,7 +3,7 @@ class PictureSerializer
   attributes :id,
              :listing_id
 
-  attribute :images do |object|
-    object.serialized_images
+  attribute :variants do |object|
+    object.serialized_variants
   end
 end

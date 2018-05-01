@@ -18,7 +18,7 @@ class Picture < ActiveRecord::Base
     end
   end
 
-  def serialized_images
+  def serialized_variants
     result = %I[thumb medium large original].each_with_object({}) do |t, res|
       res[t] = image.url(t)
     end

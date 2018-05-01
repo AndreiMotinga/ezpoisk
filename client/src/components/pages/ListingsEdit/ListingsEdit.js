@@ -135,7 +135,7 @@ class IntegrationReactSelect extends React.Component {
             <img
               key={picture.id}
               id={picture.id}
-              src={picture.attributes.images.medium}
+              src={picture.attributes.variants.medium}
               onClick={this.removePicture}
             />
           ))}
