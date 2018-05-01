@@ -209,6 +209,17 @@ class Api {
         return error;
       });
   }
+
+  removePicture(id) {
+    const headers = this.headers;
+    return axios
+      .delete(`/api/pictures/${id}`, { headers })
+      .then(res => res)
+      .catch(error => {
+        console.error(error);
+        return error;
+      });
+  }
 }
 
 export default new Api();

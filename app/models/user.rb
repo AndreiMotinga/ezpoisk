@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   include DeviseTokenAuth::Concerns::User
 
   has_many :listings, dependent: :destroy
+  has_many :pictures, through: :listings
 
   has_attached_file(:avatar,
                     styles: { thumb: "100x100#", medium: "200x200#" },

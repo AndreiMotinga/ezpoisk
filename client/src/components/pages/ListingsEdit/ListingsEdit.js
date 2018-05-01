@@ -85,6 +85,16 @@ class IntegrationReactSelect extends React.Component {
     this.setState({ listing });
   };
 
+  removeImage = res => {
+    const id = res.data.id;
+    const listing = this.state.listing;
+    const data = listing.pictures.data.filter(
+      item => item.id.toString() !== id.toString()
+    );
+    listing.pictures.data = data;
+    this.setState({ listing });
+  };
+
   handleChange = name => value => {
     const listing = this.state.listing;
     listing[name] = value;
@@ -105,8 +115,8 @@ class IntegrationReactSelect extends React.Component {
     Api.saveListing(this.state.listing);
   };
 
-  removeImage = e => {
-    // debugger
+  removePicture = e => {
+    Api.removePicture(e.target.id).then(this.removeImage);
   };
 
   render() {
@@ -124,8 +134,9 @@ class IntegrationReactSelect extends React.Component {
           {this.state.listing.pictures.data.map(picture => (
             <img
               key={picture.id}
+              id={picture.id}
               src={picture.attributes.images.medium}
-              onClick={this.removeImage}
+              onClick={this.removePicture}
             />
           ))}
         </div>
