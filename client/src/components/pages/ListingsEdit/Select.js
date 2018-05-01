@@ -2,6 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import { MenuItem } from "material-ui/Menu";
 
+import Select from "react-select";
+import "react-select/dist/react-select.css";
+
 class Option extends React.Component {
   handleClick = event => {
     this.props.onSelect(this.props.option, event);
@@ -26,4 +29,9 @@ class Option extends React.Component {
   }
 }
 
-export default Option;
+const SelectWrapped = props => {
+  const { classes, ...other } = props;
+  return <Select optionComponent={Option} {...other} />;
+};
+
+export default SelectWrapped;

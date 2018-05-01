@@ -11,15 +11,7 @@ import history from "config/history";
 import Paper from "material-ui/Paper";
 import { withStyles } from "material-ui/styles";
 import Api from "api";
-
-import Select from "react-select";
-import "react-select/dist/react-select.css";
-import Option from "./Option";
-
-const SelectWrapped = props => {
-  const { classes, ...other } = props;
-  return <Select optionComponent={Option} {...other} />;
-};
+import Select from "./Select";
 
 class IntegrationReactSelect extends React.Component {
   state = {
@@ -133,6 +125,7 @@ class IntegrationReactSelect extends React.Component {
             />
           ))}
         </div>
+
         <form onSubmit={this.handleSubmit}>
           <Input
             fullWidth
@@ -164,30 +157,30 @@ class IntegrationReactSelect extends React.Component {
           <div className={classes.root}>
             <Input
               fullWidth
-              inputComponent={SelectWrapped}
+              inputComponent={Select}
               value={this.state.listing.kind}
               onChange={this.handleChange("kind")}
               placeholder="Раздел"
-              id="react-select-kind"
+              id="kind"
               inputProps={{
                 classes,
-                name: "react-select-kind",
-                instanceId: "react-select-kind",
+                name: "kind",
+                instanceId: "kind",
                 simpleValue: true,
                 options: this.state.kinds
               }}
             />
             <Input
               fullWidth
-              inputComponent={SelectWrapped}
+              inputComponent={Select}
               value={this.state.listing.state}
               onChange={this.handleChange("state")}
               placeholder="Штат"
-              id="react-select-state"
+              id="state"
               inputProps={{
                 classes,
-                name: "react-select-state",
-                instanceId: "react-select-state",
+                name: "state",
+                instanceId: "state",
                 simpleValue: true,
                 options: this.state.states
               }}
@@ -195,15 +188,15 @@ class IntegrationReactSelect extends React.Component {
 
             <Input
               fullWidth
-              inputComponent={SelectWrapped}
+              inputComponent={Select}
               value={this.state.listing.city}
               onChange={this.handleChange("city")}
               placeholder="Город"
-              id="react-select-city"
+              id="city"
               inputProps={{
                 classes,
-                name: "react-select-city",
-                instanceId: "react-select-city",
+                name: "city",
+                instanceId: "city",
                 simpleValue: true,
                 options: this.state.cities
               }}
