@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Input from "material-ui/Input";
-import styles from "./styles";
 import Button from "material-ui/Button";
 import Dropzone from "react-dropzone";
 import kinds from "config/kinds";
@@ -222,6 +221,17 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({});
+
+const styles = {
+  paper: {
+    maxWidth: 700,
+    margin: "20px auto",
+    padding: 15
+  },
+  root: {
+    maxWidth: 200
+  }
+};
 
 const styled = withStyles(styles)(IntegrationReactSelect);
 

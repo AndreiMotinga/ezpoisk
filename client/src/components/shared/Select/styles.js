@@ -1,18 +1,6 @@
 const ITEM_HEIGHT = 48;
 
 const styles = theme => ({
-  paper: {
-    maxWidth: 700,
-    margin: "20px auto",
-    padding: 15
-  },
-  root: {
-    maxWidth: 200
-  },
-  chip: {
-    margin: theme.spacing.unit / 4
-  },
-
   // We had to use a lot of global selectors in order to style react-select.
   // We are waiting on https://github.com/JedWatson/react-select/issues/1679
   // to provide a much better implementation.

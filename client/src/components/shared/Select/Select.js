@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { MenuItem } from "material-ui/Menu";
+import { withStyles } from "material-ui/styles";
+import styles from "./styles";
 
 import Select from "react-select";
 import "react-select/dist/react-select.css";
@@ -34,4 +36,6 @@ const SelectWrapped = props => {
   return <Select optionComponent={Option} {...other} />;
 };
 
-export default SelectWrapped;
+const styled = withStyles(styles)(SelectWrapped);
+
+export default styled;
