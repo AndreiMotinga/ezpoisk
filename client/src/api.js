@@ -163,18 +163,8 @@ class Api {
       });
   }
 
-  getListings() {
-    return dispatch => {
-      return axios
-        .get("/api/listings")
-        .then(res => {
-          const listings = res.data.data;
-          dispatch(listingsSuccess(listings));
-        })
-        .catch(error => {
-          console.error(error);
-        });
-    };
+  getListings(params) {
+    return axios.get("/api/listings", { params }).then(res => res.data.data);
   }
 
   getListing(id) {

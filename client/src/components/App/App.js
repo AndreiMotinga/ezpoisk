@@ -23,7 +23,7 @@ import Auth from "components/pages/Auth";
 class App extends React.Component {
   componentDidMount() {
     this.props.initUser();
-    this.props.getListings();
+    // this.props.getListings();
   }
 
   render() {
@@ -71,8 +71,8 @@ const mapStateToProps = state => ({
  * this will allow us to call `.then` on it in componentDidMount
  */
 const mapDispatchToProps = dispatch => ({
-  initUser: () => dispatch(initUser()),
-  getListings: () => dispatch(getListings())
+  initUser: () => dispatch(initUser())
+  // getListings: () => dispatch(getListings())
 });
 
 const styles = {

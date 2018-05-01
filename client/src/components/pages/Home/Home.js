@@ -13,11 +13,12 @@ import Select from "components/shared/Select";
 
 class Home extends React.Component {
   state = {
+    listings: [],
     states: [],
     cities: [],
     kinds: kinds,
 
-    filters: {
+    params: {
       kind: null,
       state: null,
       city: null,
@@ -26,6 +27,9 @@ class Home extends React.Component {
   };
 
   componentDidMount() {
+    Api.getListings(this.state.params).then(listings =>
+      this.setState({ listings })
+    );
     Api.getStates().then(this.loadStates);
     Api.getCities().then(this.loadCities);
   }
@@ -39,28 +43,31 @@ class Home extends React.Component {
   };
 
   handleChange = name => value => {
-    const filters = this.state.filters;
-    filters[name] = value;
-    this.setState({ filters });
+    const params = this.state.params;
+    params[name] = value;
+    this.setState({ params });
     if (name === "state") {
       this.getCities(value);
     }
+    Api.getListings(this.state.params);
   };
 
   handleTargetChange = e => {
-    const filters = this.state.filters;
-    filters[e.target.name] = e.target.value;
-    this.setState({ filters });
+    const params = this.state.params;
+    params[e.target.name] = e.target.value;
+    this.setState({ params });
+    Api.getListings(this.state.params);
   };
 
-  getCities = (state = this.state.filters.state) => {
+  getCities = (state = this.state.params.state) => {
     Api.getCities(state).then(cities => {
       this.setState({ cities });
     });
   };
 
   render() {
-    const { classes, isSignedIn, handleOpen, listings } = this.props;
+    const { classes, isSignedIn, handleOpen } = this.props;
+    const { listings } = this.state;
     return (
       <Grid container>
         <Grid item xs={12}>
@@ -68,7 +75,7 @@ class Home extends React.Component {
             <Input
               fullWidth
               inputComponent={Select}
-              value={this.state.filters.kind}
+              value={this.state.params.kind}
               onChange={this.handleChange("kind")}
               placeholder="Раздел"
               id="kind"
@@ -83,7 +90,7 @@ class Home extends React.Component {
             <Input
               fullWidth
               inputComponent={Select}
-              value={this.state.filters.state}
+              value={this.state.params.state}
               onChange={this.handleChange("state")}
               placeholder="Штат"
               id="state"
@@ -99,7 +106,7 @@ class Home extends React.Component {
             <Input
               fullWidth
               inputComponent={Select}
-              value={this.state.filters.city}
+              value={this.state.params.city}
               onChange={this.handleChange("city")}
               placeholder="Город"
               id="city"
@@ -114,7 +121,7 @@ class Home extends React.Component {
 
             <Input
               fullWidth
-              value={this.state.filters.keywords}
+              value={this.state.params.keywords}
               name="keywords"
               onChange={this.handleTargetChange}
               placeholder="Ключевые слова"
@@ -160,8 +167,7 @@ const styles = theme => ({
 });
 
 const mapStateToProps = state => ({
-  isSignedIn: Boolean(state.currentUser),
-  listings: state.listings
+  isSignedIn: Boolean(state.currentUser)
 });
 
 const mapDispatchToProps = dispatch => ({
