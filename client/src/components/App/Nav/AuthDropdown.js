@@ -28,9 +28,9 @@ class AuthDropdown extends React.Component {
     this.setState({ anchorEl: null });
   };
 
-  handleProfile = () => {
+  handleLink = e => {
     this.setState({ anchorEl: null });
-    history.push("/profile/edit");
+    history.push(e.target.attributes.path.value);
   };
 
   handleSignOut = () => {
@@ -76,7 +76,12 @@ class AuthDropdown extends React.Component {
               open={open}
               onClose={this.handleClose}
             >
-              <MenuItem onClick={this.handleProfile}>My Profile</MenuItem>
+              <MenuItem path="/profile/edit" onClick={this.handleLink}>
+                My Profile
+              </MenuItem>
+              <MenuItem path="/profile/listings" onClick={this.handleLink}>
+                My Listings
+              </MenuItem>
               <MenuItem onClick={this.handleSignOut}>Sign out</MenuItem>
             </Menu>
           </div>

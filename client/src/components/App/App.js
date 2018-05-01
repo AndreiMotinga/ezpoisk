@@ -47,10 +47,7 @@ class App extends React.Component {
                 <Route path="/listings/:id" component={ListingsShow} />
                 <Route path="/faq" component={Faq} />
                 <Route path="/auth" component={Auth} />
-                <Route
-                  path="/profile/:id/listings"
-                  component={ProfileListings}
-                />
+                <Route path="/profile/listings" component={ProfileListings} />
                 <Route path="/profile/edit" component={ProfileEdit} />
                 <Route path="/profile/:id" component={Profile} />
               </Switch>
