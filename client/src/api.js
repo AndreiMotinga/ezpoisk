@@ -206,6 +206,7 @@ class Api {
       .then(res => res)
       .catch(error => {
         console.error(error);
+        return error;
       });
   }
 }

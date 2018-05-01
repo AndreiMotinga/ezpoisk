@@ -72,8 +72,17 @@ class IntegrationReactSelect extends React.Component {
       const data = new FormData();
       data.append("picture[listing_id]", id);
       data.append("picture[image]", file);
-      Api.savePicture(data);
+      Api.savePicture(data).then(this.addImage);
     });
+  };
+
+  addImage = res => {
+    const image = res.data.data.attributes.images;
+    const listing = this.state.listing;
+    const images = listing.images;
+    images.unshift(image);
+    listing.images = images;
+    this.setState({ listing });
   };
 
   handleChange = name => value => {
