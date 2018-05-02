@@ -28,14 +28,16 @@ class Home extends React.Component {
   };
 
   componentDidMount() {
-    Api.getListings().then(this.setListings);
+    this.fetchListings()
     Api.getStates().then(this.setStates);
-    Api.getCities().then(this.setCities);
+    this.fetchCities()
   }
 
-  setListings = listings => {
-    this.setState({ listings });
-  };
+  fetchListings = () => {
+    Api.getListings(this.state.params).then(listings => {
+      this.setState({ listings });
+    });
+  }
 
   setStates = states => {
     this.setState({ states });
@@ -45,7 +47,8 @@ class Home extends React.Component {
     this.setState({ cities });
   };
 
-  getCities = (state = this.state.params.state) => {
+  fetchCities = () => {
+    const state = this.state.params.state
     Api.getCities(state).then(cities => {
       this.setState({ cities });
     });
@@ -61,10 +64,8 @@ class Home extends React.Component {
     const params = this.state.params;
     params.state = value;
     this.setState({ params });
-    this.getCities(value);
-    Api.getListings(this.state.params).then(listings =>
-      this.setState({ listings })
-    );
+    this.fetchCities()
+    this.fetchListings()
   };
 
   handleTargetChange = e => {
@@ -74,9 +75,7 @@ class Home extends React.Component {
 
     clearTimeout(this.state.timer);
     const timer = setTimeout(() => {
-      Api.getListings(this.state.params).then(listings =>
-        this.setState({ listings })
-      );
+      this.fetchListings()
     }, 1000);
     this.setState({ timer });
   };
