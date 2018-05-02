@@ -11,6 +11,7 @@ import history from "config/history";
 
 import Logo from "./Logo";
 import AuthDropdown from "./AuthDropdown";
+import Drawer from "./Drawer";
 
 const Nav = ({ classes, currentUser, openAuthDialog }) => {
   const sendToEdit = () => {
@@ -32,6 +33,7 @@ const Nav = ({ classes, currentUser, openAuthDialog }) => {
           </Link>
           <div className={classes.spacer} />
           <AuthDropdown />
+          <Drawer />
         </Toolbar>
       </AppBar>
     </div>
