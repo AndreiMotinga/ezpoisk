@@ -1,18 +1,11 @@
-import {
-  AUTH,
-  OPEN_DIALOG,
-  CLOSE_DIALOG,
-  LISTINGS_SUCCESS,
-  REQUEST_START
-} from "./constants";
+import { AUTH, OPEN_DIALOG, CLOSE_DIALOG, REQUEST_START } from "./constants";
 
 const initialState = {
   isLoading: true,
   activeDialog: null,
   activeImages: [],
   currentUser: null,
-  errors: [],
-  listings: []
+  errors: []
 };
 
 const root = (state = initialState, action) => {
@@ -108,16 +101,6 @@ const root = (state = initialState, action) => {
         activeDialog: null,
         activeImages: []
       };
-
-    /*
-     * listings flow
-     */
-    case LISTINGS_SUCCESS:
-      return { ...state, listings: action.listings };
-
-    /*
-     * prifile flow
-     */
 
     /*
      * return default

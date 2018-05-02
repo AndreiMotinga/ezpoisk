@@ -192,6 +192,6 @@ const mapStateToProps = state => ({});
 
 const mapDispatchToProps = dispatch => ({});
 
-const styledHome = withStyles(styles)(Home);
+const styled = withStyles(styles)(Home);
 
-export default connect(mapStateToProps, mapDispatchToProps)(styledHome);
+export default connect(mapStateToProps, mapDispatchToProps)(styled);

@@ -1,11 +1,5 @@
 import Api from "./api";
-import {
-  AUTH,
-  OPEN_DIALOG,
-  CLOSE_DIALOG,
-  LISTINGS_SUCCESS,
-  REQUEST_START
-} from "./constants";
+import { AUTH, OPEN_DIALOG, CLOSE_DIALOG, REQUEST_START } from "./constants";
 
 /**
  * Initial setup
@@ -124,22 +118,3 @@ export function closeDialog() {
     type: CLOSE_DIALOG
   };
 }
-
-/**
- * listings flow
- */
-
-export function getListings() {
-  return Api.getListings();
-}
-
-export function listingsSuccess(listings) {
-  return {
-    type: LISTINGS_SUCCESS,
-    listings
-  };
-}
-
-/**
- * profile flow
- */
