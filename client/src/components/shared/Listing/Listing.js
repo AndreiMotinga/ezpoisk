@@ -160,10 +160,41 @@ class RecipeReviewCard extends React.Component {
       </div>
     );
 
+    const title = () => {
+      const user = listing.attributes.user;
+      const name = user.name;
+
+      let url;
+      switch (user.provider) {
+        case "vkontakte":
+          url = `https://vk.com/id${user.uid}`;
+          break;
+        case "email":
+          url = `/profile/${user.id}`;
+          break;
+      }
+      if (user.provider == "vkontakte") {
+        return (
+          <div>
+            {user.name} via{" "}
+            <a href={url} target="_blank">
+              {user.provider}
+            </a>
+          </div>
+        );
+      } else {
+        return (
+          <div>
+            <Link to={url}>{user.name}</Link>
+          </div>
+        );
+      }
+    };
+
     return (
       <Card>
         <CardHeader
-          title={listing.attributes.user.name}
+          title={title()}
           subheader={moment}
           avatar={avatar}
           action={action}

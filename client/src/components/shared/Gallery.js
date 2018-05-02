@@ -7,7 +7,7 @@ const Gallery = ({ images }) => {
   return <ImageGallery items={images} />;
 };
 
-Gallery.PropTypes = {
+Gallery.propTypes = {
   images: PropTypes.arrayOf(PropTypes.object).isRequired
 };
 
