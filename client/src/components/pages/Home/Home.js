@@ -55,9 +55,13 @@ class Home extends React.Component {
     const params = this.state.params;
     params[name] = value;
     this.setState({ params });
-    if (name === "state") {
-      this.getCities(value);
-    }
+  };
+
+  handleStateChange = value => {
+    const params = this.state.params;
+    params.state = value;
+    this.setState({ params });
+    this.getCities(value);
     Api.getListings(this.state.params).then(listings =>
       this.setState({ listings })
     );
@@ -116,7 +120,7 @@ class Home extends React.Component {
               fullWidth
               inputComponent={Select}
               value={this.state.params.state}
-              onChange={this.handleChange("state")}
+              onChange={this.handleStateChange}
               placeholder="Штат"
               id="state"
               inputProps={{
