@@ -5,6 +5,8 @@ import Listing from "components/shared/Listing";
 import Grid from "material-ui/Grid";
 import Typography from "material-ui/Typography";
 import { withStyles } from "material-ui/styles";
+import ImageGallery from "react-image-gallery";
+import "react-image-gallery/styles/css/image-gallery.css";
 
 class ListingsShow extends React.Component {
   state = {
@@ -28,8 +30,24 @@ class ListingsShow extends React.Component {
     const { listing } = this.state;
     const { classes } = this.props;
 
+    const images = [
+      {
+        original: "http://lorempixel.com/1000/600/nature/1/",
+        thumbnail: "http://lorempixel.com/250/150/nature/1/"
+      },
+      {
+        original: "http://lorempixel.com/1000/600/nature/2/",
+        thumbnail: "http://lorempixel.com/250/150/nature/2/"
+      },
+      {
+        original: "http://lorempixel.com/1000/600/nature/3/",
+        thumbnail: "http://lorempixel.com/250/150/nature/3/"
+      }
+    ];
+
     return (
       <div>
+        <ImageGallery items={images} />
         <Typography variant="display3" align="center" className={classes.title}>
           {listing.title}
         </Typography>
