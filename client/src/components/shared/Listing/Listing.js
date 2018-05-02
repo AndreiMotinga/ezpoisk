@@ -18,6 +18,7 @@ import ShareIcon from "material-ui-icons/Share";
 import ExpandMoreIcon from "material-ui-icons/ExpandMore";
 import MoreVertIcon from "material-ui-icons/MoreVert";
 import { Link } from "react-router-dom";
+import Moment from "react-moment";
 
 const styles = theme => ({
   media: {
@@ -35,6 +36,12 @@ const styles = theme => ({
   },
   expandOpen: {
     transform: "rotate(180deg)"
+  },
+  subheader: {
+    textDecoration: "none",
+    "&:hover": {
+      textDecoration: "underline"
+    }
   }
 });
 
@@ -64,12 +71,19 @@ class RecipeReviewCard extends React.Component {
 
     const main_pic = listing.attributes.pictures.data[0];
     const main_pic_src = main_pic && main_pic.attributes.variants.main;
+    const moment = (
+      <Link to={`/listing/${listing.id}`} className={classes.subheader}>
+        <Typography>
+          <Moment format="MMM D YYYY HH:MM">{listing.updated_at}</Moment>
+        </Typography>
+      </Link>
+    );
 
     return (
       <Card>
         <CardHeader
           title={listing.attributes.user.name}
-          subheader="September 14, 2016"
+          subheader={moment}
           avatar={avatar}
           action={action}
         />
