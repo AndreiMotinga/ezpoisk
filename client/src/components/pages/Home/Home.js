@@ -28,16 +28,22 @@ class Home extends React.Component {
   };
 
   componentDidMount() {
-    this.fetchListings()
+    this.fetchListings();
     Api.getStates().then(this.setStates);
-    this.fetchCities()
+    this.fetchCities();
   }
 
-  fetchListings = () => {
+  fetchListings = (append = false) => {
     Api.getListings(this.state.params).then(listings => {
+      if (append) {
+        const newListings = this.state.listings.concat(listings);
+        this.setState({ listings: newListings });
+        return;
+      }
+
       this.setState({ listings });
     });
-  }
+  };
 
   setStates = states => {
     this.setState({ states });
@@ -48,7 +54,7 @@ class Home extends React.Component {
   };
 
   fetchCities = () => {
-    const state = this.state.params.state
+    const state = this.state.params.state;
     Api.getCities(state).then(cities => {
       this.setState({ cities });
     });
@@ -58,24 +64,25 @@ class Home extends React.Component {
     const params = this.state.params;
     params[name] = value;
     this.setState({ params });
+    this.fetchListings();
   };
 
   handleStateChange = value => {
     const params = this.state.params;
     params.state = value;
     this.setState({ params });
-    this.fetchCities()
-    this.fetchListings()
+    this.fetchCities();
+    this.fetchListings();
   };
 
-  handleTargetChange = e => {
+  handleSearch = e => {
     const params = this.state.params;
-    params[e.target.name] = e.target.value;
+    params.search = e.target.value;
     this.setState({ params });
 
     clearTimeout(this.state.timer);
     const timer = setTimeout(() => {
-      this.fetchListings()
+      this.fetchListings();
     }, 1000);
     this.setState({ timer });
   };
@@ -89,14 +96,11 @@ class Home extends React.Component {
     const params = this.state.params;
     params.page += 1;
     this.setState({ params });
-    Api.getListings(params).then(listings => {
-      const newListings = this.state.listings.concat(listings);
-      this.setState({ listings: newListings });
-    });
+    this.fetchListings(true);
   };
 
   render() {
-    const { listings, classes } = this.state;
+    const { listings, classes, params, kinds, cities, states } = this.state;
     return (
       <Grid container>
         <Grid item xs={12}>
@@ -104,7 +108,7 @@ class Home extends React.Component {
             <Input
               fullWidth
               inputComponent={Select}
-              value={this.state.params.kind}
+              value={params.kind}
               onChange={this.handleChange("kind")}
               placeholder="Раздел"
               id="kind"
@@ -112,13 +116,13 @@ class Home extends React.Component {
                 name: "kind",
                 instanceId: "kind",
                 simpleValue: true,
-                options: this.state.kinds
+                options: kinds
               }}
             />
             <Input
               fullWidth
               inputComponent={Select}
-              value={this.state.params.state}
+              value={params.state}
               onChange={this.handleStateChange}
               placeholder="Штат"
               id="state"
@@ -126,14 +130,14 @@ class Home extends React.Component {
                 name: "state",
                 instanceId: "state",
                 simpleValue: true,
-                options: this.state.states
+                options: states
               }}
             />
 
             <Input
               fullWidth
               inputComponent={Select}
-              value={this.state.params.city}
+              value={params.city}
               onChange={this.handleChange("city")}
               placeholder="Город"
               id="city"
@@ -141,15 +145,15 @@ class Home extends React.Component {
                 name: "city",
                 instanceId: "city",
                 simpleValue: true,
-                options: this.state.cities
+                options: cities
               }}
             />
 
             <Input
               fullWidth
-              value={this.state.params.search}
+              value={params.search}
               name="search"
-              onChange={this.handleTargetChange}
+              onChange={this.handleSearch}
               placeholder="Ключевые слова"
             />
           </div>
