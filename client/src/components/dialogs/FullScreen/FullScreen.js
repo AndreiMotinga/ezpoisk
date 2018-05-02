@@ -13,12 +13,13 @@ import CloseIcon from "material-ui-icons/Close";
 import Slide from "material-ui/transitions/Slide";
 import { connect } from "react-redux";
 import { closeDialog } from "actions";
+import Gallery from "components/shared/Gallery";
 
 function Transition(props) {
   return <Slide direction="up" {...props} />;
 }
 
-const FullScreenDialog = ({ classes, isOpen, handleClose }) => {
+const FullScreenDialog = ({ classes, isOpen, handleClose, images }) => {
   return (
     <div>
       <Dialog
@@ -48,18 +49,7 @@ const FullScreenDialog = ({ classes, isOpen, handleClose }) => {
             </Button>
           </Toolbar>
         </AppBar>
-        <List>
-          <ListItem button>
-            <ListItemText primary="Phone ringtone" secondary="Titania" />
-          </ListItem>
-          <Divider />
-          <ListItem button>
-            <ListItemText
-              primary="Default notification ringtone"
-              secondary="Tethys"
-            />
-          </ListItem>
-        </List>
+        <Gallery images={images} />
       </Dialog>
     </div>
   );
@@ -70,7 +60,8 @@ FullScreenDialog.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  isOpen: state.activeDialog === "FullScreenDialog"
+  isOpen: state.activeDialog === "FullScreenDialog",
+  images: state.activeImages
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -9,6 +9,7 @@ import {
 const initialState = {
   isLoading: true,
   activeDialog: null,
+  activeImages: [],
   currentUser: null,
   errors: [],
   listings: []
@@ -95,10 +96,18 @@ const root = (state = initialState, action) => {
      */
 
     case OPEN_DIALOG:
-      return { ...state, activeDialog: action.dialog };
+      return {
+        ...state,
+        activeDialog: action.dialog,
+        activeImages: action.images
+      };
 
     case CLOSE_DIALOG:
-      return { ...state, activeDialog: null };
+      return {
+        ...state,
+        activeDialog: null,
+        activeImages: []
+      };
 
     /*
      * listings flow

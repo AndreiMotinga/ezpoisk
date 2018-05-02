@@ -55,7 +55,8 @@ const styles = theme => ({
 class RecipeReviewCard extends React.Component {
   state = {
     expanded: false,
-    anchorEl: null
+    anchorEl: null,
+    listing: this.props.listing
   };
 
   handleExpandClick = () => {
@@ -81,12 +82,21 @@ class RecipeReviewCard extends React.Component {
     this.setState({ anchorEl: null });
   };
 
-  openImageGallery = () => {
-    this.props.openDialog();
+  openImageGallery = e => {
+    // TODO duplicated with ListingsShow.js
+    const listing = this.state.listing;
+    const data = listing.attributes.pictures.data;
+    const variants = data.map(d => d.attributes.variants);
+    const images = variants.map(v => ({
+      original: v.large,
+      thumbnail: v.thumb
+    }));
+    this.props.openDialog(images);
   };
 
   render() {
-    const { classes, listing, currentUser } = this.props;
+    const { classes, currentUser } = this.props;
+    const listing = this.state.listing;
 
     const avatar = (
       <Avatar
@@ -162,6 +172,7 @@ class RecipeReviewCard extends React.Component {
           <CardMedia
             className={classes.media}
             image={main_pic}
+            listing={listing}
             onClick={this.openImageGallery}
           />
         )}
@@ -189,8 +200,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  openDialog: () => {
-    dispatch(openDialog("FullScreenDialog"));
+  openDialog: images => {
+    dispatch(openDialog("FullScreenDialog", images));
   }
 });
 
