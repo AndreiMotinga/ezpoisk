@@ -23,6 +23,7 @@ class Picture < ActiveRecord::Base
       res[t] = image.url(t)
     end
     result[:source] = source
+    result[:main] = source.present? ? source : image.url(:large)
     result
   end
 end

@@ -5,7 +5,7 @@ import Tooltip from "material-ui/Tooltip";
 import classnames from "classnames";
 import Card, {
   CardHeader,
-  // CardMedia,
+  CardMedia,
   CardContent,
   CardActions
 } from "material-ui/Card";
@@ -17,7 +17,7 @@ import red from "material-ui/colors/red";
 import ShareIcon from "material-ui-icons/Share";
 import ExpandMoreIcon from "material-ui-icons/ExpandMore";
 import MoreVertIcon from "material-ui-icons/MoreVert";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const styles = theme => ({
   media: {
@@ -35,9 +35,6 @@ const styles = theme => ({
   },
   expandOpen: {
     transform: "rotate(180deg)"
-  },
-  avatar: {
-    backgroundColor: red[500]
   }
 });
 
@@ -49,34 +46,40 @@ class RecipeReviewCard extends React.Component {
   };
 
   render() {
-    const { classes } = this.props;
-    const post = this.props.post || {};
+    const { classes, listing } = this.props;
+
+    const avatar = (
+      <Avatar
+        alt={listing.attributes.user.name}
+        src={listing.attributes.user.avatar}
+        className={classes.avatar}
+      />
+    );
+
+    const action = (
+      <IconButton>
+        <MoreVertIcon />
+      </IconButton>
+    );
+
+    const main_pic = listing.attributes.pictures.data[0];
+    const main_pic_src = main_pic && main_pic.attributes.variants.main;
 
     return (
       <Card>
         <CardHeader
-          avatar={
-            <Avatar aria-label="Recipe" className={classes.avatar}>
-              R
-            </Avatar>
-          }
-          action={
-            <IconButton>
-              <MoreVertIcon />
-            </IconButton>
-          }
-          title="some title here"
+          title={listing.attributes.user.name}
           subheader="September 14, 2016"
+          avatar={avatar}
+          action={action}
         />
-        {/* <Link to={`/posts/${post.id}`}> */}
-        {/*   <CardMedia */}
-        {/*     className={classes.media} */}
-        {/*     image="https://via.placeholder.com/600x600" */}
-        {/*     title="Contemplative Reptile" */}
-        {/*   /> */}
-        {/* </Link> */}
+        {main_pic && (
+          <Link to={`/listing/${listing.id}`}>
+            <CardMedia className={classes.media} image={main_pic_src} />
+          </Link>
+        )}
         <CardContent>
-          <Typography component="p">{post.text}</Typography>
+          <Typography>{listing.attributes.text}</Typography>
         </CardContent>
         <CardActions className={classes.actions} disableActionSpacing>
           <Tooltip id="tooltip-top" title="Coming soon" placement="top">

@@ -147,9 +147,9 @@ class Home extends React.Component {
             alignContent="center"
             justify="center"
           >
-            {listings.map(post => (
-              <Grid item key={post.id} className={classes.listing}>
-                <Listing post={post.attributes} />
+            {listings.map(listing => (
+              <Grid item key={listing.id} className={classes.listing}>
+                <Listing listing={listing} />
               </Grid>
             ))}
           </Grid>

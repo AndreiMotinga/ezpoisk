@@ -16,4 +16,12 @@ class ListingSerializer
   attribute :pictures do |object|
     PictureSerializer.new(object.pictures).serializable_hash
   end
+
+  attribute :user do |object|
+    user = object.user
+    {
+      name:  user.name || user.email,
+      avatar: user.avatar_source
+    }
+  end
 end
