@@ -7,7 +7,7 @@ import Button from "material-ui/Button";
 import { withStyles } from "material-ui/styles";
 import Api from "api";
 
-class ProfileEdit extends React.Component {
+class MyProfile extends React.Component {
   state = {
     user: this.props.currentUser
   };
@@ -73,6 +73,6 @@ const styles = theme => ({
   }
 });
 
-const styledProfileEdit = withStyles(styles)(ProfileEdit);
+const styled = withStyles(styles)(MyProfile);
 
-export default connect(mapStateToProps, mapDispatchToProps)(styledProfileEdit);
+export default connect(mapStateToProps, mapDispatchToProps)(styled);

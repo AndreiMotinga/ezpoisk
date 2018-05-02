@@ -17,7 +17,7 @@ import ListingsShow from "components/pages/ListingsShow";
 import ListingsEdit from "components/pages/ListingsEdit";
 import Faq from "components/pages/Faq";
 import Profile from "components/pages/Profile";
-import ProfileEdit from "components/pages/ProfileEdit";
+import MyProfile from "components/pages/MyProfile";
 import ProfileListings from "components/pages/ProfileListings";
 import Auth from "components/pages/Auth";
 
@@ -47,8 +47,8 @@ class App extends React.Component {
                 <Route path="/listings/:id" component={ListingsShow} />
                 <Route path="/faq" component={Faq} />
                 <Route path="/auth" component={Auth} />
-                <Route path="/profile/listings" component={ProfileListings} />
-                <Route path="/profile/edit" component={ProfileEdit} />
+                <Route path="/my-listings" component={ProfileListings} />
+                <Route path="/my-profile" component={MyProfile} />
                 <Route path="/profile/:id" component={Profile} />
               </Switch>
             )}
