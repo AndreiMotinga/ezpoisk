@@ -56,7 +56,7 @@ Rails.application.configure do
     storage: :s3,
     s3_protocol: :https,
     s3_region: "us-east-1",
-    default_url: "https://s3.amazonaws.com/ezpoisk/missing.png",
+    # default_url: "https://s3.amazonaws.com/ezpoisk/missing.png",
     # url: ":s3_alias_url",
     # path: "/:class/:attachment/:id_partition/:style/:filename",
     # s3_host_alias: ENV.fetch("ASSET_HOST"),

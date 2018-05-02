@@ -128,19 +128,20 @@ class RecipeReviewCard extends React.Component {
           <MenuItem path={`/listings/${listing.id}`} onClick={this.handlePath}>
             Перейти
           </MenuItem>
-          {listing.attributes.user.id === currentUser.id && (
-            <div>
-              <MenuItem
-                path={`/listings/${listing.id}/edit`}
-                onClick={this.handlePath}
-              >
-                Редактировать
-              </MenuItem>
-              <MenuItem id={listing.id} onClick={this.handleDestroy}>
-                Удалить
-              </MenuItem>
-            </div>
-          )}
+          {currentUser &&
+            listing.attributes.user.id === currentUser.id && (
+              <div>
+                <MenuItem
+                  path={`/listings/${listing.id}/edit`}
+                  onClick={this.handlePath}
+                >
+                  Редактировать
+                </MenuItem>
+                <MenuItem id={listing.id} onClick={this.handleDestroy}>
+                  Удалить
+                </MenuItem>
+              </div>
+            )}
         </Menu>
       </div>
     );

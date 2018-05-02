@@ -9,7 +9,7 @@ import Gallery from "components/shared/Gallery";
 
 class ListingsShow extends React.Component {
   state = {
-    listing: {}
+    listing: null
   };
 
   componentDidMount() {
@@ -28,21 +28,11 @@ class ListingsShow extends React.Component {
   render() {
     const { listing } = this.state;
     const { classes } = this.props;
-
-    const images = [
-      {
-        original: "http://lorempixel.com/1000/600/nature/1/",
-        thumbnail: "http://lorempixel.com/250/150/nature/1/"
-      },
-      {
-        original: "http://lorempixel.com/1000/600/nature/2/",
-        thumbnail: "http://lorempixel.com/250/150/nature/2/"
-      },
-      {
-        original: "http://lorempixel.com/1000/600/nature/3/",
-        thumbnail: "http://lorempixel.com/250/150/nature/3/"
-      }
-    ];
+    if (!listing) return null;
+    const pictures = listing.pictures.data;
+    const images = listing.pictures.data
+      .map(d => d.attributes.variants)
+      .map(v => ({ original: v.large, thumb: v.thumb }));
 
     return (
       <div>
