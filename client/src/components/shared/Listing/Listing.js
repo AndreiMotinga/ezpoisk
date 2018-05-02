@@ -2,20 +2,16 @@ import React from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "material-ui/styles";
 import Tooltip from "material-ui/Tooltip";
-import classnames from "classnames";
 import Card, {
   CardHeader,
   CardMedia,
   CardContent,
   CardActions
 } from "material-ui/Card";
-import Collapse from "material-ui/transitions/Collapse";
 import Avatar from "material-ui/Avatar";
 import IconButton from "material-ui/IconButton";
 import Typography from "material-ui/Typography";
-import red from "material-ui/colors/red";
 import ShareIcon from "material-ui-icons/Share";
-import ExpandMoreIcon from "material-ui-icons/ExpandMore";
 import MoreVertIcon from "material-ui-icons/MoreVert";
 import { Link } from "react-router-dom";
 import Moment from "react-moment";
@@ -34,16 +30,6 @@ const styles = theme => ({
   actions: {
     display: "flex"
   },
-  expand: {
-    transform: "rotate(0deg)",
-    transition: theme.transitions.create("transform", {
-      duration: theme.transitions.duration.shortest
-    }),
-    marginLeft: "auto"
-  },
-  expandOpen: {
-    transform: "rotate(180deg)"
-  },
   subheader: {
     textDecoration: "none",
     "&:hover": {
@@ -54,13 +40,8 @@ const styles = theme => ({
 
 class RecipeReviewCard extends React.Component {
   state = {
-    expanded: false,
     anchorEl: null,
     listing: this.props.listing
-  };
-
-  handleExpandClick = () => {
-    this.setState({ expanded: !this.state.expanded });
   };
 
   handleClick = event => {
@@ -162,7 +143,6 @@ class RecipeReviewCard extends React.Component {
 
     const title = () => {
       const user = listing.attributes.user;
-      const name = user.name;
 
       let url;
       switch (user.provider) {
@@ -172,8 +152,10 @@ class RecipeReviewCard extends React.Component {
         case "email":
           url = `/profile/${user.id}`;
           break;
+        default:
+          url = `/profile/${user.id}`;
       }
-      if (user.provider == "vkontakte") {
+      if (user.provider === "vkontakte") {
         return (
           <div>
             {user.name} via{" "}

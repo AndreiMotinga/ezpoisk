@@ -5,11 +5,10 @@ import Listing from "components/shared/Listing";
 import Grid from "material-ui/Grid";
 // import Typography from "material-ui/Typography";
 import { withStyles } from "material-ui/styles";
-import { openDialog } from "actions";
 import Api from "api";
 import kinds from "config/kinds";
-import Input from "material-ui/Input";
-import Select from "components/shared/Select";
+// import Input from "material-ui/Input";
+// import Select from "components/shared/Select";
 import Button from "material-ui/Button";
 
 class Home extends React.Component {
@@ -83,7 +82,6 @@ class Home extends React.Component {
   };
 
   loadMore = () => {
-    console.log(this.state.params);
     const params = this.state.params;
     params.page += 1;
     this.setState({ params });
@@ -94,7 +92,7 @@ class Home extends React.Component {
   };
 
   render() {
-    const { classes, isSignedIn, handleOpen } = this.props;
+    const { classes } = this.props;
     const { listings } = this.state;
     return (
       <Grid container>
@@ -193,15 +191,9 @@ const styles = theme => ({
   }
 });
 
-const mapStateToProps = state => ({
-  isSignedIn: Boolean(state.currentUser)
-});
+const mapStateToProps = state => ({});
 
-const mapDispatchToProps = dispatch => ({
-  handleOpen: () => {
-    dispatch(openDialog("AuthDialog"));
-  }
-});
+const mapDispatchToProps = dispatch => ({});
 
 const styledHome = withStyles(styles)(Home);
 

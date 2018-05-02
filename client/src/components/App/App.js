@@ -3,7 +3,7 @@ import CssBaseline from "material-ui/CssBaseline";
 import { Router, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 import { withStyles } from "material-ui/styles";
-import { initUser, getListings } from "actions";
+import { initUser } from "actions";
 import PrivateRoute from "config/PrivateRoute";
 import history from "config/history";
 
@@ -24,7 +24,6 @@ import Auth from "components/pages/Auth";
 class App extends React.Component {
   componentDidMount() {
     this.props.initUser();
-    // this.props.getListings();
   }
 
   render() {
@@ -74,7 +73,6 @@ const mapStateToProps = state => ({
  */
 const mapDispatchToProps = dispatch => ({
   initUser: () => dispatch(initUser())
-  // getListings: () => dispatch(getListings())
 });
 
 const styles = {

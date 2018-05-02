@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import { MenuItem } from "material-ui/Menu";
 import { withStyles } from "material-ui/styles";
 import styles from "./styles";

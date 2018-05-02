@@ -34,7 +34,6 @@ class IntegrationReactSelect extends React.Component {
 
   setListing = res => {
     const { currentUser } = this.props;
-    console.log(res);
     const listing = res.data.data.attributes;
     // TODO move this check to server
     if (currentUser.admin || listing.user_id === currentUser.id) {
@@ -115,8 +114,9 @@ class IntegrationReactSelect extends React.Component {
       <Paper className={classes.paper}>
         <Dropzone onDrop={this.handleDrop} />
         <div>
-          {this.state.listing.pictures.data.map(picture => (
+          {listing.pictures.data.map(picture => (
             <img
+              alt={listing.text}
               key={picture.id}
               id={picture.id}
               src={picture.attributes.variants.medium}
@@ -129,7 +129,7 @@ class IntegrationReactSelect extends React.Component {
           <Input
             fullWidth
             multiline
-            value={this.state.listing.text}
+            value={listing.text}
             name="text"
             onChange={this.handleTargetChange}
             placeholder="Текст объявления"
@@ -137,7 +137,7 @@ class IntegrationReactSelect extends React.Component {
 
           <Input
             fullWidth
-            value={this.state.listing.email}
+            value={listing.email}
             name="email"
             type="email"
             onChange={this.handleTargetChange}
@@ -148,7 +148,7 @@ class IntegrationReactSelect extends React.Component {
             fullWidth
             type="tel"
             name="phone"
-            value={this.state.listing.phone || ""}
+            value={listing.phone || ""}
             onChange={this.handleTargetChange}
             placeholder="Phone"
           />
@@ -157,7 +157,7 @@ class IntegrationReactSelect extends React.Component {
             <Input
               fullWidth
               inputComponent={Select}
-              value={this.state.listing.kind}
+              value={listing.kind}
               onChange={this.handleChange("kind")}
               placeholder="Раздел"
               id="kind"
@@ -172,7 +172,7 @@ class IntegrationReactSelect extends React.Component {
             <Input
               fullWidth
               inputComponent={Select}
-              value={this.state.listing.state}
+              value={listing.state}
               onChange={this.handleChange("state")}
               placeholder="Штат"
               id="state"
@@ -188,7 +188,7 @@ class IntegrationReactSelect extends React.Component {
             <Input
               fullWidth
               inputComponent={Select}
-              value={this.state.listing.city}
+              value={listing.city}
               onChange={this.handleChange("city")}
               placeholder="Город"
               id="city"

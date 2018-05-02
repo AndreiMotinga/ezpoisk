@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 // import Grid from "material-ui/Grid";
-import Paper from "material-ui/Paper";
+// import Paper from "material-ui/Paper";
 import { withStyles } from "material-ui/styles";
 import Api from "api";
 import Listing from "components/shared/Listing";
@@ -23,8 +23,7 @@ class ProfileListings extends React.Component {
     const listings = this.state.listings;
     if (!listings) return null;
 
-    const { classes, currentUser } = this.props;
-    const id = this.props.match.params.id;
+    const { classes } = this.props;
 
     return (
       <div className={classes.root}>
@@ -34,9 +33,7 @@ class ProfileListings extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
-  currentUser: state.currentUser
-});
+const mapStateToProps = state => ({});
 
 const mapDispatchToProps = dispatch => ({});
 

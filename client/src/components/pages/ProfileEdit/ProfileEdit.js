@@ -24,8 +24,7 @@ class ProfileEdit extends React.Component {
   };
 
   render() {
-    const { classes, currentUser } = this.props;
-    const id = this.props.match.params.id;
+    const { classes } = this.props;
 
     return (
       <div className={classes.root}>

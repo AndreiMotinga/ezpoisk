@@ -9,8 +9,7 @@ import {
   signinFailure,
   signoutRequest,
   signoutFailure,
-  signoutSuccess,
-  listingsSuccess
+  signoutSuccess
 } from "./actions";
 import history from "config/history";
 

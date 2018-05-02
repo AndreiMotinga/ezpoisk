@@ -6,7 +6,7 @@ import { withStyles } from "material-ui/styles";
 
 class Profile extends React.Component {
   render() {
-    const { classes, currentUser } = this.props;
+    const { classes } = this.props;
     const id = this.props.match.params.id;
 
     return (
@@ -24,9 +24,7 @@ class Profile extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
-  currentUser: state.currentUser
-});
+const mapStateToProps = state => ({});
 
 const mapDispatchToProps = dispatch => ({});
 
