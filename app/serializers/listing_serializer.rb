@@ -13,6 +13,10 @@ class ListingSerializer
              :created_at,
              :updated_at
 
+  attribute :main_image_url do |object|
+    object.pictures.first&.main_image_url
+  end
+
   attribute :pictures do |object|
     PictureSerializer.new(object.pictures).serializable_hash
   end

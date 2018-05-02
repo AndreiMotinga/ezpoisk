@@ -93,8 +93,7 @@ class RecipeReviewCard extends React.Component {
 
     const { anchorEl } = this.state;
 
-    const main_pic = listing.attributes.pictures.data[0];
-    const main_pic_src = main_pic && main_pic.attributes.variants.main;
+    const main_pic = listing.attributes.main_image_url;
     const moment = (
       <Link to={`/listings/${listing.id}`} className={classes.subheader}>
         <Typography>
@@ -156,7 +155,7 @@ class RecipeReviewCard extends React.Component {
         />
         {main_pic && (
           <Link to={`/listings/${listing.id}`}>
-            <CardMedia className={classes.media} image={main_pic_src} />
+            <CardMedia className={classes.media} image={main_pic} />
           </Link>
         )}
         <CardContent>

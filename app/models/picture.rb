@@ -21,10 +21,13 @@ class Picture < ActiveRecord::Base
   end
 
   def serialized_variants
-    result = {}
-    result[:main] = source.present? ? source : image.url(:large)
-    %I[thumb medium large original].each { |t| result[t] = image.url(t) }
-    result
+    %I[thumb medium large original].each_with_object({}) do |type, obj|
+      obj[type] = image.url(type)
+    end
+  end
+
+  def main_image_url
+    source.present? ? source : image.url(:large)
   end
 
   private
