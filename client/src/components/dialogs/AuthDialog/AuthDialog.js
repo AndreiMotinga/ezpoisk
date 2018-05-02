@@ -1,13 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
 import history from "config/history";
-import { openDialog, closeDialog } from "actions";
+import { closeDialog } from "actions";
 
 import Dialog, { DialogActions } from "material-ui/Dialog";
 import Button from "material-ui/Button";
 import AuthTabs from "./AuthTabs";
 
-const AuthDialog = ({ isOpen, handleOpen, handleClose }) => {
+const AuthDialog = ({ isOpen, handleClose }) => {
   return (
     <div>
       <Dialog
@@ -31,9 +31,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  handleOpen: () => {
-    dispatch(openDialog("AuthDialog"));
-  },
   handleClose: () => {
     // redirect user to home page if dialog dismissed while on /auth page
     if (window.location.pathname === "/auth") {

@@ -21,6 +21,7 @@ import { Link } from "react-router-dom";
 import Moment from "react-moment";
 import Menu, { MenuItem } from "material-ui/Menu";
 import { connect } from "react-redux";
+import { openDialog } from "actions";
 import history from "config/history";
 import Api from "api";
 
@@ -78,6 +79,10 @@ class RecipeReviewCard extends React.Component {
 
   handleClose = () => {
     this.setState({ anchorEl: null });
+  };
+
+  openImageGallery = () => {
+    this.props.openDialog();
   };
 
   render() {
@@ -154,9 +159,11 @@ class RecipeReviewCard extends React.Component {
           action={action}
         />
         {main_pic && (
-          <Link to={`/listings/${listing.id}`}>
-            <CardMedia className={classes.media} image={main_pic} />
-          </Link>
+          <CardMedia
+            className={classes.media}
+            image={main_pic}
+            onClick={this.openImageGallery}
+          />
         )}
         <CardContent>
           <Typography>{listing.attributes.text}</Typography>
@@ -181,6 +188,12 @@ const mapStateToProps = state => ({
   currentUser: state.currentUser
 });
 
+const mapDispatchToProps = dispatch => ({
+  openDialog: () => {
+    dispatch(openDialog("FullScreenDialog"));
+  }
+});
+
 const styled = withStyles(styles)(RecipeReviewCard);
 
-export default connect(mapStateToProps)(styled);
+export default connect(mapStateToProps, mapDispatchToProps)(styled);

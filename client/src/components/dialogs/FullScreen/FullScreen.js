@@ -11,6 +11,73 @@ import IconButton from "material-ui/IconButton";
 import Typography from "material-ui/Typography";
 import CloseIcon from "material-ui-icons/Close";
 import Slide from "material-ui/transitions/Slide";
+import { connect } from "react-redux";
+import { closeDialog } from "actions";
+
+function Transition(props) {
+  return <Slide direction="up" {...props} />;
+}
+
+const FullScreenDialog = ({ classes, isOpen, handleClose }) => {
+  return (
+    <div>
+      <Dialog
+        fullScreen
+        open={isOpen}
+        onClose={handleClose}
+        transition={Transition}
+      >
+        <AppBar className={classes.appBar}>
+          <Toolbar>
+            <IconButton
+              color="inherit"
+              onClick={handleClose}
+              aria-label="Close"
+            >
+              <CloseIcon />
+            </IconButton>
+            <Typography
+              variant="title"
+              color="inherit"
+              className={classes.flex}
+            >
+              Sound
+            </Typography>
+            <Button color="inherit" onClick={handleClose}>
+              save
+            </Button>
+          </Toolbar>
+        </AppBar>
+        <List>
+          <ListItem button>
+            <ListItemText primary="Phone ringtone" secondary="Titania" />
+          </ListItem>
+          <Divider />
+          <ListItem button>
+            <ListItemText
+              primary="Default notification ringtone"
+              secondary="Tethys"
+            />
+          </ListItem>
+        </List>
+      </Dialog>
+    </div>
+  );
+};
+
+FullScreenDialog.propTypes = {
+  classes: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  isOpen: state.activeDialog === "FullScreenDialog"
+});
+
+const mapDispatchToProps = dispatch => ({
+  handleClose: () => {
+    dispatch(closeDialog());
+  }
+});
 
 const styles = {
   appBar: {
@@ -21,75 +88,6 @@ const styles = {
   }
 };
 
-function Transition(props) {
-  return <Slide direction="up" {...props} />;
-}
+const styled = withStyles(styles)(FullScreenDialog);
 
-class FullScreenDialog extends React.Component {
-  state = {
-    open: false
-  };
-
-  handleClickOpen = () => {
-    this.setState({ open: true });
-  };
-
-  handleClose = () => {
-    this.setState({ open: false });
-  };
-
-  render() {
-    const { classes } = this.props;
-    return (
-      <div>
-        <Button onClick={this.handleClickOpen}>Open full-screen dialog</Button>
-        <Dialog
-          fullScreen
-          open={this.state.open}
-          onClose={this.handleClose}
-          transition={Transition}
-        >
-          <AppBar className={classes.appBar}>
-            <Toolbar>
-              <IconButton
-                color="inherit"
-                onClick={this.handleClose}
-                aria-label="Close"
-              >
-                <CloseIcon />
-              </IconButton>
-              <Typography
-                variant="title"
-                color="inherit"
-                className={classes.flex}
-              >
-                Sound
-              </Typography>
-              <Button color="inherit" onClick={this.handleClose}>
-                save
-              </Button>
-            </Toolbar>
-          </AppBar>
-          <List>
-            <ListItem button>
-              <ListItemText primary="Phone ringtone" secondary="Titania" />
-            </ListItem>
-            <Divider />
-            <ListItem button>
-              <ListItemText
-                primary="Default notification ringtone"
-                secondary="Tethys"
-              />
-            </ListItem>
-          </List>
-        </Dialog>
-      </div>
-    );
-  }
-}
-
-FullScreenDialog.propTypes = {
-  classes: PropTypes.object.isRequired
-};
-
-export default withStyles(styles)(FullScreenDialog);
+export default connect(mapStateToProps, mapDispatchToProps)(styled);
