@@ -20,6 +20,7 @@ class ListingSerializer
   attribute :user do |object|
     user = object.user
     {
+      id: user.id,
       name:  user.name || user.email,
       avatar: user.avatar_source
     }

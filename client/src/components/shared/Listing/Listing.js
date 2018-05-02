@@ -19,6 +19,26 @@ import ExpandMoreIcon from "material-ui-icons/ExpandMore";
 import MoreVertIcon from "material-ui-icons/MoreVert";
 import { Link } from "react-router-dom";
 import Moment from "react-moment";
+import Menu, { MenuItem } from "material-ui/Menu";
+
+const options = [
+  "None",
+  "Atria",
+  "Callisto",
+  "Dione",
+  "Ganymede",
+  "Hangouts Call",
+  "Luna",
+  "Oberon",
+  "Phobos",
+  "Pyxis",
+  "Sedna",
+  "Titania",
+  "Triton",
+  "Umbriel"
+];
+
+const ITEM_HEIGHT = 48;
 
 const styles = theme => ({
   media: {
@@ -46,10 +66,21 @@ const styles = theme => ({
 });
 
 class RecipeReviewCard extends React.Component {
-  state = { expanded: false };
+  state = {
+    expanded: false,
+    anchorEl: null
+  };
 
   handleExpandClick = () => {
     this.setState({ expanded: !this.state.expanded });
+  };
+
+  handleClick = event => {
+    this.setState({ anchorEl: event.currentTarget });
+  };
+
+  handleClose = () => {
+    this.setState({ anchorEl: null });
   };
 
   render() {
@@ -63,11 +94,7 @@ class RecipeReviewCard extends React.Component {
       />
     );
 
-    const action = (
-      <IconButton>
-        <MoreVertIcon />
-      </IconButton>
-    );
+    const { anchorEl } = this.state;
 
     const main_pic = listing.attributes.pictures.data[0];
     const main_pic_src = main_pic && main_pic.attributes.variants.main;
@@ -77,6 +104,41 @@ class RecipeReviewCard extends React.Component {
           <Moment format="MMM D YYYY HH:MM">{listing.updated_at}</Moment>
         </Typography>
       </Link>
+    );
+
+    const action = (
+      <div>
+        <IconButton
+          aria-label="More"
+          aria-owns={anchorEl ? "long-menu" : null}
+          aria-haspopup="true"
+          onClick={this.handleClick}
+        >
+          <MoreVertIcon />
+        </IconButton>
+        <Menu
+          id="long-menu"
+          anchorEl={anchorEl}
+          open={Boolean(anchorEl)}
+          onClose={this.handleClose}
+          PaperProps={{
+            style: {
+              maxHeight: ITEM_HEIGHT * 4.5,
+              width: 200
+            }
+          }}
+        >
+          {options.map(option => (
+            <MenuItem
+              key={option}
+              selected={option === "Pyxis"}
+              onClick={this.handleClose}
+            >
+              {option}
+            </MenuItem>
+          ))}
+        </Menu>
+      </div>
     );
 
     return (
