@@ -20,23 +20,8 @@ import MoreVertIcon from "material-ui-icons/MoreVert";
 import { Link } from "react-router-dom";
 import Moment from "react-moment";
 import Menu, { MenuItem } from "material-ui/Menu";
-
-const options = [
-  "None",
-  "Atria",
-  "Callisto",
-  "Dione",
-  "Ganymede",
-  "Hangouts Call",
-  "Luna",
-  "Oberon",
-  "Phobos",
-  "Pyxis",
-  "Sedna",
-  "Titania",
-  "Triton",
-  "Umbriel"
-];
+import { connect } from "react-redux";
+import history from "config/history";
 
 const ITEM_HEIGHT = 48;
 
@@ -79,12 +64,21 @@ class RecipeReviewCard extends React.Component {
     this.setState({ anchorEl: event.currentTarget });
   };
 
+  handlePath = event => {
+    history.push(event.target.attributes.path.value);
+  };
+
+  handleDestroy = event => {
+    // TODO implement  destroy logic
+    // Api.destroyListing(event.target.id).then()
+  };
+
   handleClose = () => {
     this.setState({ anchorEl: null });
   };
 
   render() {
-    const { classes, listing } = this.props;
+    const { classes, listing, currentUser } = this.props;
 
     const avatar = (
       <Avatar
@@ -128,15 +122,22 @@ class RecipeReviewCard extends React.Component {
             }
           }}
         >
-          {options.map(option => (
-            <MenuItem
-              key={option}
-              selected={option === "Pyxis"}
-              onClick={this.handleClose}
-            >
-              {option}
-            </MenuItem>
-          ))}
+          <MenuItem path={`/listings/${listing.id}`} onClick={this.handlePath}>
+            Перейти
+          </MenuItem>
+          {listing.attributes.user.id === currentUser.id && (
+            <div>
+              <MenuItem
+                path={`/listings/${listing.id}/edit`}
+                onClick={this.handlePath}
+              >
+                Редактировать
+              </MenuItem>
+              <MenuItem id={listing.id} onClick={this.handleDestroy}>
+                Удалить
+              </MenuItem>
+            </div>
+          )}
         </Menu>
       </div>
     );
@@ -217,4 +218,10 @@ RecipeReviewCard.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(RecipeReviewCard);
+const mapStateToProps = state => ({
+  currentUser: state.currentUser
+});
+
+const styled = withStyles(styles)(RecipeReviewCard);
+
+export default connect(mapStateToProps)(styled);
