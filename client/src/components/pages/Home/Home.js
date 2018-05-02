@@ -186,11 +186,6 @@ Home.propTypes = {
 };
 
 const styles = theme => ({
-  main: {
-    paddingTop: 15,
-    paddingBottom: 15
-  },
-
   listing: {
     alignSelf: "center",
     width: "100%",
