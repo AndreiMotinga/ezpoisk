@@ -10,6 +10,8 @@ class Picture < ActiveRecord::Base
                  attributes: :image,
                  less_than: 5.megabytes
 
+  after_create :save_image_from_source
+
   attr_reader :image_remote_url
   def image_remote_url=(url_value)
     if url_value.present?
@@ -23,5 +25,12 @@ class Picture < ActiveRecord::Base
     result[:main] = source.present? ? source : image.url(:large)
     %I[thumb medium large original].each { |t| result[t] = image.url(t) }
     result
+  end
+
+  private
+
+  def save_image_from_source
+    return if source.blank?
+    ImageDownloaderJob.perform_async(id)
   end
 end

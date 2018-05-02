@@ -24,6 +24,10 @@ gem "paperclip"
 
 gem "administrate"
 
+gem "sidekiq"
+gem "sidekiq-cron"
+gem "sinatra", require: nil, github: "sinatra/sinatra"
+
 group :development, :test do
   gem "awesome_print"
   gem "dotenv-rails"
