@@ -6,7 +6,7 @@ import { withStyles } from "material-ui/styles";
 import Api from "api";
 import Listing from "components/shared/Listing";
 
-class ProfileListings extends React.Component {
+class MyListings extends React.Component {
   state = {
     listings: null
   };
@@ -49,8 +49,6 @@ const styles = theme => ({
   }
 });
 
-const styledProfileListings = withStyles(styles)(ProfileListings);
+const styled = withStyles(styles)(MyListings);
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  styledProfileListings
-);
+export default connect(mapStateToProps, mapDispatchToProps)(styled);
