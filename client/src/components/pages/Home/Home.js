@@ -7,8 +7,8 @@ import Grid from "material-ui/Grid";
 import { withStyles } from "material-ui/styles";
 import Api from "api";
 import kinds from "config/kinds";
-// import Input from "material-ui/Input";
-// import Select from "components/shared/Select";
+import Input from "material-ui/Input";
+import Select from "components/shared/Select";
 import Button from "material-ui/Button";
 
 class Home extends React.Component {
@@ -20,10 +20,10 @@ class Home extends React.Component {
     timer: null,
 
     params: {
-      kind: null,
-      state: null,
-      city: null,
-      search: null,
+      kind: "",
+      state: "",
+      city: "",
+      search: "",
       page: 1
     }
   };
@@ -97,62 +97,59 @@ class Home extends React.Component {
     return (
       <Grid container>
         <Grid item xs={12}>
-          {/* <div> */}
-          {/*   <Input */}
-          {/*     fullWidth */}
-          {/*     inputComponent={Select} */}
-          {/*     value={this.state.params.kind} */}
-          {/*     onChange={this.handleChange("kind")} */}
-          {/*     placeholder="Раздел" */}
-          {/*     id="kind" */}
-          {/*     inputProps={{ */}
-          {/*       classes, */}
-          {/*       name: "kind", */}
-          {/*       instanceId: "kind", */}
-          {/*       simpleValue: true, */}
-          {/*       options: this.state.kinds */}
-          {/*     }} */}
-          {/*   /> */}
-          {/*   <Input */}
-          {/*     fullWidth */}
-          {/*     inputComponent={Select} */}
-          {/*     value={this.state.params.state} */}
-          {/*     onChange={this.handleChange("state")} */}
-          {/*     placeholder="Штат" */}
-          {/*     id="state" */}
-          {/*     inputProps={{ */}
-          {/*       classes, */}
-          {/*       name: "state", */}
-          {/*       instanceId: "state", */}
-          {/*       simpleValue: true, */}
-          {/*       options: this.state.states */}
-          {/*     }} */}
-          {/*   /> */}
-          {/*  */}
-          {/*   <Input */}
-          {/*     fullWidth */}
-          {/*     inputComponent={Select} */}
-          {/*     value={this.state.params.city} */}
-          {/*     onChange={this.handleChange("city")} */}
-          {/*     placeholder="Город" */}
-          {/*     id="city" */}
-          {/*     inputProps={{ */}
-          {/*       classes, */}
-          {/*       name: "city", */}
-          {/*       instanceId: "city", */}
-          {/*       simpleValue: true, */}
-          {/*       options: this.state.cities */}
-          {/*     }} */}
-          {/*   /> */}
-          {/*  */}
-          {/*   <Input */}
-          {/*     fullWidth */}
-          {/*     value={this.state.params.search} */}
-          {/*     name="search" */}
-          {/*     onChange={this.handleTargetChange} */}
-          {/*     placeholder="Ключевые слова" */}
-          {/*   /> */}
-          {/* </div> */}
+          <div>
+            <Input
+              fullWidth
+              inputComponent={Select}
+              value={this.state.params.kind}
+              onChange={this.handleChange("kind")}
+              placeholder="Раздел"
+              id="kind"
+              inputProps={{
+                name: "kind",
+                instanceId: "kind",
+                simpleValue: true,
+                options: this.state.kinds
+              }}
+            />
+            <Input
+              fullWidth
+              inputComponent={Select}
+              value={this.state.params.state}
+              onChange={this.handleChange("state")}
+              placeholder="Штат"
+              id="state"
+              inputProps={{
+                name: "state",
+                instanceId: "state",
+                simpleValue: true,
+                options: this.state.states
+              }}
+            />
+
+            <Input
+              fullWidth
+              inputComponent={Select}
+              value={this.state.params.city}
+              onChange={this.handleChange("city")}
+              placeholder="Город"
+              id="city"
+              inputProps={{
+                name: "city",
+                instanceId: "city",
+                simpleValue: true,
+                options: this.state.cities
+              }}
+            />
+
+            <Input
+              fullWidth
+              value={this.state.params.search}
+              name="search"
+              onChange={this.handleTargetChange}
+              placeholder="Ключевые слова"
+            />
+          </div>
         </Grid>
 
         <Grid item xs={12}>
