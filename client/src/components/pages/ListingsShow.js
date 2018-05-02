@@ -5,8 +5,7 @@ import Listing from "components/shared/Listing";
 import Grid from "material-ui/Grid";
 import Typography from "material-ui/Typography";
 import { withStyles } from "material-ui/styles";
-import ImageGallery from "react-image-gallery";
-import "react-image-gallery/styles/css/image-gallery.css";
+import Gallery from "components/shared/Gallery";
 
 class ListingsShow extends React.Component {
   state = {
@@ -47,7 +46,7 @@ class ListingsShow extends React.Component {
 
     return (
       <div>
-        <ImageGallery items={images} />
+        <Gallery images={images} />
         <Typography variant="display3" align="center" className={classes.title}>
           {listing.title}
         </Typography>
