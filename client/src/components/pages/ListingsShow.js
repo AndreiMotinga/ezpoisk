@@ -32,7 +32,7 @@ class ListingsShow extends React.Component {
     const pictures = listing.pictures.data;
     const images = listing.pictures.data
       .map(d => d.attributes.variants)
-      .map(v => ({ original: v.large, thumb: v.thumb }));
+      .map(v => ({ original: v.large, thumbnail: v.thumb }));
 
     return (
       <div>
