@@ -26,6 +26,7 @@ const Nav = ({ classes, currentUser, openAuthDialog }) => {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
+          <Drawer />
           <Button onClick={sendToEdit}>Создать</Button>
 
           <Link to="/">
@@ -33,7 +34,6 @@ const Nav = ({ classes, currentUser, openAuthDialog }) => {
           </Link>
           <div className={classes.spacer} />
           <AuthDropdown />
-          <Drawer />
         </Toolbar>
       </AppBar>
     </div>
@@ -49,6 +49,10 @@ Nav.propTypes = {
 const styles = {
   spacer: {
     flex: 1
+  },
+  menuButton: {
+    marginLeft: -12,
+    marginRight: 20
   }
 };
 
