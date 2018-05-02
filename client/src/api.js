@@ -38,6 +38,10 @@ class Api {
    */
   cycleHeaders(headers) {
     // update headers on Api itslef
+    delete(headers["date"])
+    delete(headers["connection"])
+    delete(headers["transfer-encoding"])
+
     this.headers = headers;
 
     // update headers in localStorage
