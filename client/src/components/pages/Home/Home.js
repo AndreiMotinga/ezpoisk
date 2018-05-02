@@ -10,6 +10,7 @@ import Api from "api";
 import kinds from "config/kinds";
 import Input from "material-ui/Input";
 import Select from "components/shared/Select";
+import Button from "material-ui/Button";
 
 class Home extends React.Component {
   state = {
@@ -23,7 +24,8 @@ class Home extends React.Component {
       kind: null,
       state: null,
       city: null,
-      search: null
+      search: null,
+      page: 1
     }
   };
 
@@ -78,6 +80,17 @@ class Home extends React.Component {
   removeListing = id => {
     const listings = this.state.listings.filter(listing => listing.id !== id);
     this.setState({ listings });
+  };
+
+  loadMore = () => {
+    console.log(this.state.params);
+    const params = this.state.params;
+    params.page += 1;
+    this.setState({ params });
+    Api.getListings(this.state.params).then(listings => {
+      const newListings = this.state.listings.concat(listings);
+      this.setState({ listings: newListings });
+    });
   };
 
   render() {
@@ -159,6 +172,10 @@ class Home extends React.Component {
             ))}
           </Grid>
         </Grid>
+
+        <Button variant="raised" onClick={this.loadMore}>
+          load more
+        </Button>
       </Grid>
     );
   }
