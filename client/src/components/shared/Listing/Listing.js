@@ -96,7 +96,7 @@ class RecipeReviewCard extends React.Component {
     const main_pic = listing.attributes.pictures.data[0];
     const main_pic_src = main_pic && main_pic.attributes.variants.main;
     const moment = (
-      <Link to={`/listing/${listing.id}`} className={classes.subheader}>
+      <Link to={`/listings/${listing.id}`} className={classes.subheader}>
         <Typography>
           <Moment format="MMM D YYYY HH:MM">{listing.updated_at}</Moment>
         </Typography>
@@ -154,7 +154,7 @@ class RecipeReviewCard extends React.Component {
           action={action}
         />
         {main_pic && (
-          <Link to={`/listing/${listing.id}`}>
+          <Link to={`/listings/${listing.id}`}>
             <CardMedia className={classes.media} image={main_pic_src} />
           </Link>
         )}
