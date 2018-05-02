@@ -10,6 +10,7 @@ import history from "config/history";
 import Nav from "./Nav";
 
 import AuthDialog from "components/dialogs/AuthDialog";
+import FullScreenDialog from "components/dialogs/FullScreen";
 
 import Home from "components/pages/Home";
 import ListingsShow from "components/pages/ListingsShow";
@@ -55,6 +56,7 @@ class App extends React.Component {
           </main>
 
           <AuthDialog />
+          <FullScreenDialog />
         </div>
       </Router>
     );
