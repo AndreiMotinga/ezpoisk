@@ -8,7 +8,6 @@ import PrivateRoute from "config/PrivateRoute";
 import history from "config/history";
 
 import Nav from "./Nav";
-
 import AuthDialog from "components/dialogs/AuthDialog";
 import FullScreenDialog from "components/dialogs/FullScreen";
 
@@ -67,12 +66,10 @@ const mapStateToProps = state => ({
   isLoading: state.isLoading
 });
 
-/*
- * NOTE: we return function instead of executing it
- * this will allow us to call `.then` on it in componentDidMount
- */
 const mapDispatchToProps = dispatch => ({
-  initUser: () => dispatch(initUser())
+  initUser: () => {
+    dispatch(initUser());
+  }
 });
 
 const styles = {

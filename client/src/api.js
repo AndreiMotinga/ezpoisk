@@ -62,7 +62,6 @@ class Api {
       // don't validate if saved headers don't have uid in them,
       // a.k.a isn't signedin
       if (!headers.uid) {
-        // TODO set to null
         return dispatch(init(null));
       }
 
