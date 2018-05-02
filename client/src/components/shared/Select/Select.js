@@ -32,8 +32,7 @@ class Option extends React.Component {
 }
 
 const SelectWrapped = props => {
-  const { classes, ...other } = props;
-  return <Select optionComponent={Option} {...other} />;
+  return <Select optionComponent={Option} {...props} />;
 };
 
 const styled = withStyles(styles)(SelectWrapped);

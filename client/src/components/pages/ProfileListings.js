@@ -27,7 +27,9 @@ class ProfileListings extends React.Component {
 
     return (
       <div className={classes.root}>
-        {listings.map(listing => <Listing key={listing.id} />)}
+        {listings.map(listing => (
+          <Listing key={listing.id} listing={listing} />
+        ))}
       </div>
     );
   }

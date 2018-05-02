@@ -25,7 +25,7 @@ class IntegrationReactSelect extends React.Component {
     const id = this.props.match.params.id;
     Api.getListing(id)
       .then(this.setListing)
-      .then(this.getCities);
+      .then(this.getAllCities);
 
     Api.getStates().then(states => {
       this.setState({ states });
@@ -36,7 +36,7 @@ class IntegrationReactSelect extends React.Component {
     const { currentUser } = this.props;
     const listing = res.data.data.attributes;
     // TODO move this check to server
-    if (currentUser.admin || listing.user_id === currentUser.id) {
+    if (currentUser.admin || listing.user.id === currentUser.id) {
       this.setState({ listing, isLoading: false });
     } else {
       history.push("/");
@@ -162,7 +162,6 @@ class IntegrationReactSelect extends React.Component {
               placeholder="Раздел"
               id="kind"
               inputProps={{
-                classes,
                 name: "kind",
                 instanceId: "kind",
                 simpleValue: true,
@@ -177,7 +176,6 @@ class IntegrationReactSelect extends React.Component {
               placeholder="Штат"
               id="state"
               inputProps={{
-                classes,
                 name: "state",
                 instanceId: "state",
                 simpleValue: true,
@@ -193,7 +191,6 @@ class IntegrationReactSelect extends React.Component {
               placeholder="Город"
               id="city"
               inputProps={{
-                classes,
                 name: "city",
                 instanceId: "city",
                 simpleValue: true,

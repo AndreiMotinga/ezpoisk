@@ -28,10 +28,7 @@ class Api::ListingsController < ApplicationController
       set_listing
     else
       @listing = current_api_user.listings.new(
-        email: current_api_user.email,
-        kind: "housing",
-        state: "new-york",
-        city: "brooklyn"
+        email: current_api_user.email
       )
       @listing.save(validate: false)
     end

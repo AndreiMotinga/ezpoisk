@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_04_27_230835) do
+ActiveRecord::Schema.define(version: 2018_05_02_215018) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,13 +18,13 @@ ActiveRecord::Schema.define(version: 2018_04_27_230835) do
   create_table "listings", force: :cascade do |t|
     t.bigint "user_id"
     t.boolean "active"
-    t.text "text"
-    t.string "state"
-    t.string "city"
-    t.string "kind"
+    t.text "text", default: ""
+    t.string "state", default: "new-york"
+    t.string "city", default: "brooklyn"
+    t.string "kind", default: "housing"
     t.string "source"
-    t.string "phone"
-    t.string "email"
+    t.string "phone", default: ""
+    t.string "email", default: ""
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_listings_on_user_id"
