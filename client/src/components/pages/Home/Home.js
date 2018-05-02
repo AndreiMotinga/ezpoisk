@@ -1,8 +1,6 @@
 import React from "react";
-import PropTypes from "prop-types";
 import Listing from "components/shared/Listing";
 import Grid from "material-ui/Grid";
-// import Typography from "material-ui/Typography";
 import { withStyles } from "material-ui/styles";
 import Api from "api";
 import kinds from "config/kinds";
@@ -30,19 +28,27 @@ class Home extends React.Component {
   };
 
   componentDidMount() {
-    Api.getListings(this.state.params).then(listings =>
-      this.setState({ listings })
-    );
-    Api.getStates().then(this.loadStates);
-    Api.getCities().then(this.loadCities);
+    Api.getListings().then(this.setListings);
+    Api.getStates().then(this.setStates);
+    Api.getCities().then(this.setCities);
   }
 
-  loadStates = states => {
+  setListings = listings => {
+    this.setState({ listings });
+  };
+
+  setStates = states => {
     this.setState({ states });
   };
 
-  loadCities = cities => {
+  setCities = cities => {
     this.setState({ cities });
+  };
+
+  getCities = (state = this.state.params.state) => {
+    Api.getCities(state).then(cities => {
+      this.setState({ cities });
+    });
   };
 
   handleChange = name => value => {
@@ -71,12 +77,6 @@ class Home extends React.Component {
     this.setState({ timer });
   };
 
-  getCities = (state = this.state.params.state) => {
-    Api.getCities(state).then(cities => {
-      this.setState({ cities });
-    });
-  };
-
   removeListing = id => {
     const listings = this.state.listings.filter(listing => listing.id !== id);
     this.setState({ listings });
@@ -86,7 +86,7 @@ class Home extends React.Component {
     const params = this.state.params;
     params.page += 1;
     this.setState({ params });
-    Api.getListings(this.state.params).then(listings => {
+    Api.getListings(params).then(listings => {
       const newListings = this.state.listings.concat(listings);
       this.setState({ listings: newListings });
     });
@@ -175,10 +175,6 @@ class Home extends React.Component {
     );
   }
 }
-
-Home.propTypes = {
-  classes: PropTypes.object.isRequired
-};
 
 const styles = theme => ({
   listing: {
