@@ -22,6 +22,7 @@ import Moment from "react-moment";
 import Menu, { MenuItem } from "material-ui/Menu";
 import { connect } from "react-redux";
 import history from "config/history";
+import Api from "api";
 
 const ITEM_HEIGHT = 48;
 
@@ -69,8 +70,10 @@ class RecipeReviewCard extends React.Component {
   };
 
   handleDestroy = event => {
-    // TODO implement  destroy logic
-    // Api.destroyListing(event.target.id).then()
+    const id = event.target.id;
+    Api.removeListing(id).then(() => {
+      this.props.onRemove(id);
+    });
   };
 
   handleClose = () => {

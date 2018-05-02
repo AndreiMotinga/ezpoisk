@@ -189,6 +189,17 @@ class Api {
       });
   }
 
+  removeListing(id) {
+    const headers = this.headers;
+    return axios
+      .delete(`/api/listings/${id}`, { headers })
+      .then(res => res)
+      .catch(error => {
+        console.error(error);
+        return error;
+      });
+  }
+
   getStates() {
     return axios.get(`/api/states/`).then(res => res.data);
   }

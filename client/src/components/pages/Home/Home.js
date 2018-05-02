@@ -75,6 +75,11 @@ class Home extends React.Component {
     });
   };
 
+  removeListing = id => {
+    const listings = this.state.listings.filter(listing => listing.id !== id);
+    this.setState({ listings });
+  };
+
   render() {
     const { classes, isSignedIn, handleOpen } = this.props;
     const { listings } = this.state;
@@ -149,7 +154,7 @@ class Home extends React.Component {
           >
             {listings.map(listing => (
               <Grid item key={listing.id} className={classes.listing}>
-                <Listing listing={listing} />
+                <Listing listing={listing} onRemove={this.removeListing} />
               </Grid>
             ))}
           </Grid>
