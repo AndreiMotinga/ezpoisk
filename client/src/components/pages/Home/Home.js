@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { connect } from "react-redux";
 import Listing from "components/shared/Listing";
 import Grid from "material-ui/Grid";
 // import Typography from "material-ui/Typography";
@@ -13,6 +12,8 @@ import Button from "material-ui/Button";
 
 class Home extends React.Component {
   state = {
+    classes: this.props.classes,
+
     listings: [],
     states: [],
     cities: [],
@@ -92,8 +93,7 @@ class Home extends React.Component {
   };
 
   render() {
-    const { classes } = this.props;
-    const { listings } = this.state;
+    const { listings, classes } = this.state;
     return (
       <Grid container>
         <Grid item xs={12}>
@@ -188,10 +188,6 @@ const styles = theme => ({
   }
 });
 
-const mapStateToProps = state => ({});
-
-const mapDispatchToProps = dispatch => ({});
-
 const styled = withStyles(styles)(Home);
 
-export default connect(mapStateToProps, mapDispatchToProps)(styled);
+export default styled;
