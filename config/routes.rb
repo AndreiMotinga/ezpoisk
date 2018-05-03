@@ -20,7 +20,6 @@ Rails.application.routes.draw do
     resources :listings, only: %i(index show create edit update destroy)
     resources :states, only: :index
     resources :cities, only: :index
-    get "cities/all", to: "cities#all"
     resources :pictures, only: [:create, :destroy]
     resources :users, only: [:update]
     get "users/listings", to: "users#listings"
