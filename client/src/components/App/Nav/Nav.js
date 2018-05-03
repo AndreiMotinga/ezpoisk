@@ -23,20 +23,22 @@ const Nav = ({ classes, currentUser, openAuthDialog }) => {
   };
 
   return (
-    <div className={classes.root}>
-      <AppBar position="static">
-        <Toolbar>
-          <Drawer />
-          <Button onClick={sendToEdit}>Создать</Button>
+    <AppBar color="inherit" position="sticky">
+      <Toolbar className={classes.toolbar}>
+        <Drawer />
+        <Button variant="raised" color="primary" onClick={sendToEdit}>
+          Создать
+        </Button>
 
-          <Link to="/">
-            <Logo />
+        <div className={classes.logoContainer}>
+          <Link to="/" className={classes.logo}>
+            ezpoisk
           </Link>
-          <div className={classes.spacer} />
-          <AuthDropdown />
-        </Toolbar>
-      </AppBar>
-    </div>
+        </div>
+        <div className={classes.spacer} />
+        <AuthDropdown />
+      </Toolbar>
+    </AppBar>
   );
 };
 
@@ -50,9 +52,17 @@ const styles = {
   spacer: {
     flex: 1
   },
-  menuButton: {
-    marginLeft: -12,
-    marginRight: 20
+  toolbar: {
+    position: "relative"
+  },
+  logoContainer: {
+    position: "absolute",
+    left: "45%"
+  },
+  logo: {
+    fontFamily: "'Josefin Sans', sans-serif;",
+    textDecoration: "none",
+    fontSize: 28
   }
 };
 

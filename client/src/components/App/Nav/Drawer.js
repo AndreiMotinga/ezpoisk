@@ -75,6 +75,10 @@ const styles = {
   },
   fullList: {
     width: "auto"
+  },
+  menuButton: {
+    marginLeft: -12,
+    marginRight: 20
   }
 };
 
