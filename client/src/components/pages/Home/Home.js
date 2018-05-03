@@ -7,10 +7,12 @@ import kinds from "config/kinds";
 import Input from "material-ui/Input";
 import Select from "components/shared/Select";
 import Button from "material-ui/Button";
+import CenteredProgress from "components/shared/CenteredProgress";
 
 class Home extends React.Component {
   state = {
     classes: this.props.classes,
+    isLoading: true,
 
     listings: [],
     states: [],
@@ -29,19 +31,15 @@ class Home extends React.Component {
 
   componentDidMount() {
     this.fetchListings();
-    Api.getStates().then(this.setStates);
+    this.fetchStates();
     this.fetchCities();
   }
 
   fetchListings = (append = false) => {
     Api.getListings(this.state.params).then(listings => {
-      if (append) {
-        const newListings = this.state.listings.concat(listings);
-        this.setState({ listings: newListings });
-        return;
-      }
-
-      this.setState({ listings });
+      let newListings;
+      newListings = append ? this.state.listings.concat(listings) : listings;
+      this.setState({ listings: newListings, isLoading: false });
     });
   };
 
@@ -51,6 +49,10 @@ class Home extends React.Component {
 
   setCities = cities => {
     this.setState({ cities });
+  };
+
+  fetchStates = () => {
+    Api.getStates().then(this.setStates);
   };
 
   fetchCities = () => {
@@ -100,7 +102,20 @@ class Home extends React.Component {
   };
 
   render() {
-    const { listings, classes, params, kinds, cities, states } = this.state;
+    const {
+      isLoading,
+      listings,
+      classes,
+      params,
+      kinds,
+      cities,
+      states
+    } = this.state;
+
+    if (isLoading) {
+      return <CenteredProgress />;
+    }
+
     return (
       <Grid container>
         <Grid item xs={12}>
