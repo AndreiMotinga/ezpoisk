@@ -40,7 +40,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   openDialog: images => {
-    dispatch(openDialog("FullScreenDialog", images));
+    dispatch(openDialog("GalleryDialog", images));
   }
 });
 

@@ -27,7 +27,13 @@ const Listing = ({
   const pic = listing.attributes.main_image_url;
   const title = <Title listing={listing} />;
   const subheader = <Subheader listing={listing} />;
-  const action = <Action listing={listing} currentUser={currentUser} />;
+  const action = (
+    <Action
+      listing={listing}
+      currentUser={currentUser}
+      handleDestroy={handleDestroy}
+    />
+  );
   const avatar = (
     <Avatar
       alt={listing.attributes.user.name}
