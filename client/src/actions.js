@@ -1,5 +1,5 @@
 import Api from "./api";
-import { AUTH, OPEN_DIALOG, CLOSE_DIALOG, REQUEST_START } from "./constants";
+import { AUTH, OPEN_DIALOG, CLOSE_DIALOG } from "./constants";
 
 /**
  * Initial setup
@@ -13,16 +13,6 @@ export function init(currentUser) {
   return {
     type: AUTH.INIT,
     currentUser
-  };
-}
-
-/**
- * generic flow
- */
-
-export function requestStart() {
-  return {
-    type: REQUEST_START
   };
 }
 

@@ -16,5 +16,3 @@ export const AUTH = {
 
 export const CLOSE_DIALOG = "CLOSE_DIALOG";
 export const OPEN_DIALOG = "OPEN_DIALOG";
-
-export const REQUEST_START = "REQUEST_START";

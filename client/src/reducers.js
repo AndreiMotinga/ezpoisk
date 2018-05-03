@@ -1,4 +1,4 @@
-import { AUTH, OPEN_DIALOG, CLOSE_DIALOG, REQUEST_START } from "./constants";
+import { AUTH, OPEN_DIALOG, CLOSE_DIALOG } from "./constants";
 
 const initialState = {
   isLoading: true,
@@ -16,12 +16,6 @@ const root = (state = initialState, action) => {
         isLoading: false,
         currentUser: action.currentUser
       };
-
-    /*
-     * general actions
-     */
-    case REQUEST_START:
-      return { ...state, isLoading: true };
 
     /*
      * signup actions
