@@ -4,11 +4,13 @@ import { openDialog } from "actions";
 import Api from "api";
 import Listing from "./Listing";
 import { galleryImages } from "utils";
+import Gallery from "components/shared/Gallery";
 
 class ListingContainer extends React.Component {
   state = {
     currentUser: this.props.currentUser,
-    listing: this.props.listing
+    listing: this.props.listing,
+    lightboxIsOpen: false
   };
 
   handleDestroy = event => {
@@ -18,18 +20,29 @@ class ListingContainer extends React.Component {
     });
   };
 
-  openImageGallery = e => {
-    const images = galleryImages(this.state.listing);
-    this.props.openDialog(images);
+  toggleGallery = () => {
+    const open = !this.state.lightboxIsOpen;
+    console.log("new open", open);
+    this.setState({ lightboxIsOpen: open });
   };
 
   render() {
+    const images = galleryImages(this.state.listing);
+
     return (
-      <Listing
-        handleDestroy={this.handleDestroy}
-        openImageGallery={this.openImageGallery}
-        {...this.state}
-      />
+      <div>
+        <Listing
+          handleDestroy={this.handleDestroy}
+          toggleGallery={this.toggleGallery}
+          {...this.state}
+        />
+
+        <Gallery
+          images={images}
+          isOpen={this.state.lightboxIsOpen}
+          toggle={this.toggleGallery}
+        />
+      </div>
     );
   }
 }
@@ -38,10 +51,6 @@ const mapStateToProps = state => ({
   currentUser: state.currentUser
 });
 
-const mapDispatchToProps = dispatch => ({
-  openDialog: images => {
-    dispatch(openDialog("GalleryDialog", images));
-  }
-});
+const mapDispatchToProps = dispatch => ({});
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListingContainer);

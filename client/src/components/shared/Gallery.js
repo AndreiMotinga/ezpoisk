@@ -1,14 +1,36 @@
 import React from "react";
-import PropTypes from "prop-types";
-import ImageGallery from "react-image-gallery";
-import "react-image-gallery/styles/css/image-gallery.css";
+import Lightbox from "react-images";
 
-const Gallery = ({ images }) => {
-  return <ImageGallery items={images} />;
-};
+class Gallery extends React.Component {
+  state = {
+    currentImage: 0
+  };
 
-Gallery.propTypes = {
-  images: PropTypes.arrayOf(PropTypes.object).isRequired
-};
+  gotoNext = () => {
+    const i = this.state.currentImage + 1;
+    this.setState({ currentImage: i });
+  };
+
+  gotoPrev = () => {
+    const i = this.state.currentImage - 1;
+    this.setState({ currentImage: i });
+  };
+
+  render() {
+    const { images, isOpen, toggle } = this.props;
+    const { currentImage } = this.state;
+
+    return (
+      <Lightbox
+        images={images}
+        isOpen={isOpen}
+        currentImage={currentImage}
+        onClickNext={this.gotoNext}
+        onClickPrev={this.gotoPrev}
+        onClose={toggle}
+      />
+    );
+  }
+}
 
 export default Gallery;

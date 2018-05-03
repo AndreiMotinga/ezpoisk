@@ -8,8 +8,5 @@ export const galleryImages = listing => {
   const data = listing.attributes.pictures.data;
   const variants = data.map(d => d.attributes.variants);
 
-  return variants.map(v => ({
-    original: v.large,
-    thumbnail: v.thumb
-  }));
+  return variants.map(v => ({ src: v.original }));
 };

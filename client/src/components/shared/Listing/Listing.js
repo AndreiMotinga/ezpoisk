@@ -20,7 +20,7 @@ const Listing = ({
   classes,
   currentUser,
   listing,
-  openImageGallery,
+  toggleGallery,
   handleDestroy
 }) => {
   const pic = listing.attributes.main_image_url;
@@ -55,7 +55,7 @@ const Listing = ({
           className={classes.media}
           image={pic}
           listing={listing}
-          onClick={openImageGallery}
+          onClick={toggleGallery}
         />
       )}
 
