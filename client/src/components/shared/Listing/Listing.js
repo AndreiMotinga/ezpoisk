@@ -30,6 +30,18 @@ const styles = theme => ({
   actions: {
     display: "flex"
   },
+  via: {
+    textDecoration: "none",
+    color: theme.palette.text.secondary,
+    fontSize: 10
+  },
+  provider: {
+    textDecoration: "none",
+    color: theme.palette.text.secondary,
+    "&:hover": {
+      textDecoration: "underline"
+    }
+  },
   subheader: {
     textDecoration: "none",
     "&:hover": {
@@ -158,8 +170,9 @@ class RecipeReviewCard extends React.Component {
       if (user.provider === "vkontakte") {
         return (
           <div>
-            {user.name} via{" "}
-            <a href={url} target="_blank">
+            {user.name}
+            <span className={classes.via}> via </span>
+            <a href={url} target="_blank" className={classes.provider}>
               {user.provider}
             </a>
           </div>
