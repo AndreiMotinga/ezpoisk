@@ -20,8 +20,7 @@ class Action extends React.Component {
 
   render() {
     const { anchorEl } = this.state;
-
-    const { listing, handlePath, handleDestroy, currentUser } = this.props;
+    const { listing, redirect, handleDestroy, currentUser } = this.props;
 
     return (
       <div>
@@ -45,15 +44,15 @@ class Action extends React.Component {
             }
           }}
         >
-          <MenuItem path={`/listings/${listing.id}`} onClick={handlePath}>
+          <MenuItem data-path={`/listings/${listing.id}`} onClick={redirect}>
             Перейти
           </MenuItem>
           {currentUser &&
             listing.attributes.user.id === currentUser.id && (
               <div>
                 <MenuItem
-                  path={`/listings/${listing.id}/edit`}
-                  onClick={handlePath}
+                  data-path={`/listings/${listing.id}/edit`}
+                  onClick={redirect}
                 >
                   Редактировать
                 </MenuItem>

@@ -11,8 +11,8 @@ class ListingContainer extends React.Component {
     listing: this.props.listing
   };
 
-  handlePath = event => {
-    history.push(event.target.attributes.path.value);
+  redirect = event => {
+    history.push(event.currentTarget.getAttribute("data-path"));
   };
 
   handleDestroy = event => {
@@ -37,7 +37,7 @@ class ListingContainer extends React.Component {
   render() {
     return (
       <Listing
-        handlePath={this.handlePath}
+        redirect={this.redirect}
         handleDestroy={this.handleDestroy}
         openImageGallery={this.openImageGallery}
         {...this.state}
