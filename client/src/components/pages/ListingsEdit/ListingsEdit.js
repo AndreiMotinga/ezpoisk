@@ -35,12 +35,7 @@ class IntegrationReactSelect extends React.Component {
   setListing = res => {
     const { currentUser } = this.props;
     const listing = res.data.data.attributes;
-    // TODO move this check to server
-    if (currentUser.admin || listing.user.id === currentUser.id) {
-      this.setState({ listing, isLoading: false });
-    } else {
-      history.push("/");
-    }
+    this.setState({ listing, isLoading: false });
   };
 
   getCities = (state = this.state.listing.state) => {
