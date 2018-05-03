@@ -8,6 +8,7 @@ import MenuIcon from "material-ui-icons/Menu";
 import List, { ListItem, ListItemIcon, ListItemText } from "material-ui/List";
 import Divider from "material-ui/Divider";
 import InboxIcon from "material-ui-icons/Inbox";
+import { redirect } from "utils";
 
 class NavDrawer extends React.Component {
   state = { open: false };
@@ -15,10 +16,6 @@ class NavDrawer extends React.Component {
   toggleDrawer = () => {
     const open = !this.state.open;
     this.setState({ open });
-  };
-
-  redirectTo = e => {
-    history.push(e.currentTarget.getAttribute("data-path"));
   };
 
   render() {
@@ -55,7 +52,7 @@ class NavDrawer extends React.Component {
                     <ListItemText
                       primary="Мой профаил"
                       data-path="/my-profile"
-                      onClick={this.redirectTo}
+                      onClick={redirect}
                     />
                   </ListItem>
 
@@ -63,7 +60,7 @@ class NavDrawer extends React.Component {
                     <ListItemText
                       primary="Мои объявления"
                       data-path={`/profile/${currentUser.id}`}
-                      onClick={this.redirectTo}
+                      onClick={redirect}
                     />
                   </ListItem>
                   <Divider />
@@ -74,7 +71,7 @@ class NavDrawer extends React.Component {
                   <ListItemText
                     primary="FAQ"
                     data-path="/faq"
-                    onClick={this.redirectTo}
+                    onClick={redirect}
                   />
                 </ListItem>
               </List>

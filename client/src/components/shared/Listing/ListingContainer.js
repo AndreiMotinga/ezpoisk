@@ -11,10 +11,6 @@ class ListingContainer extends React.Component {
     listing: this.props.listing
   };
 
-  redirect = event => {
-    history.push(event.currentTarget.getAttribute("data-path"));
-  };
-
   handleDestroy = event => {
     const id = event.target.id;
     Api.removeListing(id).then(() => {

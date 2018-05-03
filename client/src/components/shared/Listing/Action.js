@@ -2,6 +2,7 @@ import React from "react";
 import IconButton from "material-ui/IconButton";
 import MoreVertIcon from "material-ui-icons/MoreVert";
 import Menu, { MenuItem } from "material-ui/Menu";
+import { redirect } from "utils";
 
 const ITEM_HEIGHT = 48;
 
@@ -20,7 +21,7 @@ class Action extends React.Component {
 
   render() {
     const { anchorEl } = this.state;
-    const { listing, redirect, handleDestroy, currentUser } = this.props;
+    const { listing, handleDestroy, currentUser } = this.props;
 
     return (
       <div>

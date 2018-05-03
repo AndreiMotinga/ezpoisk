@@ -21,7 +21,6 @@ const Listing = ({
   currentUser,
   listing,
   openDialog,
-  redirect,
   handleDestroy,
   openImageGallery
 }) => {
@@ -36,9 +35,7 @@ const Listing = ({
   );
 
   const pic = listing.attributes.main_image_url;
-  const action = (
-    <Action listing={listing} currentUser={currentUser} redirect={redirect} />
-  );
+  const action = <Action listing={listing} currentUser={currentUser} />;
 
   return (
     <Card>
