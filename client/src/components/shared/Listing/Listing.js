@@ -11,43 +11,10 @@ import Avatar from "material-ui/Avatar";
 import IconButton from "material-ui/IconButton";
 import Typography from "material-ui/Typography";
 import ShareIcon from "material-ui-icons/Share";
-import MoreVertIcon from "material-ui-icons/MoreVert";
-import { Link } from "react-router-dom";
-import Moment from "react-moment";
-import Menu, { MenuItem } from "material-ui/Menu";
 
-const title = (listing, classes) => {
-  const user = listing.attributes.user;
-
-  let url;
-  switch (user.provider) {
-    case "vkontakte":
-      url = `https://vk.com/id${user.uid}`;
-      break;
-    case "email":
-      url = `/profile/${user.id}`;
-      break;
-    default:
-      url = `/profile/${user.id}`;
-  }
-  if (user.provider === "vkontakte") {
-    return (
-      <div>
-        {user.name}
-        <span className={classes.via}> via </span>
-        <a href={url} target="_blank" className={classes.provider}>
-          {user.provider}
-        </a>
-      </div>
-    );
-  } else {
-    return (
-      <div>
-        <Link to={url}>{user.name}</Link>
-      </div>
-    );
-  }
-};
+import Title from "./Title";
+import Subheader from "./Subheader";
+import Action from "./Action";
 
 const Listing = ({
   classes,
@@ -61,6 +28,8 @@ const Listing = ({
   handleDestroy,
   openImageGallery
 }) => {
+  const title = <Title listing={listing} />;
+  const subheader = <Subheader listing={listing} />;
   const avatar = (
     <Avatar
       alt={listing.attributes.user.name}
@@ -69,70 +38,29 @@ const Listing = ({
     />
   );
 
-  const main_pic = listing.attributes.main_image_url;
-  const moment = (
-    <Link to={`/listings/${listing.id}`} className={classes.subheader}>
-      <Typography>
-        <Moment format="MMM D YYYY HH:MM">{listing.updated_at}</Moment>
-      </Typography>
-    </Link>
-  );
-
+  const pic = listing.attributes.main_image_url;
   const action = (
-    <div>
-      <IconButton
-        aria-label="More"
-        aria-owns={anchorEl ? "long-menu" : null}
-        aria-haspopup="true"
-        onClick={handleClick}
-      >
-        <MoreVertIcon />
-      </IconButton>
-      <Menu
-        id="long-menu"
-        anchorEl={anchorEl}
-        open={Boolean(anchorEl)}
-        onClose={handleClose}
-        PaperProps={{
-          style: {
-            maxHeight: ITEM_HEIGHT * 4.5,
-            width: 200
-          }
-        }}
-      >
-        <MenuItem path={`/listings/${listing.id}`} onClick={handlePath}>
-          Перейти
-        </MenuItem>
-        {currentUser &&
-          listing.attributes.user.id === currentUser.id && (
-            <div>
-              <MenuItem
-                path={`/listings/${listing.id}/edit`}
-                onClick={handlePath}
-              >
-                Редактировать
-              </MenuItem>
-              <MenuItem id={listing.id} onClick={handleDestroy}>
-                Удалить
-              </MenuItem>
-            </div>
-          )}
-      </Menu>
-    </div>
+    <Action
+      anchorEl={anchorEl}
+      listing={listing}
+      handleClick={handleClick}
+      currentUser={currentUser}
+      handleClose={handleClose}
+    />
   );
 
   return (
     <Card>
       <CardHeader
-        title={title(listing, classes)}
-        subheader={moment}
+        title={title}
+        subheader={subheader}
         avatar={avatar}
         action={action}
       />
-      {main_pic && (
+      {pic && (
         <CardMedia
           className={classes.media}
-          image={main_pic}
+          image={pic}
           listing={listing}
           onClick={openImageGallery}
         />
@@ -151,31 +79,12 @@ const Listing = ({
   );
 };
 
-const ITEM_HEIGHT = 48;
 const styles = theme => ({
   media: {
     height: 225
   },
   actions: {
     display: "flex"
-  },
-  via: {
-    textDecoration: "none",
-    color: theme.palette.text.secondary,
-    fontSize: 10
-  },
-  provider: {
-    textDecoration: "none",
-    color: theme.palette.text.secondary,
-    "&:hover": {
-      textDecoration: "underline"
-    }
-  },
-  subheader: {
-    textDecoration: "none",
-    "&:hover": {
-      textDecoration: "underline"
-    }
   }
 });
 

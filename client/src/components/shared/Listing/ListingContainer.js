@@ -1,5 +1,4 @@
 import React from "react";
-import { withStyles } from "material-ui/styles";
 import { connect } from "react-redux";
 import { openDialog } from "actions";
 import history from "config/history";
@@ -8,8 +7,9 @@ import Listing from "./Listing";
 
 class ListingContainer extends React.Component {
   state = {
-    anchorEl: null,
-    listing: this.props.listing
+    currentUser: this.props.currentUser,
+    listing: this.props.listing,
+    anchorEl: null
   };
 
   handleClick = event => {
@@ -44,19 +44,14 @@ class ListingContainer extends React.Component {
   };
 
   render() {
-    const { classes, currentUser } = this.props;
-    const { listing, anchorEl } = this.state;
-
     return (
       <Listing
-        currentUser={currentUser}
-        listing={listing}
-        anchorEl={anchorEl}
         handleClick={this.handleClick}
         handleClose={this.handleClose}
         handlePath={this.handlePath}
         handleDestroy={this.handleDestroy}
         openImageGallery={this.openImageGallery}
+        {...this.state}
       />
     );
   }
