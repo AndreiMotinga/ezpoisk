@@ -42,7 +42,7 @@ class AuthDropdown extends React.Component {
   render() {
     const anchorEl = this.state.anchorEl;
     const open = Boolean(anchorEl);
-    const { isSignedIn } = this.props;
+    const { isSignedIn, currentUser } = this.props;
 
     return (
       <div className="Nav_right_item">
@@ -76,10 +76,13 @@ class AuthDropdown extends React.Component {
               open={open}
               onClose={this.handleClose}
             >
-              <MenuItem path="/profile/edit" onClick={this.handleLink}>
+              <MenuItem path="/my-profile" onClick={this.handleLink}>
                 My Profile
               </MenuItem>
-              <MenuItem path="/profile/listings" onClick={this.handleLink}>
+              <MenuItem
+                path={`/profile/${currentUser.id}`}
+                onClick={this.handleLink}
+              >
                 My Listings
               </MenuItem>
               <MenuItem onClick={this.handleSignOut}>Sign out</MenuItem>
@@ -92,7 +95,8 @@ class AuthDropdown extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  isSignedIn: Boolean(state.currentUser)
+  isSignedIn: Boolean(state.currentUser),
+  currentUser: state.currentUser
 });
 
 const mapDispatchToProps = dispatch => ({
