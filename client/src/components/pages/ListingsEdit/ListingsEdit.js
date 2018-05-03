@@ -1,5 +1,4 @@
 import React from "react";
-import { connect } from "react-redux";
 import Api from "api";
 import kinds from "config/kinds";
 import Form from "./Form";
@@ -25,7 +24,6 @@ class ListingsEdit extends React.Component {
   }
 
   setListing = res => {
-    const { currentUser } = this.props;
     const listing = res.data.data.attributes;
     this.setState({ listing, isLoading: false });
   };
@@ -103,8 +101,4 @@ class ListingsEdit extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
-  currentUser: state.currentUser
-});
-
-export default connect(mapStateToProps)(ListingsEdit);
+export default ListingsEdit;

@@ -8,7 +8,6 @@ import MenuIcon from "material-ui-icons/Menu";
 import List, { ListItem, ListItemIcon, ListItemText } from "material-ui/List";
 import Divider from "material-ui/Divider";
 import InboxIcon from "material-ui-icons/Inbox";
-import Button from "material-ui/Button";
 
 class NavDrawer extends React.Component {
   state = { open: false };
