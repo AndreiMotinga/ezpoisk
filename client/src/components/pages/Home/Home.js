@@ -97,19 +97,13 @@ const Home = ({
       </Grid>
 
       <Grid item xs={12}>
-        <Grid
-          container
-          spacing={24}
-          direction="column"
-          alignContent="center"
-          justify="center"
-        >
-          {listings.map(listing => (
-            <Grid item key={listing.id} className={classes.listing}>
-              <Listing listing={listing} onRemove={removeListing} />
-            </Grid>
-          ))}
-        </Grid>
+        {listings.map(listing => (
+          <Listing
+            key={listing.id}
+            listing={listing}
+            onRemove={removeListing}
+          />
+        ))}
       </Grid>
 
       <Button variant="raised" onClick={loadMore}>
@@ -120,11 +114,6 @@ const Home = ({
 };
 
 const styles = theme => ({
-  listing: {
-    alignSelf: "center",
-    width: "100%",
-    maxWidth: 700
-  },
   filtersContainer: {
     margin: "10px auto 20px",
     maxWidth: 820

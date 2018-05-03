@@ -20,9 +20,8 @@ const Listing = ({
   classes,
   currentUser,
   listing,
-  openDialog,
-  handleDestroy,
-  openImageGallery
+  openImageGallery,
+  handleDestroy
 }) => {
   const pic = listing.attributes.main_image_url;
   const title = <Title listing={listing} />;
@@ -43,7 +42,7 @@ const Listing = ({
   );
 
   return (
-    <Card>
+    <Card className={classes.listing}>
       <CardHeader
         title={title}
         subheader={subheader}
@@ -76,6 +75,10 @@ const Listing = ({
 };
 
 const styles = theme => ({
+  listing: {
+    maxWidth: 700,
+    margin: "0 auto 20px"
+  },
   media: {
     height: 225,
     cursor: "pointer"
