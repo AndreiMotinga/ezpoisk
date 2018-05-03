@@ -11,7 +11,7 @@ import InboxIcon from "material-ui-icons/Inbox";
 import Button from "material-ui/Button";
 
 class NavDrawer extends React.Component {
-  state = { open: true };
+  state = { open: false };
 
   toggleDrawer = () => {
     const open = !this.state.open;

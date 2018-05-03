@@ -9,7 +9,6 @@ import Toolbar from "material-ui/Toolbar";
 import Button from "material-ui/Button";
 import history from "config/history";
 
-import Logo from "./Logo";
 import AuthDropdown from "./AuthDropdown";
 import Drawer from "./Drawer";
 
