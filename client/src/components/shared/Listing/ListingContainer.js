@@ -4,6 +4,7 @@ import { openDialog } from "actions";
 import history from "config/history";
 import Api from "api";
 import Listing from "./Listing";
+import { galleryImages } from "utils";
 
 class ListingContainer extends React.Component {
   state = {
@@ -19,21 +20,13 @@ class ListingContainer extends React.Component {
   };
 
   openImageGallery = e => {
-    // TODO duplicated with ListingsShow.js
-    const listing = this.state.listing;
-    const data = listing.attributes.pictures.data;
-    const variants = data.map(d => d.attributes.variants);
-    const images = variants.map(v => ({
-      original: v.large,
-      thumbnail: v.thumb
-    }));
+    const images = galleryImages(this.state.listing);
     this.props.openDialog(images);
   };
 
   render() {
     return (
       <Listing
-        redirect={this.redirect}
         handleDestroy={this.handleDestroy}
         openImageGallery={this.openImageGallery}
         {...this.state}

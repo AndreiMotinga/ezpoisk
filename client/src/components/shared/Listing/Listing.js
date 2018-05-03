@@ -24,8 +24,10 @@ const Listing = ({
   handleDestroy,
   openImageGallery
 }) => {
+  const pic = listing.attributes.main_image_url;
   const title = <Title listing={listing} />;
   const subheader = <Subheader listing={listing} />;
+  const action = <Action listing={listing} currentUser={currentUser} />;
   const avatar = (
     <Avatar
       alt={listing.attributes.user.name}
@@ -34,17 +36,15 @@ const Listing = ({
     />
   );
 
-  const pic = listing.attributes.main_image_url;
-  const action = <Action listing={listing} currentUser={currentUser} />;
-
   return (
     <Card>
       <CardHeader
         title={title}
         subheader={subheader}
-        avatar={avatar}
         action={action}
+        avatar={avatar}
       />
+
       {pic && (
         <CardMedia
           className={classes.media}
@@ -53,9 +53,11 @@ const Listing = ({
           onClick={openImageGallery}
         />
       )}
+
       <CardContent>
         <Typography>{listing.attributes.text}</Typography>
       </CardContent>
+
       <CardActions className={classes.actions} disableActionSpacing>
         <Tooltip id="tooltip-top" title="Coming soon" placement="top">
           <IconButton aria-label="Share">
