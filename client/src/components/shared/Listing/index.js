@@ -1,3 +1,3 @@
-import Listing from "./Listing";
+import ListingContainer from "./ListingContainer";
 
-export default Listing;
+export default ListingContainer;
