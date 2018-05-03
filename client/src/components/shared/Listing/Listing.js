@@ -71,7 +71,8 @@ const Listing = ({
 
 const styles = theme => ({
   media: {
-    height: 225
+    height: 225,
+    cursor: "pointer"
   },
   actions: {
     display: "flex"

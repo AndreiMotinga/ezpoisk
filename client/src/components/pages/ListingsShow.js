@@ -6,6 +6,7 @@ import Grid from "material-ui/Grid";
 import Typography from "material-ui/Typography";
 import { withStyles } from "material-ui/styles";
 import Gallery from "components/shared/Gallery";
+import { galleryImages } from "utils";
 
 class ListingsShow extends React.Component {
   state = {
@@ -17,7 +18,7 @@ class ListingsShow extends React.Component {
     axios
       .get(`/api/listings/${id}`)
       .then(res => {
-        const listing = res.data.data.attributes;
+        const listing = res.data.data;
         this.setState({ listing });
       })
       .catch(err => {
@@ -29,9 +30,7 @@ class ListingsShow extends React.Component {
     const { listing } = this.state;
     const { classes } = this.props;
     if (!listing) return null;
-    const images = listing.pictures.data
-      .map(d => d.attributes.variants)
-      .map(v => ({ original: v.large, thumbnail: v.thumb }));
+    const images = galleryImages(listing);
 
     return (
       <div>

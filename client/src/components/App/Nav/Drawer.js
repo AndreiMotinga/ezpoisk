@@ -1,5 +1,4 @@
 import React from "react";
-import history from "config/history";
 
 import { withStyles } from "material-ui/styles";
 import Drawer from "material-ui/Drawer";
