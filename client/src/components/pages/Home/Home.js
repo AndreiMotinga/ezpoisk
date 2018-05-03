@@ -5,8 +5,8 @@ import { withStyles } from "material-ui/styles";
 import Input from "material-ui/Input";
 import Select from "components/shared/Select";
 import Paper from "material-ui/Paper";
-import Button from "material-ui/Button";
 import CenteredProgress from "components/shared/CenteredProgress";
+import LoadMoreButton from "./LoadMoreButton";
 
 const Home = ({
   isLoading,
@@ -20,7 +20,8 @@ const Home = ({
   handleStateChange,
   handleSearch,
   removeListing,
-  loadMore
+  loadMore,
+  isLoadingMore
 }) => {
   if (isLoading) {
     return <CenteredProgress />;
@@ -106,9 +107,7 @@ const Home = ({
         ))}
       </Grid>
 
-      <Button variant="raised" onClick={loadMore}>
-        load more
-      </Button>
+      <LoadMoreButton isLoadingMore={isLoadingMore} loadMore={loadMore} />
     </Grid>
   );
 };

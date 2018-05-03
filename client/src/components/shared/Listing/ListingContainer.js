@@ -10,7 +10,7 @@ class ListingContainer extends React.Component {
   state = {
     currentUser: this.props.currentUser,
     listing: this.props.listing,
-    lightboxIsOpen: false
+    isGalleryOpen: false
   };
 
   handleDestroy = event => {
@@ -21,9 +21,9 @@ class ListingContainer extends React.Component {
   };
 
   toggleGallery = () => {
-    const open = !this.state.lightboxIsOpen;
+    const open = !this.state.isGalleryOpen;
     console.log("new open", open);
-    this.setState({ lightboxIsOpen: open });
+    this.setState({ isGalleryOpen: open });
   };
 
   render() {
@@ -39,7 +39,7 @@ class ListingContainer extends React.Component {
 
         <Gallery
           images={images}
-          isOpen={this.state.lightboxIsOpen}
+          isOpen={this.state.isGalleryOpen}
           toggle={this.toggleGallery}
         />
       </div>

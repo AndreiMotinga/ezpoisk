@@ -7,6 +7,7 @@ class HomeContainer extends React.Component {
   state = {
     classes: this.props.classes,
     isLoading: true,
+    isLoadingMore: false,
 
     listings: [],
     states: [],
@@ -33,7 +34,11 @@ class HomeContainer extends React.Component {
     Api.getListings(this.state.params).then(listings => {
       let newListings;
       newListings = append ? this.state.listings.concat(listings) : listings;
-      this.setState({ listings: newListings, isLoading: false });
+      this.setState({
+        listings: newListings,
+        isLoading: false,
+        isLoadingMore: false
+      });
     });
   };
 
@@ -91,8 +96,9 @@ class HomeContainer extends React.Component {
   loadMore = () => {
     const params = this.state.params;
     params.page += 1;
-    this.setState({ params });
-    this.fetchListings(true);
+    this.setState({ params, isLoadingMore: true }, () => {
+      this.fetchListings(true);
+    });
   };
 
   render() {
