@@ -1,4 +1,6 @@
 import React from "react";
+import history from "config/history";
+
 import { withStyles } from "material-ui/styles";
 import Drawer from "material-ui/Drawer";
 import IconButton from "material-ui/IconButton";
@@ -6,18 +8,22 @@ import MenuIcon from "material-ui-icons/Menu";
 import List, { ListItem, ListItemIcon, ListItemText } from "material-ui/List";
 import Divider from "material-ui/Divider";
 import InboxIcon from "material-ui-icons/Inbox";
-import DraftsIcon from "material-ui-icons/Drafts";
+import Button from "material-ui/Button";
 
 class NavDrawer extends React.Component {
-  state = { open: false };
+  state = { open: true };
 
   toggleDrawer = () => {
     const open = !this.state.open;
     this.setState({ open });
   };
 
+  redirectTo = e => {
+    history.push(e.currentTarget.getAttribute("data-path"));
+  };
+
   render() {
-    const { classes } = this.props;
+    const { classes, currentUser } = this.props;
 
     return (
       <div>
@@ -38,27 +44,48 @@ class NavDrawer extends React.Component {
             onKeyDown={this.toggleDrawer}
           >
             <div className={classes.list}>
+              {currentUser && (
+                <List component="nav">
+                  <ListItem>
+                    <ListItemText primary={currentUser.name || ""} />
+                  </ListItem>
+
+                  <Divider />
+
+                  <ListItem button>
+                    <ListItemText
+                      primary="Мой профаил"
+                      data-path="/my-profile"
+                      onClick={this.redirectTo}
+                    />
+                  </ListItem>
+
+                  <ListItem button>
+                    <ListItemText
+                      primary="Мои объявления"
+                      data-path={`/profile/${currentUser.id}`}
+                      onClick={this.redirectTo}
+                    />
+                  </ListItem>
+                  <Divider />
+                </List>
+              )}
               <List component="nav">
                 <ListItem button>
-                  <ListItemIcon>
-                    <InboxIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Inbox" />
-                </ListItem>
-                <ListItem button>
-                  <ListItemIcon>
-                    <DraftsIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Drafts" />
+                  <ListItemText
+                    primary="FAQ"
+                    data-path="/faq"
+                    onClick={this.redirectTo}
+                  />
                 </ListItem>
               </List>
-              <Divider />
+
               <List component="nav">
-                <ListItem button>
-                  <ListItemText primary="Trash" />
-                </ListItem>
-                <ListItem button component="a" href="#simple-list">
-                  <ListItemText primary="Spam" />
+                <ListItem>
+                  <ListItemIcon className={classes.icon}>
+                    <InboxIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="ezpoiskbot@gmail.com" />
                 </ListItem>
               </List>
             </div>
@@ -79,6 +106,9 @@ const styles = {
   menuButton: {
     marginLeft: -12,
     marginRight: 20
+  },
+  icon: {
+    marginRight: 0
   }
 };
 

@@ -25,7 +25,7 @@ const Nav = ({ classes, currentUser, openAuthDialog }) => {
   return (
     <AppBar color="inherit" position="sticky">
       <Toolbar className={classes.toolbar}>
-        <Drawer />
+        <Drawer currentUser={currentUser} />
         <Button variant="raised" color="primary" onClick={sendToEdit}>
           Создать
         </Button>
