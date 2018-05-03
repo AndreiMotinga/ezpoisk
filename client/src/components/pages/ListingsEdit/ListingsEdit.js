@@ -25,7 +25,7 @@ class IntegrationReactSelect extends React.Component {
     const id = this.props.match.params.id;
     Api.getListing(id)
       .then(this.setListing)
-      .then(this.getAllCities);
+      .then(this.getCities);
 
     Api.getStates().then(states => {
       this.setState({ states });
@@ -38,8 +38,8 @@ class IntegrationReactSelect extends React.Component {
     this.setState({ listing, isLoading: false });
   };
 
-  getCities = (state = this.state.listing.state) => {
-    Api.getCities(state).then(cities => {
+  getCities = () => {
+    Api.getCities(this.state.listing.state, true).then(cities => {
       this.setState({ cities });
     });
   };

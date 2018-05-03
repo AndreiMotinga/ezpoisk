@@ -206,9 +206,10 @@ class Api {
     return axios.get(`/api/states/`).then(res => res.data);
   }
 
-  getCities(state) {
-    let url = state ? `/api/cities?state=${state}` : "/api/cities";
-    return axios.get(url).then(res => res.data);
+  getCities(state, all_states = false) {
+    const url = all_states ? "/api/cities/all" : "api/cities";
+    const params = state ? { state: state } : {};
+    return axios.get(url, { params }).then(res => res.data);
   }
 
   savePicture(picture) {
