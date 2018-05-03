@@ -20,10 +20,7 @@ const Listing = ({
   classes,
   currentUser,
   listing,
-  anchorEl,
   openDialog,
-  handleClick,
-  handleClose,
   handlePath,
   handleDestroy,
   openImageGallery
@@ -39,15 +36,7 @@ const Listing = ({
   );
 
   const pic = listing.attributes.main_image_url;
-  const action = (
-    <Action
-      anchorEl={anchorEl}
-      listing={listing}
-      handleClick={handleClick}
-      currentUser={currentUser}
-      handleClose={handleClose}
-    />
-  );
+  const action = <Action listing={listing} currentUser={currentUser} />;
 
   return (
     <Card>

@@ -8,12 +8,7 @@ import Listing from "./Listing";
 class ListingContainer extends React.Component {
   state = {
     currentUser: this.props.currentUser,
-    listing: this.props.listing,
-    anchorEl: null
-  };
-
-  handleClick = event => {
-    this.setState({ anchorEl: event.currentTarget });
+    listing: this.props.listing
   };
 
   handlePath = event => {
@@ -25,10 +20,6 @@ class ListingContainer extends React.Component {
     Api.removeListing(id).then(() => {
       this.props.onRemove(id);
     });
-  };
-
-  handleClose = () => {
-    this.setState({ anchorEl: null });
   };
 
   openImageGallery = e => {
@@ -46,8 +37,6 @@ class ListingContainer extends React.Component {
   render() {
     return (
       <Listing
-        handleClick={this.handleClick}
-        handleClose={this.handleClose}
         handlePath={this.handlePath}
         handleDestroy={this.handleDestroy}
         openImageGallery={this.openImageGallery}
