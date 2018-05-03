@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { withStyles } from "material-ui/styles";
 import Drawer from "material-ui/Drawer";
 import IconButton from "material-ui/IconButton";
@@ -9,24 +8,12 @@ import Divider from "material-ui/Divider";
 import InboxIcon from "material-ui-icons/Inbox";
 import DraftsIcon from "material-ui-icons/Drafts";
 
-const styles = {
-  list: {
-    width: 250
-  },
-  fullList: {
-    width: "auto"
-  }
-};
+class NavDrawer extends React.Component {
+  state = { open: false };
 
-class TemporaryDrawer extends React.Component {
-  state = {
-    top: false
-  };
-
-  toggleDrawer = (side, open) => () => {
-    this.setState({
-      [side]: open
-    });
+  toggleDrawer = () => {
+    const open = !this.state.open;
+    this.setState({ open });
   };
 
   render() {
@@ -38,20 +25,17 @@ class TemporaryDrawer extends React.Component {
           className={classes.menuButton}
           color="inherit"
           aria-label="Menu"
-          onClick={this.toggleDrawer("left", true)}
+          onClick={this.toggleDrawer}
         >
           <MenuIcon />
         </IconButton>
 
-        <Drawer
-          open={this.state.left}
-          onClose={this.toggleDrawer("left", false)}
-        >
+        <Drawer open={this.state.open} onClose={this.toggleDrawer}>
           <div
             tabIndex={0}
             role="button"
-            onClick={this.toggleDrawer("left", false)}
-            onKeyDown={this.toggleDrawer("left", false)}
+            onClick={this.toggleDrawer}
+            onKeyDown={this.toggleDrawer}
           >
             <div className={classes.list}>
               <List component="nav">
@@ -85,8 +69,13 @@ class TemporaryDrawer extends React.Component {
   }
 }
 
-TemporaryDrawer.propTypes = {
-  classes: PropTypes.object.isRequired
+const styles = {
+  list: {
+    width: 250
+  },
+  fullList: {
+    width: "auto"
+  }
 };
 
-export default withStyles(styles)(TemporaryDrawer);
+export default withStyles(styles)(NavDrawer);
