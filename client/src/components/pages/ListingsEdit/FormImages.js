@@ -3,6 +3,8 @@ import { withStyles } from "material-ui/styles";
 import Dropzone from "react-dropzone";
 import Typography from "material-ui/Typography";
 import Api from "api";
+import IconButton from "material-ui/IconButton";
+import DeleteIcon from "material-ui-icons/Delete";
 
 class FormImages extends React.Component {
   state = {
@@ -36,7 +38,7 @@ class FormImages extends React.Component {
   };
 
   removePicture = e => {
-    Api.removePicture(e.target.id).then(this.removeImage);
+    Api.removePicture(e.currentTarget.id).then(this.removeImage);
   };
 
   render() {
@@ -54,19 +56,25 @@ class FormImages extends React.Component {
             нажмите чтобы загрузить
           </Typography>
         </Dropzone>
-        <div className={classes.imagesContainer}>
-          <div className={classes.images}>
-            {listing.pictures.data.map(picture => (
-              <img
-                key={picture.id}
-                alt={listing.text}
+        {listing.pictures.data.map(picture => (
+          <div key={picture.id} className={classes.imageContainer}>
+            <img
+              className={classes.image}
+              alt={listing.text}
+              src={picture.attributes.variants.medium}
+            />
+            <div className={classes.actions}>
+              <IconButton
+                className={classes.deleteButton}
+                aria-label="Delete"
                 id={picture.id}
-                src={picture.attributes.variants.medium}
                 onClick={this.removePicture}
-              />
-            ))}
+              >
+                <DeleteIcon />
+              </IconButton>
+            </div>
           </div>
-        </div>
+        ))}
       </div>
     );
   }
@@ -77,13 +85,27 @@ const styles = theme => ({
   dropzone: {
     width: "100%",
     border: "1px solid #d9d9d9",
-    margin: "40px 0",
+    margin: "40px 0 20px",
     padding: 20,
     borderRadius: 2,
     background: theme.palette.grey[50]
   },
-  imagesContainer: {},
-  images: {}
+  imageContainer: {
+    position: "relative",
+    display: "inline-block",
+    margin: 5
+  },
+  actions: {
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    right: 0,
+    background: "rgba(250, 250, 250, 0.7)"
+  },
+  deleteButton: {
+    display: "block",
+    margin: "0 auto"
+  }
 });
 
 const styled = withStyles(styles)(FormImages);

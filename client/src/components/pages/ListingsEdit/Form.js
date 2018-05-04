@@ -143,7 +143,7 @@ const styles = {
   },
   submit: {
     display: "block",
-    margin: "0 auto"
+    margin: "20px auto 0"
   }
 };
 
