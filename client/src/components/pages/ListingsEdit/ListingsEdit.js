@@ -82,9 +82,13 @@ class ListingsEdit extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    Api.saveListing(this.state.listing).then(res => {
-      this.props.showNotice("Объявление успешно обновлено!");
-    });
+    Api.saveListing(this.state.listing)
+      .then(res => {
+        this.props.showNotice("Объявление успешно обновлено!");
+      })
+      .catch(err => {
+        this.props.showNotice("Что-то пошло не так.");
+      });
   };
 
   removePicture = e => {
@@ -98,7 +102,7 @@ class ListingsEdit extends React.Component {
         removePicture={this.removePicture}
         handleChange={this.handleChange}
         handleSubmit={this.handleSubmit}
-        handleTargetChange={this.handleChange}
+        handleTargetChange={this.handleTargetChange}
         {...this.state}
       />
     );

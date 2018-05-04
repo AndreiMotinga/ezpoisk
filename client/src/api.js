@@ -185,10 +185,7 @@ class Api {
         { listing },
         { headers: this.headers }
       )
-      .then(res => res)
-      .catch(error => {
-        console.error(error);
-      });
+      .then(res => res);
   }
 
   removeListing(id) {
