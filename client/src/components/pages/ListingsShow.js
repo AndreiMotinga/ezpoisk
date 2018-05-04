@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import Api from "api";
 
 import Listing from "components/shared/Listing";

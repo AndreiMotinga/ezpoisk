@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import { openDialog } from "actions";
 import Api from "api";
 import Listing from "./Listing";
 import { galleryImages } from "utils";

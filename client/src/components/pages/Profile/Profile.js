@@ -1,15 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
 import Grid from "material-ui/Grid";
-import Paper from "material-ui/Paper";
 import { withStyles } from "material-ui/styles";
-import Image from "./sea_narrow.png";
-import Avatar from "./avatar.png";
-import "./styles.css";
 import CenteredProgress from "components/shared/CenteredProgress";
 import Api from "api";
-import Typography from "material-ui/Typography";
 import Listing from "components/shared/Listing";
+import ProfileHeader from "components/shared/ProfileHeader";
 
 class Profile extends React.Component {
   state = {
@@ -38,14 +34,8 @@ class Profile extends React.Component {
     const { classes } = this.props;
 
     return (
-      <div className={classes.root}>
-        <div className={classes.headerContainer}>
-          <Paper className="Header" />
-          <Paper className={classes.avatarContainer}>
-            <img src={Avatar} className={classes.avatar} />
-          </Paper>
-        </div>
-
+      <div>
+        <ProfileHeader />
         <br />
         {isLoading && <CenteredProgress />}
         {!isLoading && (
@@ -68,27 +58,7 @@ const mapStateToProps = state => ({});
 
 const mapDispatchToProps = dispatch => ({});
 
-const styles = theme => ({
-  root: {},
-  headerContainer: {
-    marginTop: 20,
-    position: "relative"
-  },
-  avatarContainer: {
-    position: "absolute",
-    left: "5%",
-    top: "45%",
-    height: "100%",
-
-    maxWidth: 250,
-    borderRadius: "50%"
-  },
-  avatar: {
-    width: "100%",
-    height: "auto",
-    borderRadius: "50%"
-  }
-});
+const styles = theme => ({});
 
 const styledProfile = withStyles(styles)(Profile);
 
