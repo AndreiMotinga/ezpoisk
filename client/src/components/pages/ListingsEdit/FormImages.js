@@ -55,7 +55,11 @@ class FormImages extends React.Component {
 
     return (
       <div className={classes.root}>
-        <Dropzone onDrop={this.handleDrop} className={classes.dropzone}>
+        <Dropzone
+          accept="image/jpeg, image/jpg, image/png"
+          onDrop={this.handleDrop}
+          className={classes.dropzone}
+        >
           <Typography align="center">
             Перетяните сюда фотографии
             <br />
