@@ -2,6 +2,8 @@ import React from "react";
 import Api from "api";
 import kinds from "config/kinds";
 import Form from "./Form";
+import { connect } from "react-redux";
+import { showNotice } from "actions";
 
 class ListingsEdit extends React.Component {
   state = {
@@ -80,7 +82,9 @@ class ListingsEdit extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    Api.saveListing(this.state.listing);
+    Api.saveListing(this.state.listing).then(res => {
+      this.props.showNotice("Объявление успешно обновлено!");
+    });
   };
 
   removePicture = e => {
@@ -101,4 +105,12 @@ class ListingsEdit extends React.Component {
   }
 }
 
-export default ListingsEdit;
+const mapStateToProps = state => ({});
+
+const mapDispatchToProps = dispatch => ({
+  showNotice: message => {
+    dispatch(showNotice(message));
+  }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ListingsEdit);
