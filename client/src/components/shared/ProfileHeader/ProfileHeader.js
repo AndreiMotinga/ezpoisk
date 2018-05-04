@@ -24,8 +24,8 @@ const styles = {
   },
   avatarContainer: {
     position: "absolute",
-    left: "5%",
-    top: "45%",
+    bottom: "-50px",
+    left: "45%",
     height: 100,
     maxWidth: 100,
     borderRadius: "50%"
