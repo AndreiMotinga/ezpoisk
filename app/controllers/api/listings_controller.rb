@@ -11,7 +11,7 @@ class Api::ListingsController < ApplicationController
   # GET /listings
   def index
     @listings = apply_scopes(Listing.desc)
-                .includes(:pictures)
+                .includes(:pictures, :user)
                 .page(params[:page]).per(params[:per_page])
     options = { meta: meta }
     serialized = ListingSerializer.new(@listings, options).serialized_json

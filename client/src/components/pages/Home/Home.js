@@ -7,6 +7,7 @@ import Select from "components/shared/Select";
 import Paper from "material-ui/Paper";
 import CenteredProgress from "components/shared/CenteredProgress";
 import LoadMoreButton from "./LoadMoreButton";
+import NothingHere from "components/shared/NothingHere";
 
 const Home = ({
   isLoading,
@@ -98,6 +99,7 @@ const Home = ({
       </Grid>
 
       <Grid item xs={12}>
+        {listings.length === 0 && <NothingHere />}
         {listings.map(listing => (
           <Listing
             key={listing.id}
@@ -107,7 +109,9 @@ const Home = ({
         ))}
       </Grid>
 
-      <LoadMoreButton isLoadingMore={isLoadingMore} loadMore={loadMore} />
+      {Boolean(listings.length) && (
+        <LoadMoreButton isLoadingMore={isLoadingMore} loadMore={loadMore} />
+      )}
     </Grid>
   );
 };
