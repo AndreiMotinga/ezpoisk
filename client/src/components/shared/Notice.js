@@ -16,7 +16,7 @@ class SimpleSnackbar extends React.Component {
 
   handleClose = (event, reason) => {
     if (reason === "clickaway") {
-      this.setState({ open: false });
+      return;
     }
 
     this.setState({ open: false });

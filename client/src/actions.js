@@ -95,11 +95,10 @@ export function signoutFailure(errors) {
 /**
  * dialogs flow
  */
-export function openDialog(dialog, images) {
+export function openDialog(dialog) {
   return {
     type: OPEN_DIALOG,
-    dialog,
-    images
+    dialog
   };
 }
 
