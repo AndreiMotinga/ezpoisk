@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
 
   has_attached_file(
     :avatar,
-    styles: { medium: "250x250#" },
+    styles: { thumb: "100x100#" },
     default_url: "https://s3.amazonaws.com/ezpoisk-dev/avatar.png"
   )
   validates_attachment_content_type :avatar, content_type: %r{\Aimage\/.*\Z}

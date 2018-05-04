@@ -26,7 +26,7 @@ class ListingSerializer
     {
       id: user.id,
       name:  user.name || user.email,
-      avatar: user.avatar.url(:medium),
+      avatar: user.avatar.url(:thumb),
       provider: user.provider,
       uid: user.uid
     }

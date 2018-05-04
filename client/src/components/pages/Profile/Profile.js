@@ -33,9 +33,14 @@ class Profile extends React.Component {
     const { listings, isLoading } = this.state;
     const { classes } = this.props;
 
+    let image;
+    if (!isLoading) {
+      image = listings[0].attributes.user.avatar;
+    }
+
     return (
       <div>
-        <ProfileHeader />
+        <ProfileHeader image={image} />
         <br />
         {isLoading && <CenteredProgress />}
         {!isLoading && (
