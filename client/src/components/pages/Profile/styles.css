@@ -1,0 +1,5 @@
+.Header {
+  background: url("./sea_narrow.png") no-repeat;
+  background-size: cover;
+  min-height: 250px;
+}

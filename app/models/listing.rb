@@ -15,5 +15,6 @@ class Listing < ApplicationRecord
   scope :state, ->(state) { where(state: state) }
   scope :city, ->(city) { where(city: city) }
   scope :search, ->(term) { pg_search(term) }
+  scope :user_id, ->(id) { where(user_id: id) }
   scope :desc, -> { order(created_at: :desc) }
 end

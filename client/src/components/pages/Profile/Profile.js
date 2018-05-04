@@ -3,6 +3,9 @@ import { connect } from "react-redux";
 // import Grid from "material-ui/Grid";
 import Paper from "material-ui/Paper";
 import { withStyles } from "material-ui/styles";
+import Image from "./sea_narrow.png";
+import Avatar from "./avatar.png";
+import "./styles.css";
 
 class Profile extends React.Component {
   render() {
@@ -11,14 +14,19 @@ class Profile extends React.Component {
 
     return (
       <div className={classes.root}>
-        <Paper className={classes.paper}>
-          User show page
-          <ul>
-            <li>user header</li>
-            <li>users listings</li>
-          </ul>
-          ID: {id}
-        </Paper>
+        <div className={classes.headerContainer}>
+          <Paper className="Header" />
+          <Paper className={classes.avatarContainer}>
+            <img src={Avatar} className={classes.avatar} />
+          </Paper>
+        </div>
+        {/* <Typography>{user.name}</Typography> */}
+        User show page
+        <ul>
+          <li>user header</li>
+          <li>users listings</li>
+        </ul>
+        ID: {id}
       </div>
     );
   }
@@ -30,11 +38,23 @@ const mapDispatchToProps = dispatch => ({});
 
 const styles = theme => ({
   root: {},
-  paper: {
-    marginTop: "20px",
-    padding: "30px",
-    minHeight: "400px",
-    background: "white"
+  headerContainer: {
+    marginTop: 20,
+    position: "relative"
+  },
+  avatarContainer: {
+    position: "absolute",
+    left: "5%",
+    top: "45%",
+    height: "100%",
+
+    maxWidth: 250,
+    borderRadius: "50%"
+  },
+  avatar: {
+    width: "100%",
+    height: "auto",
+    borderRadius: "50%"
   }
 });
 
