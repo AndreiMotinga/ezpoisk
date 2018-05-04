@@ -158,11 +158,7 @@ class Api {
   getUserListings() {
     return axios
       .get("/api/users/listings", { headers: this.headers })
-      .then(res => res.data.data)
-      .catch(error => {
-        console.error(error);
-        return error;
-      });
+      .then(res => res.data.data);
   }
 
   getListings(params) {
@@ -178,24 +174,16 @@ class Api {
   }
 
   saveListing(listing) {
-    return axios
-      .put(
-        `/api/listings/${listing.id}`,
-        { listing },
-        { headers: this.headers }
-      )
-      .then(res => res);
+    return axios.put(
+      `/api/listings/${listing.id}`,
+      { listing },
+      { headers: this.headers }
+    );
   }
 
   removeListing(id) {
     const headers = this.headers;
-    return axios
-      .delete(`/api/listings/${id}`, { headers })
-      .then(res => res)
-      .catch(error => {
-        console.error(error);
-        return error;
-      });
+    return axios.delete(`/api/listings/${id}`, { headers });
   }
 
   getStates() {
@@ -215,30 +203,17 @@ class Api {
 
   savePicture(picture) {
     const headers = this.headers;
-    return axios
-      .post(`/api/pictures`, picture, { headers })
-      .then(res => res)
-      .catch(error => {
-        console.error(error);
-        return error;
-      });
+    return axios.post(`/api/pictures`, picture, { headers });
   }
 
   removePicture(id) {
     const headers = this.headers;
-    return axios
-      .delete(`/api/pictures/${id}`, { headers })
-      .then(res => res)
-      .catch(error => {
-        console.error(error);
-        return error;
-      });
+    return axios.delete(`/api/pictures/${id}`, { headers });
   }
 
   saveUser(user) {
-    return axios
-      .put(`/api/users/${user.id}`, { user }, { headers: this.headers })
-      .then(res => res);
+    const headers = this.headers;
+    return axios.put(`/api/users/${user.id}`, { user }, { headers });
   }
 }
 
