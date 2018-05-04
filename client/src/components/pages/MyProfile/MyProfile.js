@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { showNotice } from "actions";
 import { withStyles } from "material-ui/styles";
 import Paper from "material-ui/Paper";
 import TextField from "material-ui/TextField";
@@ -14,7 +15,9 @@ class MyProfile extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    Api.saveUser(this.state.user);
+    Api.saveUser(this.state.user).then(() => {
+      this.props.showNotice("Профаил успешно обнолвен!");
+    });
   };
 
   handleTargetChange = e => {
@@ -71,7 +74,11 @@ const mapStateToProps = state => ({
   currentUser: state.currentUser
 });
 
-const mapDispatchToProps = dispatch => ({});
+const mapDispatchToProps = dispatch => ({
+  showNotice: message => {
+    dispatch(showNotice(message));
+  }
+});
 
 const styles = theme => ({
   paper: {

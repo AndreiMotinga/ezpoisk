@@ -1,5 +1,11 @@
 import Api from "./api";
-import { AUTH, OPEN_DIALOG, CLOSE_DIALOG } from "./constants";
+import {
+  AUTH,
+  OPEN_DIALOG,
+  CLOSE_DIALOG,
+  SHOW_NOTICE,
+  HIDE_NOTICE
+} from "./constants";
 
 /**
  * Initial setup
@@ -105,5 +111,21 @@ export function openDialog(dialog) {
 export function closeDialog() {
   return {
     type: CLOSE_DIALOG
+  };
+}
+
+/**
+ * notice flow
+ */
+export function showNotice(message) {
+  return {
+    type: SHOW_NOTICE,
+    message
+  };
+}
+
+export function hideNotice() {
+  return {
+    type: HIDE_NOTICE
   };
 }

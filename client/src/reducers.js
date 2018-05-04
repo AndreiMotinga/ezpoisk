@@ -1,8 +1,15 @@
-import { AUTH, OPEN_DIALOG, CLOSE_DIALOG } from "./constants";
+import {
+  AUTH,
+  OPEN_DIALOG,
+  CLOSE_DIALOG,
+  SHOW_NOTICE,
+  HIDE_NOTICE
+} from "./constants";
 
 const initialState = {
   isLoading: true,
   activeDialog: null,
+  notice: null,
   currentUser: null,
   errors: []
 };
@@ -92,6 +99,21 @@ const root = (state = initialState, action) => {
         ...state,
         activeDialog: null
       };
+
+    /*
+     * notice actions
+     */
+
+    case SHOW_NOTICE:
+      return {
+        ...state,
+        notice: {
+          message: action.message
+        }
+      };
+
+    case HIDE_NOTICE:
+      return { ...state, notice: null };
 
     /*
      * return default

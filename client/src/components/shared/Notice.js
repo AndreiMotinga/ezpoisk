@@ -1,60 +1,48 @@
 import React from "react";
+import { connect } from "react-redux";
+import { hideNotice } from "actions";
 import { withStyles } from "material-ui/styles";
-import Button from "material-ui/Button";
 import Snackbar from "material-ui/Snackbar";
 import IconButton from "material-ui/IconButton";
 import CloseIcon from "material-ui-icons/Close";
 
-class SimpleSnackbar extends React.Component {
-  state = {
-    open: false
+const Notice = ({ classes, notice, hideNotice }) => {
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") return;
+    hideNotice();
   };
 
-  handleClick = () => {
-    this.setState({ open: true });
-  };
+  if (!notice) return null;
 
-  handleClose = (event, reason) => {
-    if (reason === "clickaway") {
-      return;
-    }
-
-    this.setState({ open: false });
-  };
-
-  render() {
-    const { classes } = this.props;
-    return (
-      <div>
-        <Button onClick={this.handleClick}>Open simple snackbar</Button>
-        <Snackbar
-          anchorOrigin={{
-            vertical: "bottom",
-            horizontal: "left"
-          }}
-          open={this.state.open}
-          autoHideDuration={6000}
-          onClose={this.handleClose}
-          SnackbarContentProps={{
-            "aria-describedby": "message-id"
-          }}
-          message={<span id="message-id">Note archived</span>}
-          action={[
-            <IconButton
-              key="close"
-              aria-label="Close"
-              color="inherit"
-              className={classes.close}
-              onClick={this.handleClose}
-            >
-              <CloseIcon />
-            </IconButton>
-          ]}
-        />
-      </div>
-    );
-  }
-}
+  return (
+    <div>
+      <Snackbar
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "left"
+        }}
+        open={true}
+        autoHideDuration={6000}
+        onClose={handleClose}
+        SnackbarContentProps={{
+          "aria-describedby": "message-id"
+        }}
+        message={<span id="message-id">{notice.message}</span>}
+        action={[
+          <IconButton
+            key="close"
+            aria-label="Close"
+            color="inherit"
+            className={classes.close}
+            onClick={handleClose}
+          >
+            <CloseIcon />
+          </IconButton>
+        ]}
+      />
+    </div>
+  );
+};
 
 const styles = theme => ({
   close: {
@@ -63,4 +51,16 @@ const styles = theme => ({
   }
 });
 
-export default withStyles(styles)(SimpleSnackbar);
+const styled = withStyles(styles)(Notice);
+
+const mapStateToProps = state => ({
+  notice: state.notice
+});
+
+const mapDispatchToProps = dispatch => ({
+  hideNotice: () => {
+    dispatch(hideNotice());
+  }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(styled);
