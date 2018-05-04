@@ -6,6 +6,7 @@ import CenteredProgress from "components/shared/CenteredProgress";
 import Api from "api";
 import Listing from "components/shared/Listing";
 import ProfileHeader from "components/shared/ProfileHeader";
+import NothingHere from "components/shared/NothingHere";
 
 class Profile extends React.Component {
   state = {
@@ -44,6 +45,9 @@ class Profile extends React.Component {
         <ProfileHeader image={image} />
         <br />
         {isLoading && <CenteredProgress />}
+
+        {!isLoading && listings.length === 0 && <NothingHere />}
+
         {!isLoading && (
           <Grid item xs={12}>
             {listings.map(listing => (
