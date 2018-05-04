@@ -26,7 +26,7 @@ class ListingSerializer
     {
       id: user.id,
       name:  user.name || user.email,
-      avatar: user.avatar_source,
+      avatar: user.avatar.url,
       provider: user.provider,
       uid: user.uid
     }
