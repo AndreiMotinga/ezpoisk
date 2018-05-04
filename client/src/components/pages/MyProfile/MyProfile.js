@@ -1,11 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
-// import Grid from "material-ui/Grid";
-import Paper from "material-ui/Paper";
-import Input from "material-ui/Input";
-import Button from "material-ui/Button";
 import { withStyles } from "material-ui/styles";
+import Paper from "material-ui/Paper";
+import TextField from "material-ui/TextField";
+import Button from "material-ui/Button";
 import Api from "api";
+import ProfileHeader from "components/shared/ProfileHeader";
 
 class MyProfile extends React.Component {
   state = {
@@ -27,27 +27,37 @@ class MyProfile extends React.Component {
     const { classes } = this.props;
 
     return (
-      <div className={classes.root}>
+      <div>
+        <ProfileHeader />
+
         <Paper className={classes.paper}>
           <form onClick={this.handleSubmit}>
-            <Input
+            <TextField
               fullWidth
               value={this.state.user.name}
               name="name"
+              label="Ваше имя"
               onChange={this.handleTargetChange}
-              placeholder="Your name"
+              margin="normal"
             />
 
-            <Input
+            <TextField
               fullWidth
+              required
               value={this.state.user.email}
               name="email"
               type="email"
+              label="Email"
               onChange={this.handleTargetChange}
-              placeholder="Your Email"
+              margin="normal"
             />
 
-            <Button variant="raised" type="submit">
+            <Button
+              variant="raised"
+              color="primary"
+              type="submit"
+              className={classes.button}
+            >
               Save
             </Button>
           </form>
@@ -64,12 +74,15 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({});
 
 const styles = theme => ({
-  root: {},
   paper: {
-    marginTop: "20px",
+    margin: "20px auto",
     padding: "30px",
     minHeight: "400px",
-    background: "white"
+    background: "white",
+    maxWidth: 700
+  },
+  button: {
+    marginTop: 20
   }
 });
 
