@@ -49,7 +49,8 @@ class Action extends React.Component {
             Перейти
           </MenuItem>
           {currentUser &&
-            listing.attributes.user.id === currentUser.id && (
+            (currentUser.admin ||
+              listing.attributes.user.id === currentUser.id) && (
               <div>
                 <MenuItem
                   data-path={`/listings/${listing.id}/edit`}
