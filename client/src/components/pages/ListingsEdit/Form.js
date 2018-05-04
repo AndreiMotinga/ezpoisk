@@ -3,11 +3,11 @@ import Grid from "material-ui/Grid";
 import TextField from "material-ui/TextField";
 import Input from "material-ui/Input";
 import Button from "material-ui/Button";
-import Dropzone from "react-dropzone";
 import Paper from "material-ui/Paper";
 import { withStyles } from "material-ui/styles";
 import Select from "components/shared/Select";
 import CenteredProgress from "components/shared/CenteredProgress";
+import FormImages from "./FormImages";
 
 const Form = ({
   isLoading,
@@ -16,8 +16,6 @@ const Form = ({
   cities,
   kinds,
   classes,
-  handleDrop,
-  removePicture,
   handleChange,
   handleSubmit,
   handleTargetChange
@@ -27,7 +25,7 @@ const Form = ({
   }
 
   return (
-    <Paper className={classes.paper}>
+    <Paper className={classes.root}>
       <form onSubmit={handleSubmit}>
         <Grid container spacing={16}>
           <TextField
@@ -113,23 +111,10 @@ const Form = ({
           </Grid>
         </Grid>
 
-        <div className={classes.imagesContainer}>
-          <Dropzone onDrop={handleDrop} />
-          <div className={classes.images}>
-            {listing.pictures.data.map(picture => (
-              <img
-                alt={listing.text}
-                key={picture.id}
-                id={picture.id}
-                src={picture.attributes.variants.medium}
-                onClick={removePicture}
-              />
-            ))}
-          </div>
-        </div>
+        <FormImages listing={listing} />
 
         <div>
-          <Button type="submit" variant="raised" className={classes.button}>
+          <Button type="submit" variant="raised" className={classes.submit}>
             Сохранить
           </Button>
         </div>
@@ -140,14 +125,11 @@ const Form = ({
 
 const styles = {
   root: {
-    maxWidth: 200
-  },
-  paper: {
     maxWidth: 700,
     margin: "20px auto",
     padding: 15
   },
-  button: {
+  submit: {
     marginTop: 20
   }
 };

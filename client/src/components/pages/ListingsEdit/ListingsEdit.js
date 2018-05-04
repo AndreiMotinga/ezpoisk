@@ -36,35 +36,6 @@ class ListingsEdit extends React.Component {
     });
   };
 
-  handleDrop = acceptedFiles => {
-    const id = this.state.listing.id;
-    acceptedFiles.forEach(file => {
-      const data = new FormData();
-      data.append("picture[listing_id]", id);
-      data.append("picture[image]", file);
-      Api.savePicture(data).then(this.addImage);
-    });
-  };
-
-  addImage = res => {
-    const picture = res.data.data;
-    const listing = this.state.listing;
-    const pictures = listing.pictures;
-    pictures.data.unshift(picture);
-    listing.pictures = pictures;
-    this.setState({ listing });
-  };
-
-  removeImage = res => {
-    const id = res.data.id;
-    const listing = this.state.listing;
-    const data = listing.pictures.data.filter(
-      item => item.id.toString() !== id.toString()
-    );
-    listing.pictures.data = data;
-    this.setState({ listing });
-  };
-
   handleChange = name => value => {
     const listing = this.state.listing;
     listing[name] = value;
@@ -91,15 +62,9 @@ class ListingsEdit extends React.Component {
       });
   };
 
-  removePicture = e => {
-    Api.removePicture(e.target.id).then(this.removeImage);
-  };
-
   render() {
     return (
       <Form
-        handleDrop={this.handleDrop}
-        removePicture={this.removePicture}
         handleChange={this.handleChange}
         handleSubmit={this.handleSubmit}
         handleTargetChange={this.handleTargetChange}
