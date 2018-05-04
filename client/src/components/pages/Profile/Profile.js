@@ -35,7 +35,8 @@ class Profile extends React.Component {
 
     let image;
     if (!isLoading) {
-      image = listings[0].attributes.user.avatar;
+      const first_listing = listings[0];
+      image = first_listing && first_listing.attributes.user.avatar;
     }
 
     return (
