@@ -16,7 +16,7 @@ class ListingsEdit extends React.Component {
 
   componentDidMount() {
     const id = this.props.match.params.id;
-    Api.getListing(id)
+    Api.editListing(id)
       .then(this.setListing)
       .then(this.getCities);
 

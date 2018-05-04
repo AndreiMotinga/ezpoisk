@@ -17,7 +17,7 @@ class MyProfile extends React.Component {
     e.preventDefault();
     Api.saveUser(this.state.user)
       .then(res => {
-        this.props.showNotice("Профаил успешно обнолвен!");
+        this.props.showNotice("Профаил успешно обновлен!");
       })
       .catch(res => {
         this.props.showNotice("Пожалуйста исправьте ошибки");

@@ -169,13 +169,12 @@ class Api {
     return axios.get("/api/listings", { params }).then(res => res.data.data);
   }
 
+  editListing(id) {
+    return axios.get(`/api/listings/${id}/edit`, { headers: this.headers });
+  }
+
   getListing(id) {
-    return axios
-      .get(`/api/listings/${id}/edit`, { headers: this.headers })
-      .then(res => res)
-      .catch(error => {
-        console.error(error);
-      });
+    return axios.get(`/api/listings/${id}`, { headers: this.headers });
   }
 
   saveListing(listing) {
