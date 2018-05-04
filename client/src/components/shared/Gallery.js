@@ -24,6 +24,7 @@ class Gallery extends React.Component {
       <Lightbox
         images={images}
         isOpen={isOpen}
+        backdropClosesModal={true}
         currentImage={currentImage}
         onClickNext={this.gotoNext}
         onClickPrev={this.gotoPrev}

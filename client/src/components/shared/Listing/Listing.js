@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { withStyles } from "material-ui/styles";
 import Tooltip from "material-ui/Tooltip";
 import Card, {
@@ -33,12 +34,11 @@ const Listing = ({
       handleDestroy={handleDestroy}
     />
   );
+  const user = listing.attributes.user;
   const avatar = (
-    <Avatar
-      alt={listing.attributes.user.name}
-      src={listing.attributes.user.avatar}
-      className={classes.avatar}
-    />
+    <Link to={`/profile/${user.id}`}>
+      <Avatar alt={user.name} src={user.avatar} className={classes.avatar} />
+    </Link>
   );
 
   return (

@@ -19,7 +19,9 @@ const Title = ({ classes, listing }) => {
   if (user.provider === "vkontakte") {
     return (
       <div>
-        {user.name}
+        <Link to={`/profile/${user.id}`} className={classes.name}>
+          {user.name}
+        </Link>
         <span className={classes.via}> via </span>
         <a href={url} target="_blank" className={classes.provider}>
           {user.provider}
@@ -36,6 +38,13 @@ const Title = ({ classes, listing }) => {
 };
 
 const styles = theme => ({
+  name: {
+    textDecoration: "none",
+    color: theme.palette.text.primary,
+    "&:hover": {
+      textDecoration: "underline"
+    }
+  },
   via: {
     textDecoration: "none",
     color: theme.palette.text.secondary,
