@@ -1,6 +1,7 @@
 import React from "react";
 import { withStyles } from "material-ui/styles";
 import Dropzone from "react-dropzone";
+import Typography from "material-ui/Typography";
 import Api from "api";
 
 class FormImages extends React.Component {
@@ -44,7 +45,15 @@ class FormImages extends React.Component {
 
     return (
       <div className={classes.root}>
-        <Dropzone onDrop={this.handleDrop} />
+        <Dropzone onDrop={this.handleDrop} className={classes.dropzone}>
+          <Typography align="center">
+            Перетяните сюда фотографии
+            <br />
+            либо
+            <br />
+            нажмите чтобы загрузить
+          </Typography>
+        </Dropzone>
         <div className={classes.imagesContainer}>
           <div className={classes.images}>
             {listing.pictures.data.map(picture => (
@@ -63,11 +72,19 @@ class FormImages extends React.Component {
   }
 }
 
-const styles = {
+const styles = theme => ({
   root: {},
+  dropzone: {
+    width: "100%",
+    border: "1px solid #d9d9d9",
+    margin: "40px 0",
+    padding: 20,
+    borderRadius: 2,
+    background: theme.palette.grey[50]
+  },
   imagesContainer: {},
   images: {}
-};
+});
 
 const styled = withStyles(styles)(FormImages);
 

@@ -28,18 +28,22 @@ const Form = ({
     <Paper className={classes.root}>
       <form onSubmit={handleSubmit}>
         <Grid container spacing={16}>
-          <TextField
-            fullWidth
-            multiline
-            value={listing.text}
-            name="text"
-            onChange={handleTargetChange}
-            label="Текст объявления"
-          />
+          <Grid item xs={12}>
+            <TextField
+              fullWidth
+              multiline
+              margin="normal"
+              value={listing.text}
+              name="text"
+              onChange={handleTargetChange}
+              label="Текст объявления"
+            />
+          </Grid>
 
           <Grid item xs={12} sm={6}>
             <TextField
               fullWidth
+              margin="normal"
               value={listing.email}
               name="email"
               type="email"
@@ -51,6 +55,7 @@ const Form = ({
           <Grid item xs={12} sm={6}>
             <TextField
               fullWidth
+              margin="normal"
               type="tel"
               name="phone"
               value={listing.phone || ""}
@@ -111,10 +116,17 @@ const Form = ({
           </Grid>
         </Grid>
 
-        <FormImages listing={listing} />
+        <Grid item xs={12}>
+          <FormImages listing={listing} />
+        </Grid>
 
         <div>
-          <Button type="submit" variant="raised" className={classes.submit}>
+          <Button
+            type="submit"
+            variant="raised"
+            color="primary"
+            className={classes.submit}
+          >
             Сохранить
           </Button>
         </div>
@@ -130,7 +142,8 @@ const styles = {
     padding: 15
   },
   submit: {
-    marginTop: 20
+    display: "block",
+    margin: "0 auto"
   }
 };
 
