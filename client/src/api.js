@@ -242,11 +242,7 @@ class Api {
   saveUser(user) {
     return axios
       .put(`/api/users/${user.id}`, { user }, { headers: this.headers })
-      .then(res => res)
-      .catch(error => {
-        console.error(error);
-        return error;
-      });
+      .then(res => res);
   }
 }
 

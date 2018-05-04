@@ -15,9 +15,13 @@ class MyProfile extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    Api.saveUser(this.state.user).then(() => {
-      this.props.showNotice("Профаил успешно обнолвен!");
-    });
+    Api.saveUser(this.state.user)
+      .then(res => {
+        this.props.showNotice("Профаил успешно обнолвен!");
+      })
+      .catch(res => {
+        this.props.showNotice("Пожалуйста исправьте ошибки");
+      });
   };
 
   handleTargetChange = e => {
@@ -28,13 +32,16 @@ class MyProfile extends React.Component {
 
   render() {
     const { classes } = this.props;
+    const { user } = this.state;
+
+    if (!user) return null;
 
     return (
       <div>
         <ProfileHeader />
 
         <Paper className={classes.paper}>
-          <form onClick={this.handleSubmit}>
+          <form onSubmit={this.handleSubmit}>
             <TextField
               fullWidth
               value={this.state.user.name}
