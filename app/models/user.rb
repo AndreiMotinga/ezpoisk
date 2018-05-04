@@ -8,7 +8,11 @@ class User < ActiveRecord::Base
   has_many :listings, dependent: :destroy
   has_many :pictures, through: :listings
 
-  has_attached_file :avatar, default_url: "default-avatar.png"
+  has_attached_file(
+    :avatar,
+    styles: { medium: "250x250#" },
+    default_url: "https://s3.amazonaws.com/ezpoisk-dev/avatar.png"
+  )
   validates_attachment_content_type :avatar, content_type: %r{\Aimage\/.*\Z}
   after_create :save_avatar_from_source
 
