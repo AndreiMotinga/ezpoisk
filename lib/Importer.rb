@@ -5,7 +5,7 @@ class Importer
 
   def import
     page = 0
-    url = "https://4c93b18c.ngrok.io"
+    url = "https://115561fd.ngrok.io"
     loop do
       page += 1
       cur_url = url + "?page=#{page}"
