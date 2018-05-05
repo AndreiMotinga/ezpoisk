@@ -1,9 +1,7 @@
 class Picture < ActiveRecord::Base
   belongs_to :listing
 
-  has_attached_file :image, styles: { thumb: "100x100#",
-                                      medium: "x180",
-                                      large: "x450" }
+  has_attached_file :image
   validates_attachment_content_type :image, content_type: %r{\Aimage\/.*\Z}
   validates_attachment_file_name :image, matches: [/png\Z/i, /jpe?g\Z/i]
   validates_with AttachmentSizeValidator,
@@ -17,12 +15,6 @@ class Picture < ActiveRecord::Base
     if url_value.present?
       self.image = URI.parse(url_value)
       @image_remote_url = url_value
-    end
-  end
-
-  def serialized_variants
-    %I[thumb medium large original].each_with_object({}) do |type, obj|
-      obj[type] = image.url(type)
     end
   end
 
