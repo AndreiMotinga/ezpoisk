@@ -1,9 +1,8 @@
 class PictureSerializer
   include FastJsonapi::ObjectSerializer
-  attributes :id,
-             :listing_id
+  attributes :listing_id
 
-  attribute :variants do |object|
-    object.serialized_variants
+  attribute :image_src do |obj|
+    obj.main_image_url
   end
 end

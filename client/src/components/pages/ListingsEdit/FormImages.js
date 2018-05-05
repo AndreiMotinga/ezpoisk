@@ -81,7 +81,7 @@ class FormImages extends React.Component {
               <img
                 className={classes.image}
                 alt={listing.text}
-                src={picture.attributes.variants.medium}
+                src={picture.attributes.image_src}
               />
               <div className={classes.actions}>
                 <IconButton
@@ -138,7 +138,12 @@ const styles = theme => ({
   imageContainer: {
     position: "relative",
     display: "inline-block",
-    margin: 5
+    margin: 5,
+    maxWidth: 150
+  },
+  image: {
+    width: "100%",
+    height: "auto"
   },
   actions: {
     position: "absolute",

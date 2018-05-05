@@ -6,7 +6,6 @@ export const redirect = e => {
 
 export const galleryImages = listing => {
   const data = listing.attributes.pictures.data;
-  const variants = data.map(d => d.attributes.variants);
-
-  return variants.map(v => ({ src: v.original }));
+  const images = data.map(d => d.attributes.image_src);
+  return images.map(img => ({ src: img }));
 };

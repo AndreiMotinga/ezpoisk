@@ -27,7 +27,7 @@ class Picture < ActiveRecord::Base
   end
 
   def main_image_url
-    source.present? ? source : image.url(:large)
+    image.present? ? image : source
   end
 
   private
