@@ -15,14 +15,20 @@ module Media
     end
 
     def import
-      groups = YAML::load(File.read(file))
-      data = groups.map! { |group| loader.load(group) }
-                   .flatten
-                   .compact
-                   .uniq { |post| post[:attributes][:text] }
-                   .select { |post| Media::Validator.valid?(post[:attributes]) }
-                   .map { |post| Media::Creator.create(post) }
-                   .size
+      groups = YAML.load(File.read(file))
+      groups.map { |group| load(group) }.sum
+    end
+
+    private
+
+    def load(group)
+      loader.load(group)
+        .flatten
+        .compact
+        .uniq { |post| post[:attributes][:text] }
+        .select { |post| Media::Validator.valid?(post[:attributes]) }
+        .map { |post| Media::Creator.create(post) }
+        .size
     end
   end
 end

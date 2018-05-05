@@ -25,7 +25,7 @@ module Vk
         response = vk.board.getComments(prms)
         response.items.map do |post|
           user = response.profiles.find { |p| p.id == post.from_id }
-          return nil unless user # skip ads
+          return [] unless user # skip ads
           Vk::Unifier.unify(post, group, user)
         end.compact
       rescue => e

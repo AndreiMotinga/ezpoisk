@@ -57,7 +57,7 @@ Rails.application.configure do
     s3_protocol: :https,
     s3_region: "us-east-1",
     s3_credentials: {
-      bucket: "ezpoisk-dev",
+      bucket: "ezpoisk-dev-new",
       access_key_id: Rails.application.credentials.aws_key,
       secret_access_key: Rails.application.credentials.aws_secret
     },

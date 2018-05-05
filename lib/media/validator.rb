@@ -6,7 +6,6 @@ module Media
     attr_reader :attrs
 
     def self.valid?(attrs)
-      return true # TODO fix
       new(attrs).valid?
     end
 
@@ -37,19 +36,21 @@ module Media
 
     def valid?
       return if too_old?
-      return if source_imported?
+      # TODO FIX
+      # return if source_imported?
       # return if too_short?
-      return if vk_post_is_response?
+      # return if vk_post_is_response?
       # return if post_contains_bad_words?
-      return if vk_post_from_user_exists?
-      return if fb_post_from_user_exists?
+      # return if vk_post_from_user_exists?
+      # return if fb_post_from_user_exists?
       true
     end
 
     private
 
     def too_old?
-      attrs[:created_at] < 2.hour.ago
+      # TODO fix
+      attrs[:created_at] < 24.hour.ago
     end
 
     def source_imported?
