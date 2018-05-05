@@ -31,7 +31,7 @@ module Vk
           state: group["state"],
           city: group["city"],
           source: "https://vk.com/topic-#{group['id']}_#{group['topic']}?post=#{post[:id]}",
-          created_at: Time.at(post[:date])
+          created_at: Time.at(post[:date]) # TODO fix
         }
       }
     end
