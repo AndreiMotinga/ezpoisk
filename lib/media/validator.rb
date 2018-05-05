@@ -21,7 +21,6 @@ module Media
       "Смотри рекламу получай деньги! 10часов=250$",
       "ТОЛЬКО НЬЮ ЙОРК\nАНГЛИЙСКИЙ ЯЗЫК ДЛЯ ВСЕХ!!!!",
       "Rio - это",
-      "Хороший знакомый (американец) ищет комнату",
       "helpdetected.com",
       "Американский визовый центр",
       "almaz89.ilgamos.com",
@@ -36,25 +35,23 @@ module Media
 
     def valid?
       return if too_old?
-      # TODO FIX
-      # return if source_imported?
-      # return if too_short?
-      # return if vk_post_is_response?
-      # return if post_contains_bad_words?
-      # return if vk_post_from_user_exists?
-      # return if fb_post_from_user_exists?
+      return if source_imported?
+      return if too_short?
+      return if vk_post_is_response?
+      return if post_contains_bad_words?
+      return if same_text_was_added_recently?
+      return if post_from_user_exists?
       true
     end
 
     private
 
     def too_old?
-      # TODO fix
-      attrs[:created_at] < 24.hour.ago
+      attrs[:created_at] < 2.hour.ago
     end
 
     def source_imported?
-      attrs[:source] && Listing.active.where(source: attrs[:source]).any?
+      attrs[:source] && Listing.where(source: attrs[:source]).any?
     end
 
     def too_short?
@@ -69,16 +66,14 @@ module Media
       BAD_WORDS.any? { |word| text.include?(word) }
     end
 
-    def vk_post_from_user_exists?
-      vk = attrs[:vk]
-      return unless vk.present?
-      Listing.active.where(text: text, vk: vk).any?
+    def post_from_user_exists?
+      user = User.find_by(uid: attrs[:user][:uid])
+      return unless user.present?
+      Listing.where(text: text, user_id: user.id).any?
     end
 
-    def fb_post_from_user_exists?
-      fb = attrs[:fb]
-      return unless fb.present?
-      Listing.active.where(text: text, fb: fb).any?
+    def same_text_was_added_recently?
+      Listing.where("created_at > ?", 2.days.ago).where(text: text)
     end
 
     def text
