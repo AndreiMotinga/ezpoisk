@@ -170,7 +170,7 @@ class Api {
   }
 
   getListing(id) {
-    return axios.get(`/api/listings/${id}`, { headers: this.headers });
+    return axios.get(`/api/listings/${id}`);
   }
 
   saveListing(listing) {
