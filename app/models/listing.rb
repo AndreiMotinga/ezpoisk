@@ -20,6 +20,7 @@ class Listing < ApplicationRecord
   scope :user_id, ->(id) { where(user_id: id) }
   scope :desc, -> { order(created_at: :desc) }
   scope :active, -> { where.not(text: "").where.not(kind: ["", "spam"]) }
+  scope :fresh, -> { where("created_at > ?", "2018-02-18") }
 
   private
 
