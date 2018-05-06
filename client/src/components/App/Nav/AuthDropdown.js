@@ -46,11 +46,7 @@ class AuthDropdown extends React.Component {
 
     return (
       <div className="Nav_right_item">
-        {!isSignedIn && (
-          <Button color="inherit" onClick={this.handleClickOpen}>
-            Login
-          </Button>
-        )}
+        {!isSignedIn && <Button onClick={this.handleClickOpen}>Войти</Button>}
 
         {isSignedIn && (
           <div>
@@ -58,7 +54,6 @@ class AuthDropdown extends React.Component {
               aria-owns={open ? "profile" : null}
               aria-haspopup="true"
               onClick={this.handleMenu}
-              color="inherit"
             >
               <AccountCircle />
             </IconButton>
@@ -77,15 +72,15 @@ class AuthDropdown extends React.Component {
               onClose={this.handleClose}
             >
               <MenuItem path="/my-profile" onClick={this.handleLink}>
-                My Profile
+                Мой профаил
               </MenuItem>
               <MenuItem
                 path={`/profile/${currentUser.id}`}
                 onClick={this.handleLink}
               >
-                My Listings
+                Мои объявления
               </MenuItem>
-              <MenuItem onClick={this.handleSignOut}>Sign out</MenuItem>
+              <MenuItem onClick={this.handleSignOut}>Выйти</MenuItem>
             </Menu>
           </div>
         )}

@@ -25,7 +25,12 @@ const Nav = ({ classes, currentUser, openAuthDialog }) => {
     <AppBar color="inherit" position="sticky">
       <Toolbar className={classes.toolbar}>
         <Drawer currentUser={currentUser} />
-        <Button variant="raised" color="primary" onClick={sendToEdit}>
+        <Button
+          variant="raised"
+          color="primary"
+          className={classes.button}
+          onClick={sendToEdit}
+        >
           Создать
         </Button>
 
@@ -66,6 +71,9 @@ const styles = theme => ({
   },
   ez: {
     color: theme.palette.secondary.main
+  },
+  button: {
+    boxShadow: "none"
   }
 });
 
