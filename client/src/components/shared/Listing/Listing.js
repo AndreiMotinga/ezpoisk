@@ -12,6 +12,7 @@ import Avatar from "material-ui/Avatar";
 import IconButton from "material-ui/IconButton";
 import Typography from "material-ui/Typography";
 import ShareIcon from "material-ui-icons/Share";
+import Chip from 'material-ui/Chip';
 
 import Title from "./Title";
 import Subheader from "./Subheader";
@@ -70,6 +71,8 @@ const Listing = ({
             <ShareIcon />
           </IconButton>
         </Tooltip>
+        <Chip label={listing.attributes.kind} className={classes.chip} />
+        <Chip label={listing.attributes.state} className={classes.chip} />
       </CardActions>
     </Card>
   );
@@ -86,6 +89,9 @@ const styles = theme => ({
   },
   actions: {
     display: "flex"
+  },
+  chip: {
+    margin: 1,
   }
 });
 
