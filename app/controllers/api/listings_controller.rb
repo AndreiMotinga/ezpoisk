@@ -10,7 +10,7 @@ class Api::ListingsController < ApplicationController
 
   # GET /listings
   def index
-    @listings = apply_scopes(Listing.desc)
+    @listings = apply_scopes(Listing.active.desc)
                 .includes(:pictures, :user)
                 .page(params[:page]).per(params[:per_page])
     options = { meta: meta }
