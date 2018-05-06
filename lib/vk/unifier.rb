@@ -27,8 +27,8 @@ module Vk
         attributes: {
           active: true,
           text: text,
-          state: group["state"],
-          city: group["city"],
+          state: group["state"].parameterize,
+          city: group["city"].parameterize,
           source: "https://vk.com/topic-#{group['id']}_#{group['topic']}?post=#{post[:id]}",
           created_at: Time.at(post[:date])
         }

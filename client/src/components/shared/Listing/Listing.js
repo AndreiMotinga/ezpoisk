@@ -12,7 +12,7 @@ import Avatar from "material-ui/Avatar";
 import IconButton from "material-ui/IconButton";
 import Typography from "material-ui/Typography";
 import ShareIcon from "material-ui-icons/Share";
-import Chip from 'material-ui/Chip';
+import Chip from "material-ui/Chip";
 
 import Title from "./Title";
 import Subheader from "./Subheader";
@@ -91,7 +91,7 @@ const styles = theme => ({
     display: "flex"
   },
   chip: {
-    margin: 1,
+    margin: 1
   }
 });
 
