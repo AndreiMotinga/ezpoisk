@@ -1,13 +1,13 @@
 import React from "react";
-import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import history from "config/history";
 import { Link } from "react-router-dom";
 import { withStyles } from "material-ui/styles";
-import { connect } from "react-redux";
 import { openDialog } from "actions";
 import AppBar from "material-ui/AppBar";
 import Toolbar from "material-ui/Toolbar";
 import Button from "material-ui/Button";
-import history from "config/history";
+import Hidden from "material-ui/Hidden";
 
 import AuthDropdown from "./AuthDropdown";
 import Drawer from "./Drawer";
@@ -24,44 +24,52 @@ const Nav = ({ classes, currentUser, openAuthDialog }) => {
   return (
     <AppBar color="inherit" position="sticky">
       <Toolbar className={classes.toolbar}>
-        <Drawer currentUser={currentUser} />
-        <Button
-          variant="raised"
-          color="primary"
-          className={classes.button}
-          onClick={sendToEdit}
-        >
-          Создать
-        </Button>
+        <div className={classes.leftMenu}>
+          <Drawer currentUser={currentUser} />
+          <Hidden xsDown>
+            <Button
+              variant="raised"
+              color="primary"
+              className={classes.button}
+              onClick={sendToEdit}
+            >
+              Создать
+            </Button>
+          </Hidden>
+        </div>
 
         <div className={classes.logoContainer}>
           <Link to="/" className={classes.logo}>
             <span className={classes.ez}>ez</span>poisk
           </Link>
         </div>
-        <div className={classes.spacer} />
-        <AuthDropdown />
+
+        <div className={classes.rightMenu}>
+          <AuthDropdown />
+        </div>
       </Toolbar>
     </AppBar>
   );
 };
 
-Nav.propTypes = {
-  classes: PropTypes.object.isRequired,
-  currentUser: PropTypes.object,
-  openAuthDialog: PropTypes.func.isRequired
-};
-
 const styles = theme => ({
-  spacer: {
-    flex: 1
-  },
   toolbar: {
-    position: "relative"
+    display: "flex"
+  },
+  leftMenu: {
+    display: "flex",
+    flex: 1,
+    justifyContent: "flex-start"
+  },
+  button: {
+    boxShadow: "none",
+    maxHeight: 36,
+    alignSelf: "center"
   },
   logoContainer: {
-    position: "absolute",
-    left: "45%"
+    display: "flex",
+    flex: 1,
+    justifyContent: "center"
   },
   logo: {
     fontFamily: "'Josefin Sans', sans-serif;",
@@ -72,8 +80,10 @@ const styles = theme => ({
   ez: {
     color: theme.palette.secondary.main
   },
-  button: {
-    boxShadow: "none"
+  rightMenu: {
+    display: "flex",
+    flex: 1,
+    justifyContent: "flex-end"
   }
 });
 

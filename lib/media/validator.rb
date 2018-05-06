@@ -33,13 +33,12 @@ module Media
     ].map(&:freeze).freeze
 
     def valid?
-      return if too_old?
+      # return if too_old?
       return if source_imported?
       return if too_short?
       return if vk_post_is_response?
       return if post_contains_bad_words?
       return if same_text_was_added_recently?
-      return if post_from_user_exists?
       true
     end
 
@@ -65,14 +64,8 @@ module Media
       BAD_WORDS.any? { |word| text.include?(word) }
     end
 
-    def post_from_user_exists?
-      user = User.find_by(uid: attrs[:user][:uid])
-      return unless user.present?
-      Listing.where(text: text, user_id: user.id).any?
-    end
-
     def same_text_was_added_recently?
-      Listing.where("created_at > ?", 2.days.ago).where(text: text)
+      Listing.where("created_at > ?", 2.days.ago).exists?(text: text)
     end
 
     def text

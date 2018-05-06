@@ -45,7 +45,7 @@ class AuthDropdown extends React.Component {
     const { isSignedIn, currentUser } = this.props;
 
     return (
-      <div className="Nav_right_item">
+      <div>
         {!isSignedIn && <Button onClick={this.handleClickOpen}>Войти</Button>}
 
         {isSignedIn && (

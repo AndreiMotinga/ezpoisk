@@ -22,13 +22,12 @@ module Media
     private
 
     def load(group)
-      loader.load(group)
-        .flatten
-        .compact
-        .uniq { |post| post[:attributes][:text] }
-        .select { |post| Media::Validator.valid?(post[:attributes]) }
-        .map { |post| Media::Creator.create(post) }
-        .size
+      posts = loader.load(group)
+                    .flatten
+                    .compact
+                    .uniq { |post| post[:attributes][:text] }
+      valid = posts.select { |post| Media::Validator.valid?(post[:attributes]) }
+      valid.map { |post| Media::Creator.create(post) }.size
     end
   end
 end
