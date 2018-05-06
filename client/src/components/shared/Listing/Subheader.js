@@ -2,14 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { withStyles } from "material-ui/styles";
 import Typography from "material-ui/Typography";
-import Moment from "react-moment";
 
 const Subheader = ({ classes, listing }) => {
   return (
     <Link to={`/listings/${listing.id}`} className={classes.subheader}>
-      <Typography>
-        <Moment format="MMM D YYYY HH:MM">{listing.updated_at}</Moment>
-      </Typography>
+      <Typography>{listing.attributes.created_at}</Typography>
     </Link>
   );
 };
