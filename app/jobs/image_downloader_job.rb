@@ -5,7 +5,6 @@ class ImageDownloaderJob
   include Sidekiq::Worker
 
   def perform(id)
-    # return if Rails.env.development?
     picture = Picture.find_by(id: id)
     return unless picture
     picture.image_remote_url = picture.source

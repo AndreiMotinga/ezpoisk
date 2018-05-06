@@ -6,11 +6,10 @@ class MeetupImporterJob
   sidekiq_options queue: "critical"
 
   def perform
-    return unless Rails.env.production?
     Media::Importer.import("public/groups/vk/meetup.yaml", Vk::GroupLoader)
     Media::Importer.import("public/groups/vk/parcel.yaml", Vk::GroupLoader)
-
     # Media::Importer.import("public/groups/fb/news.yaml", Fb::GroupLoader)
+    Ez.ping("Meetup import done")
   end
 end
 

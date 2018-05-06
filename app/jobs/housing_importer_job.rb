@@ -1,15 +1,14 @@
 # frozen_string_literal: true
 
-# imports real estate from sm
+# imports housing from sm
 class HousingImporterJob
   include Sidekiq::Worker
   sidekiq_options queue: "critical"
 
   def perform
-    return unless Rails.env.production?
     Media::Importer.import("public/groups/vk/housing.yaml", Vk::GroupLoader)
     # Media::Importer.import("public/groups/fb/housing.yaml", Fb::GroupLoader)
-    Ez.ping("Real estate import done")
+    Ez.ping("Housing import done")
   end
 end
 

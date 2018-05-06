@@ -6,7 +6,6 @@ class JobsImporterJob
   sidekiq_options queue: "critical"
 
   def perform
-    return unless Rails.env.production?
     Media::Importer.import("public/groups/vk/jobs.yaml", Vk::GroupLoader)
     # Media::Importer.import("public/groups/fb/jobs.yaml", Fb::GroupLoader)
     Ez.ping("Jobs import done")
