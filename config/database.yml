@@ -1,7 +1,9 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  # 1(web_concurrency) * 5(threads) + 13(sidekiq concurrency) + 1(rails console) <= 20 (pg connections limit)
+  pool: <%= ENV.fetch("DB_POOL") { 13 } %>
+  timeout: 10000
 
 development:
   <<: *default
