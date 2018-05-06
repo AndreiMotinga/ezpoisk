@@ -1,4 +1,4 @@
-KINDS = %w(housing job sale service meetup parcel misc)
+KINDS = %w(housing job sale service meetup parcel misc spam)
 
 VK_GROUPS = HashWithIndifferentAccess.new(
   "new-york": {
