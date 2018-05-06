@@ -6,7 +6,7 @@ class AvatarDownloaderJob
   include Sidekiq::Worker
 
   def perform(id)
-    # return if Rails.env.development?
+    return unless Rails.env.production?
     user = User.find_by(id: id)
     return unless user
     user.avatar_remote_url = user.avatar_source

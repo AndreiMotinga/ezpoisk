@@ -25,7 +25,6 @@ module Vk
           name: "#{user.first_name} #{user.last_name}"
         },
         attributes: {
-          kind: kind,
           active: true,
           text: text,
           state: group["state"],
@@ -44,10 +43,6 @@ module Vk
 
     def text
       Media::Text.clean(post[:text])
-    end
-
-    def kind
-      Classifier.classify(text)
     end
   end
 end

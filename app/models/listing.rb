@@ -11,11 +11,19 @@ class Listing < ApplicationRecord
                     }
                   }
 
+  after_create :classify
+
   scope :kind, ->(kind) { where(kind: kind) }
   scope :state, ->(state) { where(state: state) }
   scope :city, ->(city) { where(city: city) }
   scope :search, ->(term) { pg_search(term) }
   scope :user_id, ->(id) { where(user_id: id) }
   scope :desc, -> { order(created_at: :desc) }
-  scope :active, -> { where.not(text: "").where.not(kind: "spam") }
+  scope :active, -> { where.not(text: "").where.not(kind: ["", "spam"]) }
+
+  private
+
+  def classify
+    ClassifierJob.perform_async(id)
+  end
 end
