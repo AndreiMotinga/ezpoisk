@@ -16,6 +16,7 @@ import ShareIcon from "material-ui-icons/Share";
 import Title from "./Title";
 import Subheader from "./Subheader";
 import Action from "./Action";
+import { processText } from "utils";
 
 const Listing = ({
   classes,
@@ -60,7 +61,7 @@ const Listing = ({
       )}
 
       <CardContent>
-        <Typography>{listing.attributes.text}</Typography>
+        <Typography>{processText(listing.attributes.text)}</Typography>
       </CardContent>
 
       <CardActions className={classes.actions} disableActionSpacing>
