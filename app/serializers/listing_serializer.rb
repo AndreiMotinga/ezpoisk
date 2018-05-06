@@ -1,6 +1,5 @@
 class ListingSerializer
   include FastJsonapi::ObjectSerializer
-  # TODO: add indexes
   attributes :id,
              :active,
              :text,
