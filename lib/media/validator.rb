@@ -45,7 +45,7 @@ module Media
     private
 
     def too_old?
-      attrs[:created_at] < 2.hour.ago
+      attrs[:created_at] < 24.hour.ago
     end
 
     def source_imported?
