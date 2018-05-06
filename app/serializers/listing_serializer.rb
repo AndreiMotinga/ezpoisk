@@ -33,4 +33,17 @@ class ListingSerializer
       uid: user.uid
     }
   end
+
+  attribute :display_kind do |obj|
+    case obj.kind
+    when "housing" then "недвижимость"
+    when "job" then "работа"
+    when "sale" then "продажи"
+    when "service" then "услуги"
+    when "parcel" then "посылки"
+    when "meetup" then "знакомства"
+    else
+      obj.kind
+    end
+  end
 end

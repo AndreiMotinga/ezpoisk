@@ -71,7 +71,10 @@ const Listing = ({
             <ShareIcon />
           </IconButton>
         </Tooltip>
-        <Chip label={listing.attributes.kind} className={classes.chip} />
+        <Chip
+          label={listing.attributes.display_kind}
+          className={classes.chip}
+        />
         <Chip label={listing.attributes.state} className={classes.chip} />
       </CardActions>
     </Card>
