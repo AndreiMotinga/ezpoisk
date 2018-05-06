@@ -31,7 +31,7 @@ const Nav = ({ classes, currentUser, openAuthDialog }) => {
 
         <div className={classes.logoContainer}>
           <Link to="/" className={classes.logo}>
-            ezpoisk
+            <span className={classes.ez}>ez</span>poisk
           </Link>
         </div>
         <div className={classes.spacer} />
@@ -47,7 +47,7 @@ Nav.propTypes = {
   openAuthDialog: PropTypes.func.isRequired
 };
 
-const styles = {
+const styles = theme => ({
   spacer: {
     flex: 1
   },
@@ -61,9 +61,13 @@ const styles = {
   logo: {
     fontFamily: "'Josefin Sans', sans-serif;",
     textDecoration: "none",
-    fontSize: 28
+    fontSize: 28,
+    color: theme.palette.primary.main
+  },
+  ez: {
+    color: theme.palette.secondary.main
   }
-};
+});
 
 const styledNav = withStyles(styles)(Nav);
 
