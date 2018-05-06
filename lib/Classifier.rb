@@ -18,7 +18,7 @@ class Classifier
   end
 
   def classify
-    classifier.classify text
+    classifier.classify(text).downcase
   end
 
   def train
