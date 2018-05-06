@@ -29,7 +29,6 @@ module Media
       "Продаю SSN",
       "https://crp.center",
       "https://vk.com/englishdiscussion",
-      "АРЕНДА АВТО! ЛЕТНЯЯ АКЦИЯ!",
       "hiringman.com"
     ].map(&:freeze).freeze
 
@@ -47,7 +46,7 @@ module Media
     private
 
     def too_old?
-      attrs[:created_at] < 24.hour.ago # todo fix
+      attrs[:created_at] < 2.hour.ago
     end
 
     def source_imported?
