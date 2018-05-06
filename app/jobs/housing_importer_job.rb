@@ -7,8 +7,8 @@ class HousingImporterJob
 
   def perform
     return unless Rails.env.production?
-    Media::Importer.import("public/groups/vk/re.yaml", Vk::GroupLoader)
-    # Media::Importer.import("public/groups/fb/re.yaml", Fb::GroupLoader)
+    Media::Importer.import("public/groups/vk/housing.yaml", Vk::GroupLoader)
+    # Media::Importer.import("public/groups/fb/housing.yaml", Fb::GroupLoader)
     Ez.ping("Real estate import done")
   end
 end
