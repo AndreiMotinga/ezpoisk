@@ -49,6 +49,14 @@ class NavDrawer extends React.Component {
 
                   <ListItem button>
                     <ListItemText
+                      primary="Создать Объявление"
+                      data-path="/listings/new/edit"
+                      onClick={redirect}
+                    />
+                  </ListItem>
+
+                  <ListItem button>
+                    <ListItemText
                       primary="Мой профаил"
                       data-path="/my-profile"
                       onClick={redirect}
@@ -66,6 +74,15 @@ class NavDrawer extends React.Component {
                 </List>
               )}
               <List component="nav">
+                {!currentUser && (
+                  <ListItem button>
+                    <ListItemText
+                      primary="Создать Объявление"
+                      data-path="/listings/new/edit"
+                      onClick={redirect}
+                    />
+                  </ListItem>
+                )}
                 <ListItem button>
                   <ListItemText
                     primary="FAQ"
