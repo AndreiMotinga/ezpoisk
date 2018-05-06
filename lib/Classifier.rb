@@ -12,7 +12,9 @@ class Classifier
     redis_url = ENV.fetch("REDISCLOUD_URL") { "redis://localhost:6379/1" }
     redis_backend = ClassifierReborn::BayesRedisBackend.new url: redis_url
     @text = text
-    @classifier = ClassifierReborn::Bayes.new KINDS, backend: redis_backend
+    @classifier = ClassifierReborn::Bayes.new KINDS,
+                                              backend: redis_backend,
+                                              auto_categorize: true
   end
 
   def classify
