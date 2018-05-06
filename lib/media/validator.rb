@@ -33,7 +33,7 @@ module Media
     ].map(&:freeze).freeze
 
     def valid?
-      # return if too_old?
+      return if too_old?
       return if source_imported?
       return if too_short?
       return if vk_post_is_response?
