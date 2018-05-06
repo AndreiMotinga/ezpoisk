@@ -25,7 +25,7 @@ const styles = {
   avatarContainer: {
     position: "absolute",
     bottom: "-50px",
-    left: "45%",
+    left: "calc(50% - 50px)",
     height: 100,
     maxWidth: 100,
     borderRadius: "50%"
