@@ -25,13 +25,13 @@ module Vk
           name: "#{user.first_name} #{user.last_name}"
         },
         attributes: {
-          kind: group["kind"],
+          kind: kind,
           active: true,
           text: text,
           state: group["state"],
           city: group["city"],
           source: "https://vk.com/topic-#{group['id']}_#{group['topic']}?post=#{post[:id]}",
-          created_at: Time.at(post[:date]) # TODO fix
+          created_at: Time.at(post[:date])
         }
       }
     end
@@ -44,6 +44,10 @@ module Vk
 
     def text
       Media::Text.clean(post[:text])
+    end
+
+    def kind
+      Classifier.classify(text)
     end
   end
 end
