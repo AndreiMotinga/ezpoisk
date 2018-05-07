@@ -12,6 +12,7 @@ require "action_view/railtie"
 require "action_cable/engine"
 # require "sprockets/railtie"
 # require "rails/test_unit/railtie"
+require_relative "admin_auth"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -50,5 +51,12 @@ module Ezpoisk
     config.middleware.use ActionDispatch::Cookies
     config.middleware.use ActionDispatch::Session::CookieStore, config.session_options
     config.middleware.use ::Rack::MethodOverride
+
+    config.middleware.use AdminAuth do |user, pass|
+      [user, pass] == [
+        ENV.fetch("ADMIN_USER") { "foo" },
+        ENV.fetch("ADMIN_PASS") { "bar" }
+      ]
+    end
   end
 end
