@@ -40,29 +40,29 @@ const Form = ({
             />
           </Grid>
 
-          <Grid item xs={12} sm={6}>
-            <TextField
-              fullWidth
-              margin="normal"
-              value={listing.email}
-              name="email"
-              type="email"
-              onChange={handleTargetChange}
-              label="Email"
-            />
-          </Grid>
-
-          <Grid item xs={12} sm={6}>
-            <TextField
-              fullWidth
-              margin="normal"
-              type="tel"
-              name="phone"
-              value={listing.phone || ""}
-              onChange={handleTargetChange}
-              label="Телефон"
-            />
-          </Grid>
+          {/* <Grid item xs={12} sm={6}> */}
+          {/*   <TextField */}
+          {/*     fullWidth */}
+          {/*     margin="normal" */}
+          {/*     value={listing.email} */}
+          {/*     name="email" */}
+          {/*     type="email" */}
+          {/*     onChange={handleTargetChange} */}
+          {/*     label="Email" */}
+          {/*   /> */}
+          {/* </Grid> */}
+          {/*  */}
+          {/* <Grid item xs={12} sm={6}> */}
+          {/*   <TextField */}
+          {/*     fullWidth */}
+          {/*     margin="normal" */}
+          {/*     type="tel" */}
+          {/*     name="phone" */}
+          {/*     value={listing.phone || ""} */}
+          {/*     onChange={handleTargetChange} */}
+          {/*     label="Телефон" */}
+          {/*   /> */}
+          {/* </Grid> */}
 
           <Grid item xs={12} sm={4}>
             <Input
