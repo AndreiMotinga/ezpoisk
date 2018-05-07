@@ -6,14 +6,14 @@
 # you're free to overwrite the RESTful controller actions.
 module Admin
   class ApplicationController < Administrate::ApplicationController
-    before_action :authenticate_admin
+    # before_action :authenticate_admin
 
-    def authenticate_admin
-      return unless Rails.env.production?
-      authenticate_or_request_with_http_basic do |username, password|
-        username == Rails.application.credentials.admin_username &&
-          password == Rails.application.credentials.admin_password
-      end
-    end
+    # def authenticate_admin
+    #   return unless Rails.env.production?
+    #   authenticate_or_request_with_http_basic do |username, password|
+    #     username == Rails.application.credentials.admin_username &&
+    #       password == Rails.application.credentials.admin_password
+    #   end
+    # end
   end
 end
