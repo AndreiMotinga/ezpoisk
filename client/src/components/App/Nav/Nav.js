@@ -74,7 +74,7 @@ const styles = theme => ({
   logo: {
     fontFamily: "'Josefin Sans', sans-serif;",
     textDecoration: "none",
-    fontSize: 28,
+    fontSize: 32,
     color: theme.palette.primary.main
   },
   ez: {
