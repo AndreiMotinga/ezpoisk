@@ -14,6 +14,7 @@ gem "pg_search"
 gem "puma", "~> 3.11"
 gem "rack-cors"
 gem "rails", "~> 5.2.0"
+gem "rack-canonical-host"
 
 gem "classifier-reborn"
 gem "koala", "~> 2.2"
