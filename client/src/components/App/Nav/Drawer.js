@@ -42,7 +42,9 @@ class NavDrawer extends React.Component {
               {currentUser && (
                 <List component="nav">
                   <ListItem>
-                    <ListItemText primary={currentUser.name || ""} />
+                    <ListItemText
+                      primary={currentUser.name || currentUser.email}
+                    />
                   </ListItem>
 
                   <Divider />
