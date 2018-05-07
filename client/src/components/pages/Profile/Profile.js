@@ -17,10 +17,10 @@ class Profile extends React.Component {
   componentDidMount = () => {
     const id = this.props.match.params.id;
     const params = { user_id: id };
-    Api.getListings(params).then(listings => {
+    Api.getListings(params).then(data => {
       this.setState({
         isLoading: false,
-        listings
+        listings: data.data
       });
     });
   };

@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "domurl": "^2.1.8",
     "history": "^4.7.2",
     "material-ui": "next",
     "material-ui-icons": "^1.0.0-beta.36",

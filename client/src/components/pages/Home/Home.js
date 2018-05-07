@@ -22,7 +22,8 @@ const Home = ({
   handleSearch,
   removeListing,
   loadMore,
-  isLoadingMore
+  isLoadingMore,
+  isMore
 }) => {
   return (
     <Grid container>
@@ -107,9 +108,10 @@ const Home = ({
           ))}
       </Grid>
 
-      {Boolean(listings.length) && (
-        <LoadMoreButton isLoadingMore={isLoadingMore} loadMore={loadMore} />
-      )}
+      {Boolean(listings.length) &&
+        isMore && (
+          <LoadMoreButton isLoadingMore={isLoadingMore} loadMore={loadMore} />
+        )}
     </Grid>
   );
 };

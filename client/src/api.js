@@ -162,7 +162,7 @@ class Api {
   }
 
   getListings(params) {
-    return axios.get("/api/listings", { params }).then(res => res.data.data);
+    return axios.get("/api/listings", { params }).then(res => res.data);
   }
 
   editListing(id) {

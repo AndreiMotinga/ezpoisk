@@ -21,7 +21,6 @@ class ListingContainer extends React.Component {
 
   toggleGallery = () => {
     const open = !this.state.isGalleryOpen;
-    console.log("new open", open);
     this.setState({ isGalleryOpen: open });
   };
 

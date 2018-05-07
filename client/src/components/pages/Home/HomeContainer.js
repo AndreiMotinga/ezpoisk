@@ -2,12 +2,14 @@ import React from "react";
 import Api from "api";
 import kinds from "config/kinds";
 import Home from "./Home";
+import { syncParams, extractParams } from "utils";
 
 class HomeContainer extends React.Component {
   state = {
     classes: this.props.classes,
     isLoading: true,
     isLoadingMore: false,
+    isMore: null,
 
     listings: [],
     states: [],
@@ -25,20 +27,39 @@ class HomeContainer extends React.Component {
   };
 
   componentDidMount() {
-    this.fetchListings();
-    this.fetchStates();
-    this.fetchCities();
+    const params = extractParams();
+    this.setState(
+      {
+        params: {
+          kind: params.kind || "",
+          state: params.state || "",
+          city: params.city || "",
+          search: params.search || "",
+          page: params.page || 1
+        }
+      },
+      () => {
+        this.fetchListings();
+        this.fetchStates();
+        this.fetchCities();
+      }
+    );
   }
 
   fetchListings = (append = false) => {
-    this.setState({ isLoading: true });
-    Api.getListings(this.state.params).then(listings => {
+    if (!append) {
+      this.setState({ isLoading: true });
+    }
+
+    Api.getListings(this.state.params).then(data => {
+      const listings = data.data;
       let newListings;
       newListings = append ? this.state.listings.concat(listings) : listings;
       this.setState({
         listings: newListings,
         isLoading: false,
-        isLoadingMore: false
+        isLoadingMore: false,
+        isMore: !data.meta.meta.is_last_page
       });
     });
   };
@@ -63,6 +84,7 @@ class HomeContainer extends React.Component {
   };
 
   handleChange = name => value => {
+    syncParams(name, value);
     const params = this.state.params;
     params[name] = value;
     this.setState({ params });
@@ -70,6 +92,8 @@ class HomeContainer extends React.Component {
   };
 
   handleStateChange = value => {
+    syncParams("state", value);
+
     const params = this.state.params;
     params.state = value;
     this.setState({ params });
@@ -78,6 +102,8 @@ class HomeContainer extends React.Component {
   };
 
   handleSearch = e => {
+    syncParams("search", e.target.value);
+
     const params = this.state.params;
     params.search = e.target.value;
     this.setState({ params });
@@ -96,7 +122,10 @@ class HomeContainer extends React.Component {
 
   loadMore = () => {
     const params = this.state.params;
-    params.page += 1;
+    const newPage = parseInt(params.page, 10) + 1;
+    params.page = newPage;
+    syncParams("page", newPage);
+
     this.setState({ params, isLoadingMore: true }, () => {
       this.fetchListings(true);
     });
