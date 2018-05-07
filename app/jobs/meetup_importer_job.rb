@@ -14,5 +14,5 @@ class MeetupImporterJob
 end
 
 Sidekiq::Cron::Job.create(name: "MeetupImporterJob - every 2 hours on 15th min",
-                          cron: "15 */2 * * *",
+                          cron: "10 */2 * * *",
                           class: "MeetupImporterJob")
