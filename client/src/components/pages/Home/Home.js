@@ -24,10 +24,6 @@ const Home = ({
   loadMore,
   isLoadingMore
 }) => {
-  if (isLoading) {
-    return <CenteredProgress />;
-  }
-
   return (
     <Grid container>
       <Grid item xs={12} className={classes.filtersContainer}>
@@ -99,14 +95,16 @@ const Home = ({
       </Grid>
 
       <Grid item xs={12}>
-        {listings.length === 0 && <NothingHere />}
-        {listings.map(listing => (
-          <Listing
-            key={listing.id}
-            listing={listing}
-            onRemove={removeListing}
-          />
-        ))}
+        {isLoading && <CenteredProgress />}
+        {!isLoading && listings.length === 0 && <NothingHere />}
+        {!isLoading &&
+          listings.map(listing => (
+            <Listing
+              key={listing.id}
+              listing={listing}
+              onRemove={removeListing}
+            />
+          ))}
       </Grid>
 
       {Boolean(listings.length) && (

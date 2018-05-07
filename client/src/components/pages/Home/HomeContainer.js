@@ -31,6 +31,7 @@ class HomeContainer extends React.Component {
   }
 
   fetchListings = (append = false) => {
+    this.setState({ isLoading: true });
     Api.getListings(this.state.params).then(listings => {
       let newListings;
       newListings = append ? this.state.listings.concat(listings) : listings;
