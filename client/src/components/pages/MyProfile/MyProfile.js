@@ -44,7 +44,7 @@ class MyProfile extends React.Component {
           <form onSubmit={this.handleSubmit}>
             <TextField
               fullWidth
-              value={this.state.user.name}
+              value={this.state.user.name || ""}
               name="name"
               label="Ваше имя"
               onChange={this.handleTargetChange}

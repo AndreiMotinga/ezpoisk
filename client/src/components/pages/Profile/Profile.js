@@ -32,7 +32,6 @@ class Profile extends React.Component {
 
   render() {
     const { listings, isLoading } = this.state;
-    const { classes } = this.props;
 
     let image;
     if (!isLoading) {
