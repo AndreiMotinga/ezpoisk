@@ -7,3 +7,5 @@
 * allow user udpate password
 * When have > 100 spam messages, train classifier
 * add exporters to all pages that get indexed
+* ask friends to take a look
+* improve mobile view test on vairous devises
