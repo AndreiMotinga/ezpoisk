@@ -10,6 +10,8 @@ import Card, {
 } from "material-ui/Card";
 import Avatar from "material-ui/Avatar";
 import IconButton from "material-ui/IconButton";
+import DeleteIcon from "material-ui-icons/Delete";
+import CloseIcon from "material-ui-icons/Close";
 import Typography from "material-ui/Typography";
 import ShareIcon from "material-ui-icons/Share";
 import Chip from "material-ui/Chip";
@@ -18,6 +20,7 @@ import Title from "./Title";
 import Subheader from "./Subheader";
 import Action from "./Action";
 import { processText } from "utils";
+import Api from "api";
 
 const Listing = ({
   classes,
@@ -42,6 +45,16 @@ const Listing = ({
       <Avatar alt={user.name} src={user.avatar} className={classes.avatar} />
     </Link>
   );
+
+  const deleteItem = e => {
+    const id = e.currentTarget.getAttribute("data-id");
+    console.log("removing", id);
+  };
+
+  const markAsSpam = e => {
+    const id = e.currentTarget.getAttribute("data-id");
+    console.log("spam is", id);
+  };
 
   return (
     <Card className={classes.listing}>
@@ -71,6 +84,21 @@ const Listing = ({
             <ShareIcon />
           </IconButton>
         </Tooltip>
+        {currentUser &&
+          currentUser.admin && (
+            <div>
+              <Tooltip id="tooltip-top" title="Delete" placement="top">
+                <IconButton>
+                  <DeleteIcon onClick={deleteItem} data-id={listing.id} />
+                </IconButton>
+              </Tooltip>
+              <Tooltip id="tooltip-top" title="Mark as spam" placement="top">
+                <IconButton>
+                  <CloseIcon onClick={markAsSpam} data-id={listing.id} />
+                </IconButton>
+              </Tooltip>
+            </div>
+          )}
         <Chip
           label={listing.attributes.display_kind}
           className={classes.chip}

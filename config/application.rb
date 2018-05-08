@@ -52,7 +52,7 @@ module Ezpoisk
     config.middleware.use ActionDispatch::Session::CookieStore, config.session_options
     config.middleware.use ::Rack::MethodOverride
 
-    config.middleware.use Rack::CanonicalHost, ENV.fetch("APPLICATION_HOST")
+    config.middleware.use Rack::CanonicalHost, ENV.fetch("APPLICATION_HOST") { "localhost:3000" }
 
     config.middleware.use AdminAuth do |user, pass|
       [user, pass] == [
