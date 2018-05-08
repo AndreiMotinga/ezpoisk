@@ -46,11 +46,6 @@ const Listing = ({
     </Link>
   );
 
-  const deleteItem = e => {
-    const id = e.currentTarget.getAttribute("data-id");
-    console.log("removing", id);
-  };
-
   const markAsSpam = e => {
     const id = e.currentTarget.getAttribute("data-id");
     console.log("spam is", id);
@@ -88,8 +83,11 @@ const Listing = ({
           currentUser.admin && (
             <div>
               <Tooltip id="tooltip-top" title="Delete" placement="top">
-                <IconButton>
-                  <DeleteIcon onClick={deleteItem} data-id={listing.id} />
+                <IconButton
+                  data-id={listing.attributes.id}
+                  onClick={handleDestroy}
+                >
+                  <DeleteIcon />
                 </IconButton>
               </Tooltip>
               <Tooltip id="tooltip-top" title="Mark as spam" placement="top">

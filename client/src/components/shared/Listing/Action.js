@@ -58,7 +58,7 @@ class Action extends React.Component {
                 >
                   Редактировать
                 </MenuItem>
-                <MenuItem id={listing.id} onClick={handleDestroy}>
+                <MenuItem data-id={listing.id} onClick={handleDestroy}>
                   Удалить
                 </MenuItem>
               </div>

@@ -13,7 +13,7 @@ class ListingContainer extends React.Component {
   };
 
   handleDestroy = event => {
-    const id = event.target.id;
+    const id = event.currentTarget.getAttribute("data-id");
     Api.removeListing(id).then(() => {
       this.props.onRemove(id);
     });
