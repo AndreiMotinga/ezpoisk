@@ -186,6 +186,11 @@ class Api {
     return axios.delete(`/api/listings/${id}`, { headers });
   }
 
+  markAsSpam(id) {
+    const headers = this.headers;
+    return axios.put(`/api/listings/${id}/mark_as_spam`, { headers });
+  }
+
   getStates() {
     return axios.get(`/api/states/`).then(res => res.data);
   }

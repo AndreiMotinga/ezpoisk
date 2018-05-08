@@ -20,14 +20,14 @@ import Title from "./Title";
 import Subheader from "./Subheader";
 import Action from "./Action";
 import { processText } from "utils";
-import Api from "api";
 
 const Listing = ({
   classes,
   currentUser,
   listing,
   toggleGallery,
-  handleDestroy
+  handleDestroy,
+  markAsSpam
 }) => {
   const pic = listing.attributes.main_image_url;
   const title = <Title listing={listing} />;
@@ -45,11 +45,6 @@ const Listing = ({
       <Avatar alt={user.name} src={user.avatar} className={classes.avatar} />
     </Link>
   );
-
-  const markAsSpam = e => {
-    const id = e.currentTarget.getAttribute("data-id");
-    console.log("spam is", id);
-  };
 
   return (
     <Card className={classes.listing}>
@@ -91,8 +86,11 @@ const Listing = ({
                 </IconButton>
               </Tooltip>
               <Tooltip id="tooltip-top" title="Mark as spam" placement="top">
-                <IconButton>
-                  <CloseIcon onClick={markAsSpam} data-id={listing.id} />
+                <IconButton
+                  data-id={listing.attributes.id}
+                  onClick={markAsSpam}
+                >
+                  <CloseIcon />
                 </IconButton>
               </Tooltip>
             </div>

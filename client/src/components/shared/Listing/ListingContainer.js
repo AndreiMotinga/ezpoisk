@@ -19,6 +19,13 @@ class ListingContainer extends React.Component {
     });
   };
 
+  markAsSpam = event => {
+    const id = event.currentTarget.getAttribute("data-id");
+    Api.markAsSpam(id).then(() => {
+      this.props.onRemove(id);
+    });
+  };
+
   toggleGallery = () => {
     const open = !this.state.isGalleryOpen;
     this.setState({ isGalleryOpen: open });
@@ -31,6 +38,7 @@ class ListingContainer extends React.Component {
       <div>
         <Listing
           handleDestroy={this.handleDestroy}
+          markAsSpam={this.markAsSpam}
           toggleGallery={this.toggleGallery}
           {...this.state}
         />

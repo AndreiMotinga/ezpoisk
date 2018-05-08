@@ -1,6 +1,6 @@
 class Api::ListingsController < ApplicationController
-  before_action :authenticate_api_user!, only: [:edit, :update, :destroy]
-  before_action :set_listing, only: [:update, :destroy]
+  before_action :authenticate_api_user!, only: [:edit, :update, :destroy, :mark_as_spam]
+  before_action :set_listing, only: [:update, :destroy, :mark_as_spam]
 
   has_scope :kind
   has_scope :state
@@ -59,6 +59,10 @@ class Api::ListingsController < ApplicationController
   # DELETE /listings/1
   def destroy
     @listing.destroy
+  end
+
+  def mark_as_spam
+    @listing.update_attribute(:kind, "spam")
   end
 
   private
