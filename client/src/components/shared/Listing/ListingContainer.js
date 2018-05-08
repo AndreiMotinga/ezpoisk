@@ -20,9 +20,10 @@ class ListingContainer extends React.Component {
   };
 
   markAsSpam = event => {
-    const id = event.currentTarget.getAttribute("data-id");
-    Api.markAsSpam(id).then(() => {
-      this.props.onRemove(id);
+    const attrs = this.state.listing.attributes;
+    attrs.kind = "spam";
+    Api.saveListing(attrs).then(res => {
+      this.props.onRemove(res.data.id.toString());
     });
   };
 
