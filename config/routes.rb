@@ -26,8 +26,5 @@ Rails.application.routes.draw do
   end
 
   root to: "application#index"
-
-  match "/*path", to: "application#index", via: :all, constraints: ->(request) do
-    !request.xhr? && request.format.html?
-  end
+  get "/*path", to: "application#index"
 end
