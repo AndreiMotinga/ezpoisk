@@ -194,16 +194,6 @@
   kind: job
   state: New York
   city: New York
-- id: 52035
-  topic: 34208401
-  kind: job
-  state: Illinois
-  city: Chicago
-- id: 52035
-  topic: 30557092
-  kind: job
-  state: Illinois
-  city: Chicago
 - id: 18130368
   topic: 34301382
   kind: job
