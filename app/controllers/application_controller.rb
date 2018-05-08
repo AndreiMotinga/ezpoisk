@@ -8,7 +8,7 @@ class ApplicationController < ActionController::API
   before_action :skip_cookies
 
   def index
-    render file: "public/index.html"
+    render html: Rails.root.join("public/index.html").read.html_safe
   end
 
   protected
