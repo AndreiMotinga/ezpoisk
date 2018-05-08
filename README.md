@@ -1,7 +1,5 @@
 # TODO
 
-* BUG: show page reload doesn't work
-
 * add page with list of all groups and
 * let user share listing
 * only show loading after 500ms if needed ( imporve UX )
