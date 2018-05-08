@@ -35,11 +35,11 @@ class Api {
    * server response with new token after each request.
    * call this with recevied headers to save uid, client and token.
    */
-  cycleHeaders(headers) {
-    // update headers on Api itslef
-    delete headers["date"];
-    delete headers["connection"];
-    delete headers["transfer-encoding"];
+  cycleHeaders(recevied) {
+    const headers = {};
+    headers["access-token"] = recevied["access-token"];
+    headers["client"] = recevied["client"];
+    headers["uid"] = recevied["uid"];
 
     this.headers = headers;
 
