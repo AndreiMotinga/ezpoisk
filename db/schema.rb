@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_06_164523) do
+ActiveRecord::Schema.define(version: 2018_05_09_225311) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "answers", force: :cascade do |t|
+    t.bigint "question_id"
+    t.text "text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["question_id"], name: "index_answers_on_question_id"
+  end
 
   create_table "listings", force: :cascade do |t|
     t.bigint "user_id"
@@ -45,6 +53,18 @@ ActiveRecord::Schema.define(version: 2018_05_06_164523) do
     t.datetime "image_updated_at"
     t.string "source"
     t.index ["listing_id"], name: "index_pictures_on_listing_id"
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.string "title"
+    t.string "slug"
+    t.text "text"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["slug"], name: "index_questions_on_slug"
+    t.index ["title"], name: "index_questions_on_title"
+    t.index ["user_id"], name: "index_questions_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -83,6 +103,8 @@ ActiveRecord::Schema.define(version: 2018_05_06_164523) do
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
+  add_foreign_key "answers", "questions"
   add_foreign_key "listings", "users"
   add_foreign_key "pictures", "listings"
+  add_foreign_key "questions", "users"
 end
