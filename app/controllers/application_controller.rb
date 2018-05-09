@@ -8,7 +8,7 @@ class ApplicationController < ActionController::API
   before_action :skip_cookies
 
   def index
-    render html: Rails.root.join("public/index.html").read.html_safe
+    render json: { name: "ez apps server" }, status: 200
   end
 
   protected
