@@ -1,5 +1,6 @@
 class Api::QuestionsController < ApplicationController
   before_action :set_question, only: [:show, :update, :destroy]
+  before_action :authenticate_api_user!, only: [:create, :update, :destroy]
   has_scope :user
 
   # GET /questions
@@ -11,17 +12,26 @@ class Api::QuestionsController < ApplicationController
     render json: serialized
   end
 
+  def autocomplete
+    questions = Question
+      .search(params[:search])
+      .desc
+      .limit(10)
+      .select(:id, :title, :slug)
+    render json: questions
+  end
+
   # GET /questions/1
   def show
-    render json: QuestionSerializer.new(@question).serialized_json
+    render json: QuestionShowSerializer.new(@question).serialized_json
   end
 
   # POST /questions
   def create
-    @question = Question.new(question_params)
+    @question = current_api_user.questions.new(question_params)
 
     if @question.save
-      render json: @question, status: :created, location: @question
+      render json: @question, status: :created, location: [:api, @question]
     else
       render json: @question.errors, status: :unprocessable_entity
     end

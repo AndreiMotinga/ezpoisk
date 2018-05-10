@@ -1,14 +1,6 @@
-class AnswerSerializer
+class QuestionShowSerializer
   include FastJsonapi::ObjectSerializer
-  attributes :text
-
-  attribute :updated_at do |obj|
-    obj.created_at.strftime("%B %d %Y %H:%M")
-  end
-
-  attribute :question do |obj|
-    obj.question
-  end
+  attributes  :title
 
   attribute :user do |object|
     # TODO switch to serialiser
@@ -21,5 +13,9 @@ class AnswerSerializer
       uid: user.uid,
       short_bio: user.short_bio
     }
+  end
+
+  attribute :answers do |obj|
+    AnswerSerializer.new(obj.answers).serializable_hash
   end
 end

@@ -25,6 +25,9 @@ gem "paperclip"
 
 gem "administrate"
 
+gem "friendly_id", github: "norman/friendly_id", branch: "master"
+gem "babosa"
+
 gem "sidekiq"
 gem "sidekiq-cron"
 gem "sinatra", require: nil, github: "sinatra/sinatra"

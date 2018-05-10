@@ -1,7 +1,5 @@
 class Api::AnswersController < ApplicationController
-  before_action :set_answer, only: [:show, :update, :destroy]
-  has_scope :user
-  has_scope :question
+  before_action :set_answer, only: [:update, :destroy]
 
   # GET /answers
   def index
@@ -14,15 +12,17 @@ class Api::AnswersController < ApplicationController
 
   # GET /answers/1
   def show
+    @answer = Answer.where(question_id: params[:question_id],
+                           user_id: params[:user_id]).first_or_create
     render json: AnswerSerializer.new(@answer).serialized_json
   end
 
   # POST /answers
   def create
-    @answer = Answer.new(answer_params)
+    @answer = current_api_user.answers.build(answer_params)
 
     if @answer.save
-      render json: @answer, status: :created, location: @answer
+      render json: AnswerSerializer.new(@answer).serialized_json
     else
       render json: @answer.errors, status: :unprocessable_entity
     end

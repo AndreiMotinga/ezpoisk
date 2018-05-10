@@ -1,4 +1,12 @@
 GIT
+  remote: https://github.com/norman/friendly_id.git
+  revision: ddb212d70ab710cf001620b7bda004f8af42d8d9
+  branch: master
+  specs:
+    friendly_id (5.2.4)
+      activerecord (>= 4.0.0)
+
+GIT
   remote: https://github.com/sinatra/sinatra.git
   revision: 83a2a6951f398f31974bb1f2bd3c4d7ea6333395
   specs:
@@ -79,6 +87,7 @@ GEM
     aws-sdk-resources (2.11.21)
       aws-sdk-core (= 2.11.21)
     aws-sigv4 (1.0.2)
+    babosa (1.0.2)
     bcrypt (3.1.11)
     bootsnap (1.3.0)
       msgpack (~> 1.0)
@@ -309,12 +318,14 @@ DEPENDENCIES
   administrate
   awesome_print
   aws-sdk (< 3.0)
+  babosa
   bootsnap (>= 1.1.0)
   city-state
   classifier-reborn
   devise_token_auth
   dotenv-rails
   fast_jsonapi
+  friendly_id!
   has_scope
   kaminari
   koala (~> 2.2)

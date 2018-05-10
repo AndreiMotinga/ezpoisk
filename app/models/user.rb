@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   has_many :pictures, through: :listings
 
   has_many :questions
-  has_many :answers, through: :questions
+  has_many :answers
 
   has_attached_file(
     :avatar,

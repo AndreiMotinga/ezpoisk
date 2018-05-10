@@ -10,7 +10,8 @@ class QuestionSerializer
       name:  user.name || user.email,
       avatar: user.avatar.url(:thumb),
       provider: user.provider,
-      uid: user.uid
+      uid: user.uid,
+      short_bio: user.short_bio
     }
   end
 end
