@@ -1,9 +1,11 @@
-class AnswersController < ApplicationController
+class Api::AnswersController < ApplicationController
   before_action :set_answer, only: [:show, :update, :destroy]
+  has_scope :user
 
   # GET /answers
   def index
-    @answers = Answer.page(params[:page]).per(params[:per_page])
+    @answers = apply_scopes(Answer.desc)
+                .page(params[:page]).per(params[:per_page])
     options = { meta: meta }
     serialized = AnswerSerializer.new(@answers, options).serialized_json
     render json: serialized
@@ -11,7 +13,7 @@ class AnswersController < ApplicationController
 
   # GET /answers/1
   def show
-    render json: @answer
+    render json: AnswerSerializer.new(@answer).serialized_json
   end
 
   # POST /answers
@@ -57,7 +59,7 @@ class AnswersController < ApplicationController
           prev: api_answers_url(page: @answers.prev_page),
           next: api_answers_url(page: @answers.next_page),
         },
-        meta: {
+        pagination: {
           current_per_page_count: @answers.current_per_page,
           total_count: @answers.total_count,
           total_pages: @answers.total_pages,

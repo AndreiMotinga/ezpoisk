@@ -25,7 +25,7 @@ Rails.application.routes.draw do
     resources :states, only: :index
     resources :cities, only: :index
     resources :pictures, only: [:create, :destroy]
-    resources :users, only: [:update]
+    resources :users, only: [:show, :update]
     get "users/listings", to: "users#listings"
   end
 

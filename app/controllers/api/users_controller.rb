@@ -1,5 +1,9 @@
 class Api::UsersController < ApplicationController
-  before_action :authenticate_api_user!
+  before_action :authenticate_api_user!, only: :update
+
+  def show
+    render json: User.find(params[:id])
+  end
 
   def update
     if current_api_user.update(user_params)

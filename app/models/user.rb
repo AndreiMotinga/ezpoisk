@@ -8,6 +8,9 @@ class User < ActiveRecord::Base
   has_many :listings, dependent: :destroy
   has_many :pictures, through: :listings
 
+  has_many :questions
+  has_many :answers, through: :questions
+
   has_attached_file(
     :avatar,
     styles: { thumb: "100x100#" },
