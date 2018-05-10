@@ -23,6 +23,7 @@ class ListingSerializer
   end
 
   attribute :user do |object|
+    # TODO switch to serialiser
     user = object.user
     {
       id: user.id,
