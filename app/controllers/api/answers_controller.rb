@@ -1,6 +1,7 @@
 class Api::AnswersController < ApplicationController
   before_action :set_answer, only: [:show, :update, :destroy]
   has_scope :user
+  has_scope :question
 
   # GET /answers
   def index
