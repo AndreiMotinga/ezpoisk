@@ -1,6 +1,6 @@
 class AnswerSerializer
   include FastJsonapi::ObjectSerializer
-  attributes :text
+  attributes :text, :old
 
   attribute :updated_at do |obj|
     obj.created_at.strftime("%B %d %Y %H:%M")
