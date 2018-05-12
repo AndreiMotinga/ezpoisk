@@ -21,7 +21,7 @@ Rails.application.routes.draw do
     resources :questions do
       get "autocomplete", on: :collection
     end
-    resources :answers
+    resources :answers, only: %i(index show create edit update destroy)
 
     resources :listings, only: %i(index show create edit update destroy)
     resources :states, only: :index

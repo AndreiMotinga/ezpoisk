@@ -13,7 +13,7 @@ class Api::AnswersController < ApplicationController
   # GET /answers/1
   def show
     @answer = Answer.where(question_id: params[:question_id],
-                           user_id: params[:user_id]).first_or_create
+                           user_id: params[:user_id]).first
     render json: AnswerSerializer.new(@answer).serialized_json
   end
 
@@ -26,6 +26,12 @@ class Api::AnswersController < ApplicationController
     else
       render json: @answer.errors, status: :unprocessable_entity
     end
+  end
+
+  def edit
+    @answer = Answer.where(question_id: params[:question_id],
+                           user_id: params[:user_id]).first_or_create
+    render json: AnswerSerializer.new(@answer).serialized_json
   end
 
   # PATCH/PUT /answers/1
@@ -45,7 +51,7 @@ class Api::AnswersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_answer
-      @answer = Answer.find(params[:id])
+      @answer = current_api_user.answers.find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
