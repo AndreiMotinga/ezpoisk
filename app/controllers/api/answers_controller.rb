@@ -3,7 +3,7 @@ class Api::AnswersController < ApplicationController
 
   # GET /answers
   def index
-    @answers = apply_scopes(Answer.desc)
+    @answers = apply_scopes(Answer.includes(:question, :user).desc)
                 .page(params[:page]).per(params[:per_page])
     options = { meta: meta }
     serialized = AnswerSerializer.new(@answers, options).serialized_json
