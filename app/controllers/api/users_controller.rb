@@ -2,7 +2,8 @@ class Api::UsersController < ApplicationController
   before_action :authenticate_api_user!, only: :update
 
   def show
-    render json: User.find(params[:id])
+    user = User.find(params[:id])
+    render json: UserSerializer.new(user).serialized_json
   end
 
   def update
