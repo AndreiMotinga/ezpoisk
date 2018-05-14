@@ -2,6 +2,7 @@ class Answer < ApplicationRecord
   belongs_to :question
   belongs_to :user
 
+  scope :user, ->(id) { where(user_id: id) }
   scope :desc, -> { order(created_at: :desc) }
 
   validates_presence_of :user_id
